@@ -1,0 +1,149 @@
+*{
+      box-sizing:border-box;  
+      margin: 0;
+      padding: 0;
+}
+
+.container-cadastro{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+}
+.cadastro{
+    width: 90%;
+    height: 70%;
+    display: flex;
+    border-radius: 8px;
+    box-shadow:  5px 5px 5px 5px rgb(0,0,0, 0.2);
+    background-color: #FFF;
+}
+.content-esq{
+    width: 55%;
+    height: 100%;
+    background-image: url('../assets/images/imagem-cadastro.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+.content-vidro{
+    width: 270px;
+    height: 120px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+.titulo-cadastro{
+    width: 220px;
+    height: 45px;
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 510;
+    text-align: center;
+}
+.saiba-mais{
+    width: 160px;
+    height: 35px;
+    border-radius: 8px;
+    border-style: none;
+    background-color:#2684DE ;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #FFF;
+}
+.content-dir{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.area-cadastro{
+    width: 60%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.logo{
+    width:100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.entrada-dados{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.dados{
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+.dados div{
+    width:30%;
+    height:20px;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 200;
+    color: #2684DE;
+}
+.dados input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #2684DE;
+    border-radius: 8px;
+    background-color: #FFF;
+}
+.login{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.txt-login{
+    font-size: 15px;
+    color:#2684DE;
+}
+.logar{
+    font-size: 16px;
+    font-weight: 500;
+    color:#000;
+    margin-left: 6px;
+}
+.envio{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.enviar{
+    width: 160px;
+    height: 35px;
+    border-radius: 8px;
+    border-style: none;
+    background-color:#2684DE ;
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #FFF;
+}
+}
