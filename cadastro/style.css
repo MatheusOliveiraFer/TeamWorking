@@ -24,9 +24,36 @@
     width: 55%;
     height: 100%;
     background-image: url('../assets/images/imagem-cadastro.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-blend-mode:darken;
+}
+.conteudo-inicial{
+    width: 100%;
+    height:25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 65px;
+}
+.titulo-esq{
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+.conteudo-inicial ol{
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+    padding-left: 25px;
+    padding-top: 5px;
+}
+.esq{
     display: flex;
     justify-content: center;
-    align-items: flex-end;
 }
 .content-vidro{
     width: 270px;
@@ -68,7 +95,7 @@
 }
 .area-cadastro{
     width: 60%;
-    height: 80%;
+    height: 95%;
     display: flex;
     flex-direction: column;
 }
@@ -78,12 +105,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 22px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
 }
 .entrada-dados{
     width: 100%;
-    height: 60%;
+    height: 66%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -91,7 +119,7 @@
 }
 .dados{
     width: 100%;
-    height: 100%;
+    height: 50%;
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -111,9 +139,49 @@
     border-radius: 8px;
     background-color: #FFF;
 }
+.dados-importantes{
+    width: 100%;
+    height: 50%;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 11px;
+}
+.conteudo-dados{
+    width: 100%;
+    height: 100%;
+}
+.dados-importantes .conteudo-dados div{
+    width:28%;
+    height:20px;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 200;
+    color: #2684DE;
+}
+.dados-importantes input{
+    width: 100%;
+    height: 30px;
+    border: 1px solid #2684DE;
+    border-radius: 8px;
+    background-color: #FFF;
+    padding: 14px;
+}
+.uf{
+    margin-left: 16px;
+}
+.dados-importantes .entrada-uf{
+    width: 70%;
+    height: 30px;
+    margin-left: 16px;
+}
+.entrada-cidade{
+    width: 20%;
+    height: 30px;
+}
 .login{
     width: 100%;
-    height: 10%;
+    height:8%;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -126,8 +194,29 @@
 .logar{
     font-size: 16px;
     font-weight: 500;
-    color:#000;
     margin-left: 6px;
+}
+.logar a{
+    color:#000000;
+    text-decoration: none;
+}
+.termos{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.txt-termos{
+    width: 90%;
+    height: 100%;
+    font-size: 12px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #2684DE;
+}
+.txt-termos a{
+    color: #000;
+    text-decoration: none;
 }
 .envio{
     width: 100%;
@@ -145,5 +234,4 @@
     font-size: 15px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #FFF;
-}
 }
