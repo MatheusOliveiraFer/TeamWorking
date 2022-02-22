@@ -44,11 +44,12 @@ table {
     border-spacing: 0;
 }
 
+
 /* CSS EFETIVO */
 
 .container { 
-  width: 100%;
-  height: 797px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,12 +69,12 @@ table {
 .area-login-left {
   width: 55%;
   height: 600px;
-  background-color: rgb(121, 37, 201);
+  background-image: url("../images/WhatsApp\ Image\ 2022-02-17\ at\ 13.49.38.jpeg");
   border-radius: 7px;
   -webkit-border-radius: 7px 0px 0px 7px;
   -moz-border-radius: 7px 0px 0px 7px;
   border-radius: 7px 0px 0px 7px;
-  clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+  background-repeat: no-repeat;
 }
 
 /* CSS PARTE DIREITA DO LOGIN */
@@ -82,35 +83,98 @@ table {
   width: 45%;
   height: 600px;
   display: flex;
-  justify-content: center;
   align-items: center;
   -webkit-border-radius: 0px 7px 7px 0px;
   -moz-border-radius: 0px 7px 7px 0px;
   border-radius: 0px 7px 7px 0px;
 }
 .area-login-right form {
-  width: 75%;
+  width: 70%;
   height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 form .form-title {
   width: 100%;
   height: 100px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
 form .form-title h1 {
-  font-size: 40px;
-  color: rgb(121, 37, 201);
-  font-family: 'Lora', serif;
+  font-size: 30px;
+  color: rgb(0, 0, 0);
+  font-family: 'Lora','serif';
+  font-weight: bold;
+}
+.subtitulo-login{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-family: 'Lora', 'serif' ;
+  font-weight: bold;
 }
 form .form-body {
   width: 100%;
-  height: 300px;
-  background-color: cornflowerblue;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.dados{
+  width: 100%;
+  height: 20%;
+}
+.dados div{
+  width:30%;
+  height:20px;
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 200;
+  color: #2684DE;
+}
+.dados input {
+  width: 98%;
+  height: 30px;
+  border: 1px solid #2684DE;
+  border-radius: 8px;
+  background-color: #FFF;
+  color: black;
+}
+.cadastro{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #000;
+}
+.cadastro a {
+  color: #277ccc;
+  margin-left: 3px;
+  font-size: 16px;
+  text-decoration: none;
 }
 form .form-button {
   width: 100%;
-  height: 110px;
-  background-color: darkgreen;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.enviar{
+    width: 160px;
+    height: 35px;
+    border-radius: 8px;
+    border-style: none;
+    background-color:#2684DE ;
+    font-size: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #FFF;
 }
