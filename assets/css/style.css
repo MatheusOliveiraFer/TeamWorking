@@ -84,6 +84,7 @@ table {
   height: 600px;
   display: flex;
   align-items: center;
+  justify-content: center;
   -webkit-border-radius: 0px 7px 7px 0px;
   -moz-border-radius: 0px 7px 7px 0px;
   border-radius: 0px 7px 7px 0px;
@@ -101,6 +102,7 @@ form .form-title {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  
 }
 form .form-title h1 {
   font-size: 30px;
@@ -177,4 +179,97 @@ form .form-button {
     font-size: 15px;
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #FFF;
+}
+@media screen and (min-width: 633px) and (max-width: 828px) {
+  .area-login {
+    width: 95%;
+    background-image: url(../images/WhatsApp\ Image\ 2022-02-17\ at\ 13.49.38.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .area-login-left {
+    display: none;
+  }
+  .area-login-right {
+    width: 60%;
+    height: 80%;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    -webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+    box-shadow: 0px 0px 15px 2px #7e7575;
+  }
+  .cadastro {
+    flex-direction: column;
+  }
+  .cadastro a {
+    margin-top: 10px;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 633px) {
+  .area-login {
+    width: 95%;
+    background-image: url(../images/WhatsApp\ Image\ 2022-02-17\ at\ 13.49.38.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .area-login-left {
+    display: none;
+  }
+  .area-login-right {
+    width: 80%;
+    height: 80%;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    -webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+    box-shadow: 0px 0px 15px 2px #7e7575;
+  }
+  .cadastro {
+    flex-direction: column;
+  }
+  .cadastro a {
+    margin-top: 10px;
+  }
+}
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .area-login {
+    width: 95%;
+    background-image: url(../images/WhatsApp\ Image\ 2022-02-17\ at\ 13.49.38.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .area-login-left {
+    display: none;
+  }
+  .area-login-right {
+    width: 90%;
+    height: 80%;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    -webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+    box-shadow: 0px 0px 15px 2px #7e7575;
+  }
+  .cadastro {
+    flex-direction: column;
+  }
+  .cadastro a {
+    margin-top: 10px;
+  }
 }
