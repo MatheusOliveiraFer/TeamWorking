@@ -9,13 +9,24 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <title>Página principal</title>
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script src="assets/js/firebase.js" defer></script>
+    <script defer src="assets/js/controllers/loginController.js"></script>
+
+    <script src="assets/js/databases/user_database.js"></script>
 </head>
 <body>
     <div class="container">
         <div class="area-login">
             <div class="area-login-left"></div><!--area-login-left-->
             <div class="area-login-right">
-                <form method="GET">
+                <form id="signIn">
                     <div class="form-title">
                         <h1>Entrar</h1>
                         <div class="subtitulo-login">Novas Oportunidades surgem a todo momento.</div>
@@ -35,7 +46,11 @@
                         Não possuí cadastro? 
                         <a href="">Esqueci a senha</a></div>
                     <div class="form-button">
-                            <button class="enviar">Enviar</button>
+                        <div id="loading-button" class="loading-button">
+                            <img src="./assets/images/Loading.gif" class="loading"/>
+                        </div>
+
+                        <button type="submit" id="enviar" class="enviar">Enviar</button>
                     </div><!--borm-button-->
                 </form>
             </div><!--area-login-right-->

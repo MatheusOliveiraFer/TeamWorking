@@ -1,239 +1,263 @@
 *{
-      box-sizing:border-box;  
-      margin: 0;
-      padding: 0;
+    box-sizing:border-box;  
+    margin: 0;
+    padding: 0;
 }
 
 .container-cadastro{
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFF;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
 }
 .cadastro{
-    width: 90%;
-    height: 70%;
-    display: flex;
-    border-radius: 8px;
-    box-shadow:  5px 5px 5px 5px rgb(0,0,0, 0.2);
-    background-color: #FFF;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  border-radius: 8px;
+  box-shadow:  5px 5px 5px 5px rgb(0,0,0, 0.2);
+  background-color: #FFF;
 }
 .content-esq{
-    width: 55%;
-    height: 100%;
-    background-image: url('../assets/images/imagem-cadastro.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-blend-mode:darken;
+  width: 55%;
+  height: 100%;
+  background-image: url('../assets/images/imagem-cadastro.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-blend-mode:darken;
 }
 .conteudo-inicial{
-    width: 100%;
-    height:25%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 65px;
+  width: 100%;
+  height:25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 65px;
 }
 .titulo-esq{
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold;
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
 }
 .conteudo-inicial ol{
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: bold;
-    padding-left: 25px;
-    padding-top: 5px;
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  padding-left: 25px;
+  padding-top: 5px;
 }
 .esq{
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 .content-vidro{
-    width: 270px;
-    height: 120px;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content:space-around;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+  width: 270px;
+  height: 120px;
+  margin-bottom: 40px;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 .titulo-cadastro{
-    width: 220px;
-    height: 45px;
-    font-size: 17px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 510;
-    text-align: center;
+  width: 220px;
+  height: 45px;
+  font-size: 17px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 510;
+  text-align: center;
 }
 .saiba-mais{
-    width: 160px;
-    height: 35px;
-    border-radius: 8px;
-    border-style: none;
-    background-color:#2684DE ;
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #FFF;
+  width: 160px;
+  height: 35px;
+  border-radius: 8px;
+  border-style: none;
+  background-color:#2684DE ;
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #FFF;
 }
 .content-dir{
-    width: 45%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+  width: 45%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;    
 }
 .area-cadastro{
-    width: 60%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
+  width: 60%;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
 }
 .logo{
-    width:100%;
-    height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 22px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: bold;
+  width:100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
 }
 .entrada-dados{
-    width: 100%;
-    height: 66%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+  width: 100%;
+  height: 67%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 .dados{
-    width: 100%;
-    height: 50%;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  height: 50%;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
 }
 .dados div{
-    width:30%;
-    height:20px;
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 200;
-    color: #2684DE;
+  width:100%;
+  height:20px;
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 200;
+  color: #2684DE;
 }
 .dados input {
-    width: 100%;
-    height: 30px;
-    border: 1px solid #2684DE;
-    border-radius: 8px;
-    background-color: #FFF;
-    color: #000;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #2684DE;
+  border-radius: 8px;
+  background-color: #FFF;
+  color: #000;
+  padding: 14px;
 }
 .dados-importantes{
-    width: 100%;
-    height: 50%;
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
-    padding-top: 11px;
+  width: 100%;
+  height: 50%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 11px;
 }
 .conteudo-dados{
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .dados-importantes .conteudo-dados div{
-    width:28%;
-    height:20px;
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 200;
-    color: #2684DE;
+  width:28%;
+  height:20px;
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 200;
+  color: #2684DE;
 }
 .dados-importantes input{
-    width: 100%;
-    height: 30px;
-    border: 1px solid #2684DE;
-    border-radius: 8px;
-    background-color: #FFF;
-    padding: 14px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #2684DE;
+  border-radius: 8px;
+  background-color: #FFF;
+  padding: 14px;
 }
 .uf{
-    margin-left: 16px;
+  margin-left: 16px;
 }
 .dados-importantes .entrada-uf{
-    width: 70%;
-    height: 30px;
-    margin-left: 16px;
+  width: 70%;
+  height: 30px;
+  margin-left: 16px;
 }
 .entrada-cidade{
-    width: 20%;
-    height: 30px;
+  width: 20%;
+  height: 30px;
 }
+.errorDiv{
+  height: 25%;
+  width: 100%;
+}
+.errorDiv div{
+    color: red;
+    font-weight: bold;
+  }
 .login{
-    width: 100%;
-    height:8%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height:8%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .txt-login{
-    font-size: 15px;
-    color:#2684DE;
+  font-size: 15px;
+  color:#2684DE;
 }
 .logar{
-    font-size: 16px;
-    font-weight: 500;
-    margin-left: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 6px;
 }
 .logar a{
-    color:#000000;
-    text-decoration: none;
+  color:#000000;
+  text-decoration: none;
 }
 .termos{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .txt-termos{
-    width: 90%;
-    height: 100%;
-    font-size: 12px;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: #2684DE;
+  width: 90%;
+  height: 100%;
+  font-size: 12px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: #2684DE;
 }
 .txt-termos a{
-    color: #000;
-    text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 .envio{
-    width: 100%;
-    height: 15%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .enviar{
-    width: 160px;
-    height: 35px;
-    border-radius: 8px;
-    border-style: none;
-    background-color:#2684DE ;
-    font-size: 15px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #FFF;
+  width: 160px;
+  height: 35px;
+  border-radius: 8px;
+  border-style: none;
+  background-color:#2684DE ;
+  font-size: 15px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #FFF;
+}
+.loading-button{
+  width: 160px;
+  height: 35px;
+  border-radius: 8px;
+  border: 2px solid #2684DE;
+  background-color: white;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.loading{
+  width: 30px;
+  height: 30px;
 }

@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script src="../assets/js/firebase.js" defer></script>
+    <script defer src="../assets/js/controllers/cadastroController.js"></script>
+
+    <script src="../assets/js/databases/user_database.js"></script>
 </head>
 <body>
     <div class="container-cadastro">
@@ -13,7 +23,7 @@
             <div class="content-esq">
                 <div class="conteudo-inicial">              
                     <div class="titulo-esq">
-                        Tenha tudo em seu alçance:
+                        Tenha tudo ao seu alcance:
                     </div>
                     <ol>
                         <li style="list-style-type:disc">Compra e venda de empresa e negócios;</li>                      
@@ -29,37 +39,44 @@
                 </div>
             </div>
             <div class="content-dir">
-                <form class="area-cadastro">
+                <form id="signUp" class="area-cadastro">
                     <div class="logo">
                         Para ter acesso aos anúncios efetue o seu cadastro
                     </div>
                     <div class="entrada-dados">
                         <div class="dados">
                             <div class="nome">Nome:</div>
-                            <input name="nome"/>
+                            <input id="name" name="nome"/>
                         </div>
                         <div class="dados">
                             <div class="email">Email:</div>
-                            <input name="email"/>
+                            <input type="email" id="email" name="email"/>
                         </div>
                         <div class="dados">
                             <div class="senha">Senha:</div>
-                            <input name="senha"/>
+                            <input type="password" id="password" name="senha"/>
+                        </div>
+                        <div class="dados">
+                            <div class="senha">Confirme sua senha:</div>
+                            <input type="password" id="confirmPassword" name="confirmarSenha"/>
                         </div>
                         <div class="dados-importantes">
                             <div class="conteudo-dados">
                                 <div class="telefone">Contato:</div>
-                                <input name="telefone"/>
+                                <input id="phone" name="telefone"/>
                             </div>
                             <div class="conteudo-dados">
                                 <div class="uf">UF:</div>
-                                <input class="entrada-uf" name="UF"/>
+                                <input id="uf" class="entrada-uf" name="UF"/>
                             </div>
                             <div class="conteudo-dados">
                                 <div class="cidade">Cidade:</div>
-                                <input class="entrada-cidade" name="cidade"/>
+                                <input id="city" class="entrada-cidade" name="cidade"/>
                             </div>
                             
+                        </div>
+                        <div class="errorDiv">
+                            <div id="errorElement"></div>
                         </div>
                     </div>
                     <div class="login">
@@ -73,7 +90,11 @@
                             Política de cookies</a>.</div>
                     </div>
                     <div class="envio">
-                        <button class="enviar">Enviar</button>
+                        <div id="loading-button" class="loading-button">
+                            <img src="../assets/images/Loading.gif" class="loading"/>
+                        </div>
+                        
+                        <button type="submit" id="enviar" class="enviar">Enviar</button>
                     </div>
                 </form>
             </div>
