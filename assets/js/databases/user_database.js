@@ -55,7 +55,7 @@ const user_database = {};
                     user.push(user_data)
                         .then(function () {
                             console.log("Usuário criado com sucesso!")
-                            window.location.replace('/index.html') //FUTURAMENTE TELA HOME
+                            window.location.replace('Home.html') //FUTURAMENTE TELA HOME
                         })
                         .catch(function (erro) {
                             console.log("Um erro ocorreu ao tentar criar o usuário: ", erro)
