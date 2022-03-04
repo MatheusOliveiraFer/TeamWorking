@@ -37,16 +37,29 @@
   height:25%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding-left: 65px;
+  /* background-color: aquamarine; */
+}
+.conteudo-inicial .cont-glass{
+  width: 80%;
+  height:90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 25px;
+  border-radius: 12px;
+  background: rgba(177, 177, 177, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
 }
 .titulo-esq{
-  font-size: 20px;
+  font-size: 18px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: bold;
 }
 .conteudo-inicial ol{
-  font-size: 18px;
+  font-size: 16px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: bold;
   padding-left: 25px;
@@ -107,7 +120,7 @@
   justify-content: center;
   align-items: center;
   font-size: 22px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Georgia, Times, 'Times New Roman', serif;
   font-weight: bold;
 }
 .entrada-dados{
@@ -219,17 +232,18 @@
 }
 .termos{
   width: 100%;
-  height: 9%;
+  height: 10%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 4px;
 }
 .txt-termos{
   width: 90%;
-  height: 50%;
+  height: 100%;
   font-size: 12px;
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Georgia, Times, 'Times New Roman', serif;
   color: #2684DE;
 }
 .txt-termos a{
@@ -238,7 +252,7 @@
 }
 .envio{
   width: 100%;
-  height: 10%;
+  height: 9%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -259,7 +273,6 @@
   border-radius: 8px;
   border: 2px solid #2684DE;
   background-color: white;
-
   display: none;
   justify-content: center;
   align-items: center;
@@ -267,4 +280,61 @@
 .loading{
   width: 30px;
   height: 30px;
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1350px) {
+  .titulo-esq{
+    font-size: 16px;
+  }
+  .conteudo-inicial ol{
+    font-size: 15px;
+    padding-left: 25px;
+    padding-top: 5px;
+  }
+  .area-cadastro{
+    width: 60%;
+    height: 88%;
+  }
+  .logo{
+    width:100%;
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+  }
+  .txt-termos{
+    font-size: 11px;
+  }
+  .titulo-cadastro{
+    font-size: 15px;
+  }
+  .saiba-mais{
+    font-size: 12px;
+  }
+
+}
+@media screen and (min-width:870px) and (max-width:1100px) {
+  .titulo-esq{
+    font-size: 14px;
+  }
+  .conteudo-inicial ol{
+    font-size: 13px;
+    padding-left: 25px;
+    padding-top: 5px;
+  }
+  .area-cadastro{
+    width: 60%;
+    height: 94%;
+  }
+  .logo{
+    width:100%;
+    height: 10%;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width:570px) and (max-width:870px) {
+  .content-esq{
+    display: none;
+  }
 }
