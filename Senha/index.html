@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci minha senha</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="esquecer-senha">
+        <div class="cont">
+            <div class="txt">
+                <div class="title">Esqueci a senha</div>
+            </div>
+            <form>
+                <div class="cont-form">
+                    <div class="dados">
+                        <div class="senha">Nova Senha:</div>
+                        <input type="password" id="password" name="senha"/>
+                    </div>
+                    <div class="dados">
+                        <div class="senha">Confirme sua nova senha:</div>
+                        <input type="password" id="confirmPassword" name="confirmarSenha"/>
+                    </div>
+                </div>
+            </form>
+            <div class="errorDiv">
+                <div id="errorElement">Erro Back</div>
+            </div>
+            <div class="enviar">
+                <div id="loading-button" class="loading-button">
+                    <img src="../assets/images/Loading.gif" class="loading"/>
+                </div>
+                
+                <button type="submit" id="enviar" class="botao">Enviar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
