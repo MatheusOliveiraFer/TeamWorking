@@ -1,0 +1,76 @@
+header {
+	display:flex;
+	justify-content:center;
+	height:120px;
+    background-color: #2699d3;
+}
+.container {
+	display:flex;
+	justify-content:space-between;
+	width: 90%;
+}
+.logo {
+	display:flex;
+	align-items:center;
+    color:#FFF;
+    font-size: 30px;
+}
+.menu {
+	display:flex;
+	align-items:center;
+}
+nav ul,
+nav li {
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+nav ul {
+	display:flex;
+}
+nav a {
+	display:block;
+	padding:15px;
+	text-decoration:none;
+	text-transform:uppercase;
+	color:#faf8f8;
+}
+nav .active a,
+nav a:hover {
+	background-color:#FFF;
+	color: #39aae1;
+}
+.menuMobile {
+	display:none;
+	width:40px;
+	height:40px;
+	margin-top:40px;
+	margin-bottom:40px;
+	margin-right:20px;
+}
+
+.mm_line {
+	height:3px;
+	background-color:#FFF;
+}
+#anuncios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#anuncios .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.76);
+    padding: 10px;
+}
+#anuncios 
+.container
+.anuncio {
+    width: 97%;
+    height: 500px;
+    background-color: #FFF;
+    margin: 10px;
+}
