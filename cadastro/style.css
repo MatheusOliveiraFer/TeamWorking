@@ -39,7 +39,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: aquamarine; */
 }
 .conteudo-inicial .cont-glass{
   width: 80%;
@@ -67,6 +66,7 @@
 }
 .esq{
   display: flex;
+  flex-direction: row;
   justify-content: center;
 }
 .content-vidro{
@@ -284,6 +284,7 @@
 }
 
 @media screen and (min-width: 1100px) and (max-width: 1350px) {
+
   .titulo-esq{
     font-size: 16px;
   }
@@ -315,12 +316,12 @@
   }
 
 }
-@media screen and (min-width:870px) and (max-width:1100px) {
+@media screen and (min-width:920px) and (max-width:1100px) {
   .titulo-esq{
-    font-size: 14px;
+    font-size: 15px;
   }
   .conteudo-inicial ol{
-    font-size: 13px;
+    font-size: 14px;
     padding-left: 25px;
     padding-top: 5px;
   }
@@ -331,11 +332,130 @@
   .logo{
     width:100%;
     height: 10%;
+    font-size: 15px;
+  }
+  .titulo-cadastro{
     font-size: 14px;
   }
-}
-@media screen and (min-width:570px) and (max-width:870px) {
-  .content-esq{
-    display: none;
+  .saiba-mais{
+    font-size: 13px;
   }
+}
+@media screen and (min-width:670px) and (max-width:920px) {
+  .content-dir{
+      display: none;  
+  }
+  .content-esq{
+    width: 100%;
+    height: 100%;
+  }
+  .titulo-esq{
+    font-size: 16px;
+  }
+  .conteudo-inicial ol{
+    font-size: 15px;
+  }
+  .area-cadastro{
+    width: 60%;
+    height: 94%;
+  }
+  .logo{
+    width:100%;
+    height: 10%;
+    font-size: 16px;
+  }
+  .esq{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .content-vidro{
+    width: 270px;
+    height: 120px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .saiba-mais{
+   font-size: 0;
+  }
+  .saiba-mais:after{
+    visibility:visible;
+    content: "Cadastrar";
+    width: 160px;
+    height: 35px;
+    border-radius: 8px;
+    border-style: none;
+    background-color:#2684DE ;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #FFF;
+}
+@media screen and (min-width:350px) and (max-width:670px) {
+  .content-dir{
+    display: none;  
+  }
+  .content-esq{
+    width: 100%;
+    height: 100%;
+  }
+  .titulo-esq{
+    font-size: 10px;
+  }
+  .conteudo-inicial ol{
+    font-size: 8px;
+  }
+  .area-cadastro{
+    width: 60%;
+    height: 94%;
+  }
+  .logo{
+    width:100%;
+    height: 10%;
+    font-size: 10px;
+  }
+  .esq{
+    display: flex;
+    justify-content: center;
+  }
+  .content-vidro{
+    width: 270px;
+    height: 120px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+  .saiba-mais{
+  font-size: 0;
+  }
+  .saiba-mais:after{
+    visibility:visible;
+    content: "Cadastrar";
+    width: 160px;
+    height: 35px;
+    border-radius: 8px;
+    border-style: none;
+    background-color:#2684DE ;
+    font-size: 14px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #FFF;
+  }
+}
+
+
+
+
+
 }
