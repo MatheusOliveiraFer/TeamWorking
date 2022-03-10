@@ -20,7 +20,7 @@ const user_database = {};
             telefone: phone,
             uf: uf,
             cidade: city,
-            confirmado: false,
+            confirmado: true,
             bloqueado: false,
         }
 
@@ -259,15 +259,17 @@ const user_database = {};
                         .catch(function (e) {
                             console.log("Ocorreu um erro ao tentar criar a requisição!", e)
                             errorElement.innerText = "Erro interno!"
+
+                            enviar.style.display = 'inline'
+                            loading.style.display = 'none'
                         })
                     }else{
                         console.log("Ocorreu um erro ao tentar criar a requisição!")
                         errorElement.innerText = "Erro interno!"
+
+                        enviar.style.display = 'inline'
+                        loading.style.display = 'none'
                     }
-
-                    enviar.style.display = 'inline'
-                    loading.style.display = 'none'
-
                 } else {
                     console.log('E-mail não encontrado ou ainda não confirmado!')
                     errorElement.innerText = "E-mail não encontrado ou ainda não confirmado!"
@@ -362,7 +364,7 @@ const user_database = {};
 
                 email = get_requests.email
 
-                get_requests.remove()
+                request.child(requestId).remove()
                     .then(function () {
                         console.log("Requisição consumida!")
                     })
@@ -393,8 +395,7 @@ const user_database = {};
                                         enviar.style.display = 'inline'
                                         loading.style.display = 'none'
 
-                                        errorElement.style.color = 'green'
-                                        errorElement.innerHTML = 'Senha atualizada com sucesso!'
+                                        window.location.replace('/rota_recuperacao/concluido')
                                     })
                                     .catch(function(e){
                                         console.log("Um erro ocorreu ao tentar atualizar o usuário: ", erro)
