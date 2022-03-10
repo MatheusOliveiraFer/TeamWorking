@@ -16,6 +16,15 @@
     <script defer src="../assets/js/controllers/cadastroController.js"></script>
 
     <script src="../assets/js/databases/user_database.js"></script>
+
+    <script>
+        function abrirModal() {
+            document.getElementById('modal').style.top="0";
+        }
+        function fecharModal() {
+            document.getElementById('modal').style.top="-100%";
+        }
+    </script>
 </head>
 <body>
     
@@ -37,7 +46,7 @@
                 <div class="esq">
                     <div class="content-vidro">
                         <div class="titulo-cadastro">Cadastre-se e faça parte do QUEROUMSÓCIO</div>
-                        <button class="saiba-mais"><a data-toggle="modal" href="../modalcadastromobile/index.html" data-target="#modal">Saiba Mais</a></button>
+                        <button onclick="abrirModal()" class="saiba-mais"><a data-toggle="modal"  data-target="#modal">Saiba Mais</a></button>
                     </div>
                 </div>
             </div>
@@ -100,6 +109,70 @@
                     </div>
                 </form>
             </div>
+        </div>
+    </div>
+
+    <div class="modal"id="modal">
+        <div class="modal-container">
+            <span class="close" onclick="fecharModal()">&times;</span>
+        
+                <form id="signUp" class="area-cadastro">
+                    <div class="logo-mobile">
+                        Para ter acesso aos anúncios efetue o seu cadastro
+                    </div>
+                    <div class="entrada-dados">
+                        <div class="dados">
+                            <div class="nome">Nome:</div>
+                            <input id="name" name="nome"/>
+                        </div>
+                        <div class="dados">
+                            <div class="email">Email:</div>
+                            <input type="email" id="email" name="email"/>
+                        </div>
+                        <div class="dados">
+                            <div class="senha">Senha:</div>
+                            <input type="password" id="password" name="senha"/>
+                        </div>
+                        <div class="dados">
+                            <div class="senha">Confirme sua senha:</div>
+                            <input type="password" id="confirmPassword" name="confirmarSenha"/>
+                        </div>
+                        <div class="dados-importantes">
+                            <div class="conteudo-dados">
+                                <div class="telefone">Contato:</div>
+                                <input id="phone" name="telefone"/>
+                            </div>
+                            <div class="conteudo-dados">
+                                <div class="uf">UF:</div>
+                                <input id="uf" class="entrada-uf" name="UF"/>
+                            </div>
+                            <div class="conteudo-dados">
+                                <div class="cidade">Cidade:</div>
+                                <input id="city" class="entrada-cidade" name="cidade"/>
+                            </div>
+                            
+                        </div>
+                        <div class="errorDiv">
+                            <div id="errorElement"></div>
+                        </div>
+                    </div>
+                    <div class="login">
+                        <div class="txt-login">Já possui uma conta?</div>
+                        <div class="logar" onclick="window.location.href='/index.html'"><a>Faça Login</a></div>
+                    </div>
+                    <div class="termos">
+                        <div class="txt-termos">
+                            Ao clicar em cadastrar você aceita o <a href="">Contrato de usuário</a>,
+                            <a href="">Política de privacidade</a> e a <a href="">
+                            Política de cookies</a>.</div>
+                    </div>
+                    <div class="envio">
+                        <div id="loading-button" class="loading-button">
+                            <img src="../assets/images/Loading.gif" class="loading"/>
+                        </div>
+                        <button type="submit" id="enviar" class="enviar">Cadastrar</button>
+                    </div>
+                </form>
         </div>
     </div>
 </body>
