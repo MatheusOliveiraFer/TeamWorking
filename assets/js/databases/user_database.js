@@ -20,7 +20,7 @@ const user_database = {};
             telefone: phone,
             uf: uf,
             cidade: city,
-            confirmado: false,
+            confirmado: true,
             bloqueado: false,
         }
 
