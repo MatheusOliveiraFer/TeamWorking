@@ -75,6 +75,8 @@
     border-radius: 8px;
     background-color: #FFF;
     color: black;
+
+    padding-left: 10px;
   }
   .errorDiv{
     width: 100%;
