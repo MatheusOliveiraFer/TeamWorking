@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci minha senha</title>
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <script src="/assets/js/firebase.js" defer></script>
+    <script defer src="/assets/js/controllers/codigoController.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("DQv9YRXGKty4ghBhV");
+        })();
+    </script>
+
+    <script src="/assets/js/databases/user_database.js"></script>
+    <script src="/assets/js/emailSender.js"></script>
+</head>
+
+<body>
+    <div class="esquecer-senha">
+        <div class="cont">
+            <div class="txt">
+                <div class="title">Acabamos de enviar um código para o seu E-mail</div>
+            </div>
+            <form id="code">
+                <div class="dados">
+                    <div class="senha">Enviamos um código para <b id="b">email</b>, copie e cole ele abaixo para podermos prosseguir com a recuperação:</div>
+                    <input type="text" id="codigo" name="codigo" placeholder="# # # # # #" maxlength="6"/>
+                </div>
+                <div class="errorDiv">
+                    <div id="errorElement"></div>
+                </div>
+                <div class="enviar">
+                    <div id="loading-button" class="loading-button">
+                        <img src="/assets/images/Loading.gif" class="loading" />
+                    </div>
+
+                    <button type="submit" id="enviar" class="botao">Prosseguir</button>
+                </div>
+                <div class="enviar">
+                    <div id="loading-button-reenvite" class="loading-button">
+                        <img src="/assets/images/Loading.gif" class="loading" />
+                    </div>
+                    <div id="reenvite" class="back-button">Reenviar código</div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

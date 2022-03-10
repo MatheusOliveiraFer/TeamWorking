@@ -13,11 +13,10 @@ const loading = document.getElementById('loading-button')
 signUp.addEventListener('submit', (e) => {
     enviar.style.display = 'none'
     loading.style.display = 'flex'
+    errorElement.style.color = 'red'
+    errorElement.innerText = ''
 
     setTimeout(function(){
-        loading.style.display = 'none'
-        enviar.style.display = 'inline'
-
         name.style.border = '1px solid #2684DE'
         email.style.border = '1px solid #2684DE'
         password.style.border = '1px solid #2684DE'

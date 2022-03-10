@@ -34,22 +34,22 @@
                     <div class="form-body">
                         <div class="dados">
                             <div class="email">Email:</div>
-                            <input id="email" name="email" type="email" placeholder="Digite seu e-mail" style="padding-left: 10px;"/>
+                            <input id="email" name="email" type="email" placeholder="Digite seu e-mail">
                         </div>
                         <div class="dados">
                             <div class="senha">Senha:</div>
-                            <input id="password" name="senha" type="password" placeholder="Digite sua senha..." style="padding-left: 10px;"/>
+                            <input id="password" name="senha" type="password" placeholder="Digite sua senha..."/>
                         </div>
                     </div><!--form-body-->
                     <div class="errorDiv">
                             <div id="errorElement"></div>
                         </div>
                     <div class="cadastro"> 
-                        <a href="">Esqueceu a senha?</a>
+                        <a onclick="window.location.href='/rota_recuperacao/esqueci'">Esqueceu a senha?</a>
                     </div>
                     <div class="form-button">
                         <div id="loading-button" class="loading-button">
-                            <img src="./assets/images/Loading.gif" class="loading"/>
+                            <img src="/assets/images/Loading.gif" class="loading"/>
                         </div>
 
                         <button type="submit" id="enviar" class="enviar">Enviar</button>

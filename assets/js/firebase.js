@@ -27,10 +27,23 @@ const tw = {};
                 if(action == 'user_validation'){
                     user_database.validate(parameters[0],parameters[1])
                 }
+                if(action == 'open_request'){
+                    user_database.request(parameters[0],parameters[1])
+                }
+                if(action == 'check_code'){
+                    user_database.checkCode(parameters[0],parameters[1])
+                }
+                if(action == 'password_update'){
+                    console.log(1)
+
+                    user_database.passwordUpdate(parameters[0],parameters[1],parameters[2])
+                }
             }catch(e){
-                setTimeout(function () {
-                    trying()
-                },500)
+                // setTimeout(function () {
+                //     trying()
+                // },500)
+
+                console.log(e)
             }
         }
 

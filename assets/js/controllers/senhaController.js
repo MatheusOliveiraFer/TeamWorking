@@ -1,11 +1,10 @@
 const email = document.getElementById('email')
-const password = document.getElementById('password')
-const signIn = document.getElementById('signIn')
 const errorElement = document.getElementById('errorElement')
+const forgot = document.getElementById('forgot')
 const enviar = document.getElementById('enviar')
 const loading = document.getElementById('loading-button')
 
-signIn.addEventListener('submit', (e) => {
+forgot.addEventListener('submit', (e) => {
     enviar.style.display = 'none'
     loading.style.display = 'flex'
     errorElement.style.color = 'red'
@@ -13,19 +12,13 @@ signIn.addEventListener('submit', (e) => {
 
     setTimeout(function(){
         email.style.border = '1px solid #2684DE'
-        password.style.border = '1px solid #2684DE'
 
         let errors = 0;
 
         if(email.value === '' || email.value == null){
             errors++
             email.style.border = '2px solid red'
-            errorElement.innerText = "Existem campos sem preencher!"
-        }
-        if(password.value === '' || password.value == null){
-            errors++
-            password.style.border = '2px solid red'
-            errorElement.innerText = "Existem campos sem preencher!"
+            errorElement.innerText = "Você esqueceu de preencher este campo!"
         }
 
         if(errors > 0){
@@ -34,7 +27,7 @@ signIn.addEventListener('submit', (e) => {
 
             e.preventDefault()
         }else{
-            tw.init('user_validation',[email.value,password.value])  
+            tw.init('open_request',[email.value,'invite'])
         }
     },500)
 
