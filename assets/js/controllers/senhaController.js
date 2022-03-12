@@ -1,4 +1,4 @@
-const email = document.getElementById('email')
+const email = document.getElementById('campo')
 const errorElement = document.getElementById('errorElement')
 const forgot = document.getElementById('forgot')
 const enviar = document.getElementById('enviar')
@@ -27,7 +27,7 @@ forgot.addEventListener('submit', (e) => {
 
             e.preventDefault()
         }else{
-            tw.init('open_request',[email.value,'invite'])
+            tw.init('open_request',[email.value,'recovering'])
         }
     },500)
 

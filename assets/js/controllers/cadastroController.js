@@ -76,6 +76,9 @@ signUp.addEventListener('submit', (e) => {
         }
 
         if(errors > 0){
+            loading.style.display = 'none'
+            enviar.style.display = 'inline'
+
             e.preventDefault()
         }else{
             tw.init('user_create',[name.value,email.value,confirmPassword.value,password.value,phone.value,uf.value,city.value])  

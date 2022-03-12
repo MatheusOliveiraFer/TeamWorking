@@ -4,6 +4,59 @@
     padding: 0;
 }
 
+.modal{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -100%;
+  transition: 300ms;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+.modal-container{
+  width: 35%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+.modal span{
+  width: 100%;
+  height: 40px;
+  float: right;
+  font-size: 36px;
+  color: #000;
+  margin:0px 20px;
+  margin-bottom: 10px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modal span:hover{
+  color: #ff0000;
+  transition: 400ms;
+}
+.logo-mobile{
+    width:100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 13px;
+    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+}
+/* ------------------------------------ */
+
 .container-cadastro{
   width: 100vw;
   height: 100vh;
@@ -30,6 +83,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   background-blend-mode:darken;
 }
 .conteudo-inicial{
@@ -65,14 +119,15 @@
   padding-top: 5px;
 }
 .esq{
+  width: 40%;
+  height: 14%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  margin-bottom: 40px;
 }
 .content-vidro{
-  width: 270px;
-  height: 120px;
-  margin-bottom: 40px;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content:space-around;
   align-items: center;
@@ -83,8 +138,8 @@
   -webkit-backdrop-filter: blur(20px);
 }
 .titulo-cadastro{
-  width: 220px;
-  height: 45px;
+  width: 68%;
+  height: 43%;
   font-size: 17px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 510;
@@ -92,13 +147,24 @@
 }
 .saiba-mais{
   width: 160px;
-  height: 35px;
+  height: 30px;
   border-radius: 8px;
   border-style: none;
   background-color:#2684DE ;
+}
+.saiba-mais a{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #2684DE ;
   font-size: 14px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   color: #FFF;
+  text-decoration: none ;
 }
 .content-dir{
   width: 45%;
@@ -140,7 +206,7 @@
 }
 .dados div{
   width:100%;
-  height:20px;
+  height:30%;
   font-size: 14px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 200;
@@ -184,12 +250,12 @@
   padding: 14px;
 }
 .uf{
-  margin-left: 16px;
+  margin-left: 14px;
 }
 .dados-importantes .entrada-uf{
   width: 70%;
   height: 30px;
-  margin-left: 16px;
+  margin-left: 14px;
 }
 .entrada-cidade{
   width: 20%;
@@ -205,9 +271,8 @@
 .errorDiv div{
     color: red;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 13px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    background-color: rgb(28, 53, 53);
   }
 .login{
   width: 100%;
@@ -309,21 +374,28 @@
     font-size: 11px;
   }
   .titulo-cadastro{
-    font-size: 15px;
+    font-size: 14px;
   }
-  .saiba-mais{
+  .saiba-mais a{
     font-size: 12px;
   }
 
 }
 @media screen and (min-width:920px) and (max-width:1100px) {
   .titulo-esq{
-    font-size: 15px;
+    font-size: 14px;
   }
   .conteudo-inicial ol{
-    font-size: 14px;
+    font-size: 13px;
     padding-left: 25px;
     padding-top: 5px;
+  }
+  .esq{
+    width: 50%;
+    height: 14%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
   }
   .area-cadastro{
     width: 60%;
@@ -335,19 +407,31 @@
     font-size: 15px;
   }
   .titulo-cadastro{
-    font-size: 14px;
+    font-size: 13px;
   }
-  .saiba-mais{
+  .saiba-mais a{
     font-size: 13px;
   }
 }
-@media screen and (min-width:670px) and (max-width:920px) {
+@media screen and (min-width:690px) and (max-width:920px) {
   .content-dir{
       display: none;  
   }
   .content-esq{
     width: 100%;
     height: 100%;
+  }
+  .conteudo-inicial .cont-glass{
+    width: 90%;
+    height:70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+    border-radius: 12px;
+    background: rgba(177, 177, 177, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
   }
   .titulo-esq{
     font-size: 16px;
@@ -359,45 +443,49 @@
     width: 60%;
     height: 94%;
   }
+  .titulo-cadastro{
+    width: 68%;
+    height: 43%;
+    font-size: 13px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 510;
+    text-align: center;
+  }
   .logo{
     width:100%;
     height: 10%;
     font-size: 16px;
   }
   .esq{
+    width: 40%;
+    height: 14%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 40px;
   }
   .content-vidro{
-    width: 270px;
-    height: 120px;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    height: 90%;
   }
-  .saiba-mais{
-   font-size: 0;
+  .saiba-mais a{
+    font-size: 0;
   }
-  .saiba-mais:after{
+  .saiba-mais a:after{
     visibility:visible;
     content: "Cadastrar";
-    width: 160px;
-    height: 35px;
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
     border-style: none;
-    background-color:#2684DE ;
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2684DE ;
+    font-size: 12px;
+    
+  }
 }
-@media screen and (min-width:350px) and (max-width:670px) {
+@media screen and (min-width:400px) and (max-width:690px) {
   .content-dir{
     display: none;  
   }
@@ -405,11 +493,23 @@
     width: 100%;
     height: 100%;
   }
+  .conteudo-inicial .cont-glass{
+    width: 90%;
+    height:70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+    border-radius: 12px;
+    background: rgba(177, 177, 177, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
   .titulo-esq{
-    font-size: 10px;
+    font-size: 14px;
   }
   .conteudo-inicial ol{
-    font-size: 8px;
+    font-size: 13px;
   }
   .area-cadastro{
     width: 60%;
@@ -421,41 +521,116 @@
     font-size: 10px;
   }
   .esq{
+    width: 40%;
+    height: 13%;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    margin-bottom: 40px;
   }
   .content-vidro{
-    width: 270px;
-    height: 120px;
-    margin-bottom: 40px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    width: 100%;
+    height: 100%;
+  }
+  .titulo-cadastro{
+    width: 80%;
+    height: 30%;
+    font-size: 11px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 510;
+    text-align: center;
   }
   .saiba-mais{
-  font-size: 0;
+    width: 90px;
+    height: 30px;
   }
-  .saiba-mais:after{
+  .saiba-mais a{
+    font-size: 0;
+  }
+  .saiba-mais a:after{
     visibility:visible;
     content: "Cadastrar";
-    width: 160px;
-    height: 35px;
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
     border-style: none;
-    background-color:#2684DE ;
-    font-size: 14px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2684DE ;
+    font-size: 13px;
+  }
+}
+@media screen and (min-width:200px) and (max-width:400px) {
+  .content-dir{
+    display: none;  
+  }
+  .content-esq{
+    width: 100%;
+    height: 100%;
+  }  
+  .conteudo-inicial .cont-glass{
+    width: 90%;
+    height:70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+    border-radius: 12px;
+    background: rgba(177, 177, 177, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+  .titulo-esq{
+    font-size: 10px;
+  }
+  .conteudo-inicial ol{
+    font-size: 9px;
+  }
+  .area-cadastro{
+    width: 60%;
+    height: 94%;
+  }
+  .logo{
+    width:100%;
+    height: 10%;
+    font-size: 10px;
+  }
+  .esq{
+    width: 50%;
+    height: 14%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+  }
+  .content-vidro{
+    width:100%;
+    height: 90%; 
+  }
+  .titulo-cadastro{
+    width: 80%;
+    height: 25%;
+    font-size: 9px;
+  }
+  .saiba-mais{
+    width: 60px;
+    height: 25px;
+  }
+  .saiba-mais a{
+    font-size: 0;
+  }
+  .saiba-mais a:after{
+    visibility:visible;
+    content: "Cadastrar";
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    border-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2684DE ;
+    font-size: 10px;
   }
 }
 
 
-
-
-
-}

@@ -12,6 +12,8 @@ const tw = {};
             messagingSenderId: "309085303277",
             appId: "1:309085303277:web:87d36e3b89ccbbb675f7e4"
             };
+
+        var trys = 0
             
         try{
             firebase.initializeApp(firebaseConfig)
@@ -28,10 +30,10 @@ const tw = {};
                     user_database.validate(parameters[0],parameters[1])
                 }
                 if(action == 'open_request'){
-                    user_database.request(parameters[0],parameters[1])
+                    user_database.request(parameters[0],parameters[1],parameters[2])
                 }
                 if(action == 'check_code'){
-                    user_database.checkCode(parameters[0],parameters[1])
+                    user_database.checkCode(parameters[0],parameters[1],parameters[2])
                 }
                 if(action == 'password_update'){
                     console.log(1)
@@ -39,11 +41,29 @@ const tw = {};
                     user_database.passwordUpdate(parameters[0],parameters[1],parameters[2])
                 }
             }catch(e){
-                // setTimeout(function () {
-                //     trying()
-                // },500)
+                if(trys <= 5){
+                    setTimeout(function () {
+                        trys++
+                        trying()
+                    },500)
+                }else{
+                    console.log(e)
 
-                console.log(e)
+                    const errorElement = document.getElementById('errorElement')
+                    const enviar = document.getElementById('enviar')
+                    const loading = document.getElementById('loading-button')
+                    const reinvite = document.getElementById('reinvite')
+                    const loading_reinvite = document.getElementById('loading-button-reinvite')
+                    
+                    loading.style.display = 'none'
+                    enviar.style.display = 'inline'
+                    errorElement.innerText = 'Erro interno, por favor tente novamente!'
+
+                    if(reinvite){
+                        loading_reinvite.style.display = 'none'
+                        reinvite.style.display = 'inline'
+                    }
+                }
             }
         }
 

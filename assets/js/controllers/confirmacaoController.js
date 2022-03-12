@@ -1,4 +1,4 @@
-const codigo = document.getElementById('campo')
+const codigo = document.getElementById('codigo')
 const errorElement = document.getElementById('errorElement')
 const code = document.getElementById('code')
 const b = document.getElementById('b')
@@ -10,9 +10,10 @@ const loading_reinvite= document.getElementById('loading-button-reinvite')
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const page_type = urlParams.get('email')
+var email_end = ''
 
 if(!page_type){
-    window.location.replace('/rota_recuperacao/esqueci')
+    window.location.replace('/')
 }
 
 if(page_type.split("@",2)[1]){
@@ -34,15 +35,15 @@ code.addEventListener('submit', (e) => {
     
             let errors = 0;
     
-            if(codigo.value === '' || codigo.value == null){
-                errors++
-                codigo.style.border = '2px solid red'
-                errorElement.innerText = "Você esqueceu de preencher este campo!"
-            }
             if(codigo.value.length < 6){
                 errors++
                 codigo.style.border = '2px solid red'
                 errorElement.innerText = "O código enviado possui 6 dígitos!"
+            }
+            if(codigo.value === '' || codigo.value == null){
+                errors++
+                codigo.style.border = '2px solid red'
+                errorElement.innerText = "Você esqueceu de preencher este campo!"
             }
     
             if(errors > 0){
@@ -52,7 +53,7 @@ code.addEventListener('submit', (e) => {
     
                 e.preventDefault()
             }else{
-                tw.init('check_code',[codigo.value,page_type,'recovering'])
+                tw.init('check_code',[codigo.value,page_type,'confirmation'])
             }
         },500)
     }
@@ -76,9 +77,7 @@ reinvite.addEventListener('click', (e) => {
             reinvite.style.display = 'flex'
             enviar.style.backgroundColor = '#2684DE'
 
-            tw.init('open_request',[page_type,'recovering'])
+            tw.init('open_request',[page_type,'confirmation'])
         },500)
     }
-
 })
-

@@ -20,7 +20,7 @@ const user_database = {};
             telefone: phone,
             uf: uf,
             cidade: city,
-            confirmado: true,
+            confirmado: false,
             bloqueado: false,
         }
 
@@ -56,7 +56,7 @@ const user_database = {};
                     user.push(user_data)
                         .then(function () {
                             console.log("Usuário criado com sucesso!")
-                            window.location.replace('/index.html')
+                            window.location.replace(`/rota_confirmacao/confirmacao/?email=${email}`)
                         })
                         .catch(function (erro) {
                             console.log("Um erro ocorreu ao tentar criar o usuário: ", erro)
@@ -154,7 +154,13 @@ const user_database = {};
                         loading.style.display = 'none'
                         enviar.style.display = 'inline'
                     } else {
-                        console.log("Por favor, verifique seu email, foi enviado um e-mail de confirmação!")
+                        errorElement.innerHTML = `Usuário não confirmado, <a style="
+                            cursor: pointer;
+                            color: #2684DE";
+                        } onclick="window.location.replace('/rota_confirmacao/confirmacao/?email=${email}')">confirme aqui</a>!`
+                    
+                        enviar.style.display = 'inline'
+                        loading.style.display = 'none'
                     }
                 }
 
@@ -169,15 +175,9 @@ const user_database = {};
         const errorElement = document.getElementById('errorElement')
         const enviar = document.getElementById('enviar')
         const loading = document.getElementById('loading-button')
-        let input_div = ''
+        let input_div = document.getElementById('campo')
 
         console.log('Email recebido',email)
-
-        if(situation == 'invite'){
-            input_div = document.getElementById('email')
-        }else{
-            input_div = document.getElementById('codigo')
-        }
 
         const user = firebase.database().ref("Usuarios")
         const request = firebase.database().ref("Requisicoes")
@@ -234,7 +234,7 @@ const user_database = {};
 
         function check() {
             if (user_executed && request_executed) {
-                if (user_exist && confirmed) {
+                if (user_exist) {
                     let duplicate_remove_fail = false
 
                     if (last_request != '') {
@@ -250,29 +250,64 @@ const user_database = {};
                     }
 
                     if(!duplicate_remove_fail){
-                        request.push(request_data)
-                        .then(function () {
-                            console.log("Requisição inserida com sucesso!")
+                        if(situation == 'confirmation' && confirmed == false){
+                            request.push(request_data)
+                            .then(function () {
+                                console.log("Requisição inserida com sucesso!")
 
-                            emailSend.password(email, code, username[0], '/rota_recuperacao/codigo')
-                        })
-                        .catch(function (e) {
-                            console.log("Ocorreu um erro ao tentar criar a requisição!", e)
-                            errorElement.innerText = "Erro interno!"
+                                emailSend.password(email, code, username[0], '/rota_confirmacao/confirmacao')
+                            })
+                            .catch(function (e) {
+                                console.log("Ocorreu um erro ao tentar criar a requisição!", e)
+                                errorElement.innerText = "Erro interno, por favor tente novamente!"
 
+                                enviar.style.display = 'inline'
+                                loading.style.display = 'none'
+                            })
+                        }
+                        if(situation == 'confirmation' && confirmed == true){
+                            errorElement.innerHTML = `O usuário já foi confirmado, faça seu <a style="
+                                cursor: pointer;
+                                color: #2684DE";
+                            } onclick="window.location.replace('/')">Login</a>!`
+                        
                             enviar.style.display = 'inline'
                             loading.style.display = 'none'
-                        })
+                        }
+                        if(situation == 'recovering' && confirmed == false){
+                            errorElement.innerHTML = `Usuário não confirmado, <a style="
+                                cursor: pointer;
+                                color: #2684DE";
+                            } onclick="window.location.replace('/rota_confirmacao/confirmacao/?email=${email}')">confirme aqui</a>!`
+                        
+                            enviar.style.display = 'inline'
+                            loading.style.display = 'none'
+                        }
+                        if(situation == 'recovering' && confirmed == true){
+                                request.push(request_data)
+                            .then(function () {
+                                console.log("Requisição inserida com sucesso!")
+
+                                emailSend.password(email, code, username[0], '/rota_recuperacao/codigo')
+                            })
+                            .catch(function (e) {
+                                console.log("Ocorreu um erro ao tentar criar a requisição!", e)
+                                errorElement.innerText = "Erro interno, por favor tente novamente!"
+
+                                enviar.style.display = 'inline'
+                                loading.style.display = 'none'
+                            })
+                        }
                     }else{
                         console.log("Ocorreu um erro ao tentar criar a requisição!")
-                        errorElement.innerText = "Erro interno!"
+                        errorElement.innerText = "Erro interno, por favor tente novamente!"
 
                         enviar.style.display = 'inline'
                         loading.style.display = 'none'
                     }
                 } else {
-                    console.log('E-mail não encontrado ou ainda não confirmado!')
-                    errorElement.innerText = "E-mail não encontrado ou ainda não confirmado!"
+                    console.log('E-mail não encontrado!')
+                    errorElement.innerText = "E-mail não encontrado!"
 
                     enviar.style.display = 'inline'
                     loading.style.display = 'none'
@@ -288,14 +323,16 @@ const user_database = {};
         check()
     }
 
-    function checkCode(code,email){
+    function checkCode(code,email,situation){
         const request = firebase.database().ref("Requisicoes")
+        const user = firebase.database().ref("Usuarios")
         const errorElement = document.getElementById('errorElement') 
         const loading = document.getElementById('loading-button')
         const enviar = document.getElementById('enviar')
-        const reinvite = document.getElementById('reenvite')
+        const reinvite = document.getElementById('reinvite')
 
         let request_executed = false
+        let user_executed = false
         var code_exist = false
 
         console.log(code)
@@ -310,7 +347,30 @@ const user_database = {};
                     if (get_requests[gq].email == email) {
                         if(get_requests[gq].codigo == code.toString()){
                             if(get_requests[gq].validade > Date.now()){
-                                window.location.replace( `/rota_recuperacao/recuperacao/?a=${gq}`)
+                                if(situation == 'recovering'){
+                                    window.location.replace( `/rota_recuperacao/recuperacao/?a=${gq}`)
+                                }else if(situation == 'confirmation'){
+                                    user.on('value', (snapshot) => {
+                                        if (!user_executed) {
+                                            const get_users = snapshot.val();
+                            
+                                            for (let gu in get_users) {
+                                                if (get_users[gu].email == email) {
+                                                    const userUpdated = user.child(gu)
+
+                                                    get_users[gu].confirmado = true
+
+                                                    userUpdated.update(get_users[gu]).then(
+                                                        function(){
+                                                            window.location.replace('/rota_confirmacao/confirmado')
+                                                        })
+                                                }
+                                            }
+                            
+                                            user_executed = true;
+                                        }
+                                    });
+                                }
                                 code_exist = true
                             }else{
                                 errorElement.innerText = 'Código vencido ou inválido'
