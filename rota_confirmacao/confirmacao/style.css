@@ -146,9 +146,47 @@
     top: 10px;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 1151px) {
     .cont {
-      width: 42%;
-      height: 61%;
+      width: 35%;
+      height: 63%;
+    }
+  }
+  @media (max-width: 1013px) {
+    .cont {
+      width: 43%;
+      height: 70%;
+    }
+  }
+  @media (max-width: 895px) {
+    .cont {
+      width: 50%;
+    }
+  }
+  @media (max-width: 707px) {
+    .cont {
+      width: 56%;
+    }
+  }
+  @media (max-width: 638px) {
+    .cont {
+      width: 63%;
+    }
+  }
+  @media (max-width: 500px) {
+    .cont {
+      width: 76%;
+      height: 64%;
+    }
+  }
+  @media (max-width: 388px) {
+    .cont {
+      width: 86%;
+    }
+  }
+  
+  @media (max-width: 311px) {
+    .cont {
+      width: 96%;
     }
   }
