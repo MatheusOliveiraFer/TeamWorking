@@ -116,3 +116,41 @@
     width: 30px;
     height: 30px;
   }
+
+  @media (max-width: 1097px) {
+    .cont {
+      width: 38%;
+    }
+  }
+
+  @media (max-width: 935px) {
+    .cont {
+      width: 43%;
+    }
+  }
+  @media (max-width: 809px) {
+    .cont {
+      width: 53%;
+    }
+  }
+  @media (max-width: 632px) {
+    .cont {
+      width: 62%;
+    }
+  }
+  @media (max-width: 538px) {
+    .cont {
+      width: 70%;
+    }
+  }
+  @media (max-width: 405px) {
+    .cont {
+      width: 79%;
+    }
+  }
+
+  @media (max-width: 304px) {
+    .cont {
+      width: 92%;
+    }
+  }
