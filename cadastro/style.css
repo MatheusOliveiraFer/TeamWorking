@@ -490,6 +490,14 @@
     background: rgba(177, 177, 177, 0.1);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
+  } 
+  .titulo-cadastro{
+    width: 68%;
+    height: 43%;
+    font-size: 13px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 510;
+    text-align: center;
   }
   .titulo-esq{
     font-size: 16px;
@@ -501,13 +509,11 @@
     width: 60%;
     height: 94%;
   }
-  .titulo-cadastro{
-    width: 68%;
-    height: 43%;
-    font-size: 13px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-weight: 510;
-    text-align: center;
+  .dados div{
+    font-size: 12px;
+  }
+  .dados-importantes .conteudo-dados div{
+    font-size: 12px;
   }
   .logo-mobile{
       width:100%;
@@ -545,9 +551,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2684DE ;
-    font-size: 13px;
-    
+    background-color: #2684DE;
+    font-size: 13px;    
   }
 }
 @media screen and (min-width:400px) and (max-width:690px) {
@@ -754,6 +759,9 @@
     align-items: center;
     background-color: #2684DE ;
     font-size: 13px;
+  }
+  .saiba-mais a:active{
+    background-color: #5f92c2 ;
   }
 }
 @media screen and (min-width:200px) and (max-width:400px) {
