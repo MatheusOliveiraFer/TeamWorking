@@ -7,7 +7,7 @@ const user_database = {};
         let email_div = document.getElementById('email')
         let errorElement = document.getElementById('errorElement')
 
-        if(document.getElementById('content-dir').style.display == 'none'){
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
             enviar = document.getElementById('enviar_modal')
             loading = document.getElementById('loading-button_modal')
             email_div = document.getElementById('email_modal')
