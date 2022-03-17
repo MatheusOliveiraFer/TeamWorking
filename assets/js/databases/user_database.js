@@ -2,9 +2,17 @@ const user_database = {};
 
 (function () {
     function new_user(name, email, confirmPassword, password, phone, uf, city) {
-        const enviar = document.getElementById('enviar')
-        const loading = document.getElementById('loading-button')
-        const email_div = document.getElementById('email')
+        let enviar = document.getElementById('enviar')
+        let loading = document.getElementById('loading-button')
+        let email_div = document.getElementById('email')
+        let errorElement = document.getElementById('errorElement')
+
+        if(document.getElementById('content-dir').style.display == 'none'){
+            enviar = document.getElementById('enviar_modal')
+            loading = document.getElementById('loading-button_modal')
+            email_div = document.getElementById('email_modal')
+            errorElement = document.getElementById('errorElement_modal')
+        }
 
         if (confirmPassword != password) {
             console.log('As duas senhas passadas são diferentes')
@@ -45,7 +53,6 @@ const user_database = {};
             if (user_executed) {
                 if (exist) {
                     console.log("O email de usuário informado já existe no sistema")
-                    const errorElement = document.getElementById('errorElement')
 
                     errorElement.innerHTML = "O email de usuário informado já existe no sistema!"
 
