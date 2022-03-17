@@ -40,6 +40,9 @@ const tw = {};
 
                     user_database.passwordUpdate(parameters[0],parameters[1],parameters[2])
                 }
+                if(action == 'get_all_project_user'){
+                    project_database.getAllOfUser(parameters[0])
+                }
             }catch(e){
                 if(trys <= 5){
                     setTimeout(function () {
@@ -55,9 +58,11 @@ const tw = {};
                     const reinvite = document.getElementById('reinvite')
                     const loading_reinvite = document.getElementById('loading-button-reinvite')
                     
-                    loading.style.display = 'none'
-                    enviar.style.display = 'inline'
-                    errorElement.innerText = 'Erro interno, por favor tente novamente!'
+                    if(enviar && loading && errorElement){
+                        loading.style.display = 'none'
+                        enviar.style.display = 'inline'
+                        errorElement.innerText = 'Erro interno, por favor tente novamente!'
+                    }
 
                     if(reinvite){
                         loading_reinvite.style.display = 'none'

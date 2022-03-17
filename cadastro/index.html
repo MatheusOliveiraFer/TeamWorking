@@ -49,7 +49,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-dir">
+            <div id="content-dir" class="content-dir">
                 <form id="signUp" class="area-cadastro">
                     <div class="logo">
                         Para ter acesso aos anúncios efetue o seu cadastro
@@ -115,44 +115,44 @@
         <div class="modal-container">
             <span class="close" onclick="fecharModal()">&times;</span>
         
-                <form id="signUp" class="area-cadastro">
+                <form id="signUp_modal" class="area-cadastro">
                     <div class="logo-mobile">
                         Para ter acesso aos anúncios efetue o seu cadastro
                     </div>
                     <div class="entrada-dados">
                         <div class="dados">
                             <div class="nome">Nome:</div>
-                            <input id="name" name="nome"/>
+                            <input id="name_modal" name="nome"/>
                         </div>
                         <div class="dados">
                             <div class="email">Email:</div>
-                            <input type="email" id="email" name="email"/>
+                            <input type="email" id="email_modal" name="email"/>
                         </div>
                         <div class="dados">
                             <div class="senha">Senha:</div>
-                            <input type="password" id="password" name="senha"/>
+                            <input type="password" id="password_modal" name="senha"/>
                         </div>
                         <div class="dados">
                             <div class="senha">Confirme sua senha:</div>
-                            <input type="password" id="confirmPassword" name="confirmarSenha"/>
+                            <input type="password" id="confirmPassword_modal" name="confirmarSenha"/>
                         </div>
                         <div class="dados-importantes">
                             <div class="conteudo-dados">
                                 <div class="telefone">Contato:</div>
-                                <input id="phone" name="telefone"/>
+                                <input id="phone_modal" name="telefone"/>
                             </div>
                             <div class="conteudo-dados">
                                 <div class="uf">UF:</div>
-                                <input id="uf" class="entrada-uf" name="UF"/>
+                                <input id="uf_modal" class="entrada-uf" name="UF"/>
                             </div>
                             <div class="conteudo-dados">
                                 <div class="cidade">Cidade:</div>
-                                <input id="city" class="entrada-cidade" name="cidade"/>
+                                <input id="city_modal" class="entrada-cidade" name="cidade"/>
                             </div>
                             
                         </div>
                         <div class="errorDiv">
-                            <div id="errorElement"></div>
+                            <div id="errorElement_modal"></div>
                         </div>
                     </div>
                     <div class="login">
@@ -166,10 +166,10 @@
                             Política de cookies</a>.</div>
                     </div>
                     <div class="envio">
-                        <div id="loading-button" class="loading-button">
+                        <div id="loading-button_modal" class="loading-button">
                             <img src="../assets/images/Loading.gif" class="loading"/>
                         </div>
-                        <button type="submit" id="enviar" class="enviar">Cadastrar</button>
+                        <button type="submit" id="enviar_modal" class="enviar">Cadastrar</button>
                     </div>
                 </form>
         </div>
