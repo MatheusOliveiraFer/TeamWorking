@@ -431,7 +431,7 @@ const user_database = {};
 
                 email = get_requests.email
 
-                request.child(requestId).remove()
+                request.remove()
                     .then(function () {
                         console.log("Requisição consumida!")
                     })

@@ -115,7 +115,11 @@ nav a:hover {
 	width: 150px;
 	height: 150px;
 	margin-right: 50px;
-	background-color: #2699d3;
+	/* background-color: #2699d3; */
+
+	background-image: url('/assets/images/Loading.gif');
+
+	object-fit: cover;
 }
 .lista-imagem .imagem2{
 	width: 150px;

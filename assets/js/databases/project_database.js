@@ -73,68 +73,65 @@ const project_database = {};
 
     function get_all_project_user(userID) {
         const project = firebase.database().ref("Projetos")
+        const user = firebase.database().ref("Usuarios").child(userID)
+        
         const anuncioContainer = document.getElementById('anuncioContainer')
 
         let project_executed = false
         let has = false;
 
+        anuncioContainer.innerHTML = ""
+
         project.on('value', (snapshot) => {
             if (!project_executed) {
+
+
                 const get_projects = snapshot.val();
 
-                for (let gp in get_projects) {
-                    if (get_projects[gp].IDdono == userID) {
-                        console.log(get_projects[gp]);
-                        has = true;
+                user.on('value', (snapshot) => {
+                    ownerData = snapshot.val()
 
-                        anuncioContainer.innerHTML += `
-                        <div class="anuncio">
-                            <div class="txt-inicial">
-                                ${get_projects[gp].titulo}
-                            </div>
-                            <div class="subtitulo">
-                                ${get_projects[gp].descricaoPequena}
-                            </div>
-                            <div class="lista-imagem">
-                                <div class="imagem1"></div>
-                                <div class="imagem2"></div>
-                                <div class="imagem3"></div>
-                            </div>
-                            <div class="tipo-txt">
-                                <div class="tipo">Tipo:</div>
-                                <div class="txt-info">${get_projects[gp].buscando}</div>
-                            </div>
-                            <div class="dados-publi">
-                                <div class="info-dados">
-                                    <div class="info-criador">
-                                        <div class="info-proposta">
-                                            Criador da proposta:
-                                        </div>
-                                        <div>
-                                            Ricardo Vasconcelos Bitteti
-                                        </div>
-                                    </div>
-                                    <div class="info-loc">
-                                        <div class="info-cidade">
-                                            Cidade de atuação da proposta:
-                                        </div>
-                                        <div class="loc-criador">
-                                            Rio de Janeiro - RJ
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="valor-dados">
-                                    <div class="info-valor">Valor</div>
-                                    <div class="valor">R$ ${get_projects[gp].valor.toFixed(2).toString().replace('.',',')}</div>
-                                </div>
-                            </div>
-                        </div>`
+                    for (let gp in get_projects) {
+                        if (get_projects[gp].IDdono == userID) {
+                            console.log(get_projects[gp]);
+                            anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo,get_projects[gp].descricaoPequena,get_projects[gp].buscando,ownerData.nome,ownerData.cidade,ownerData.uf,get_projects[gp].valor,gp)
+                            
+
+                            const lista = document.getElementById(`lista-imagem_${gp}`)
+
+                            let num = 0
+
+                            //PARA QUANDO TIVER VÍDEO
+                            // if(get_projects[gp].linkVideo){
+                            //     lista.innerHTML += `<div id="imagemID" class="imagem1">
+
+                            //     </div>`
+                            // }
+                
+                            get_projects[gp].imagens.forEach( item => {
+                                imageID = `imagem_${gp}_${num}`
+                
+                                lista.innerHTML += `<div id="imagemID" class="imagem1">
+                                                        <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                                        <img src="${item}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';">
+                                                    </div>`
+
+                                num++
+                            })
+
+
+                            has = true;
+                        }
+
                     }
-                }
 
-                if (!has) {
-                    console.log("Este usuário ainda não criou nenhum projeto")
-                }
+                    if (!has) {
+                        anuncioContainer.style.backgroundColor = 'white'
+                        anuncioContainer.innerHTML += `<div class="sem_anuncios">Você ainda não possui anúncios, que tal criar o primeiro?</div>`
+    
+                        console.log("Este usuário ainda não criou nenhum projeto")
+                    }
+                })
 
                 project_executed = true
             }
