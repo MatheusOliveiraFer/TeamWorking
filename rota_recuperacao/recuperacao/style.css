@@ -75,7 +75,20 @@
     border-radius: 8px;
     background-color: #FFF;
     color: black;
+    font-size: 14px;
     padding-left: 10px;
+  }
+  ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgb(168, 168, 168);
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: rgb(168, 168, 168);
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgb(168, 168, 168);
   }
   .errorDiv{
     width: 100%;
@@ -127,7 +140,7 @@
 @media screen and (min-width: 760px) and (max-width: 1280px){
 
   .cont{
-    width: 50%;
+    width: 40%;
     height: 50%;
   }
   .title{
@@ -145,6 +158,9 @@
   }
   .title{
     font-size: 20px;
+  }
+  .dados input {
+    font-size: 12px;
   }
   .dados div{
     font-size: 12px;
@@ -174,6 +190,9 @@
   .dados div{
     font-size: 10px;
   }
+  .dados input {
+    font-size: 11px;
+  }
   .errorDiv div{
     font-size: 9px;
   }
@@ -197,6 +216,9 @@
     font-size: 14px;
   }
   .dados div{
+    font-size: 10px;
+  }
+  .dados input {
     font-size: 10px;
   }
   .errorDiv div{
