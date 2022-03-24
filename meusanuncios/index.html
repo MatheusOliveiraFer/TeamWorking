@@ -8,6 +8,18 @@
     <!--CSS GERAL-->
     <link rel="stylesheet" href="../assets/css/main.css"/>
     <title>Bem vindo ao QueroUmSócio</title>
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script src="/assets/js/firebase.js" defer></script>
+    <script defer src="/assets/js/controllers/meusAnunciosController.js"></script>
+
+    <script src="/assets/js/databases/project_database.js"></script>
+    <script src="/assets/js/templates/meusAnuncios_Item.js"></script>
   </head>
   <body>
     <header>
@@ -23,8 +35,8 @@
               <div class="mm_line"></div>
             </div>
             <ul>
-              <li class="active"><a href="">Anúncios</a></li>
-              <li><a href="../meusanuncios(home)/index.html">Meus Anúncios</a></li>
+              <li><a href="">Anúncios</a></li>
+              <li class="active"><a href="">Meus Anúncios</a></li>
               <li><a href="">Meu Perfil</a></li>
             </ul>
           </nav>
@@ -35,7 +47,7 @@
       <div class="container">
         <div class="anuncio">
           <div class="txt-inicial">
-            Projeto em busca de programador em .Net atuará no ramo de e-commerce
+            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
           </div>
           <div class="subtitulo">
             Inspeção e criação de novas tecnologias usando .NET
@@ -241,7 +253,7 @@
         </div>
         <div class="anuncio">
           <div class="txt-inicial">
-            Projeto em busca de programador em .Net atuará no ramo de e-commerce
+              Projeto em busca de programador em .Net atuará no ramo de e-commerce
           </div>
           <div class="subtitulo">
             Inspeção e criação de novas tecnologias usando .NET
@@ -291,6 +303,5 @@
         <div></div>
       </div>
     </div>
-    <script src="../assets/js/script.js"></script>
   </body>
 </html>
