@@ -55,11 +55,56 @@
 
 
 @media(max-width: 600px) {
+	#anuncios 
+	.container
+	.anuncio {
+    width: 97%;
+    height: 350px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+    background-color: #FFF;
+    margin: 10px;
+	}
+	.txt-inicial{
+		width: 100%;
+		height: 18%;
+	} 
+	.anuncio .subtitulo{
+		width: 100%;
+		height: 18%;
+		font-size: 14px;
+	}
 	.lista-imagem {
 		display: none !important;
 	}
 	.lista-imagem-modal {
+		width: 100%;
+		height: 14%;
 		display: flex !important;
+		justify-content: center;
+		align-items: center;
+	}
+	.imagem-modal{
+		width: 110px;
+		height: 25px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer; 
+		background-color: #39aae1; 
+		border: none; 
+		border-radius: 5px; 
+		padding: 15px; 
+		color: #FFF;
+	}
+	.tipo-txt{
+		width: 100%;
+		height: 16%;
+	}
+	.dados-publi{
+		width: 100%;
+		height: 35%;
 	}
 }
 
@@ -81,7 +126,7 @@
 	}
 	.valor-dados {
 		width: 100%;
-		height: 18px;
+		height: 30px;
 		padding-right: 0;
 		padding-bottom: 10px;
 		justify-content: center;
