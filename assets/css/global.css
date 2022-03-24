@@ -271,3 +271,51 @@ nav a:hover {
 	text-decoration: none;
 	cursor: pointer;
   }
+
+.ContainerCadastraAnuncio {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.ContainerCadastraAnuncio h1 {
+	margin: 20px;
+	color: #2699d3;
+}
+
+.ContainerCadastraAnuncio form {
+	width: 50%;
+	height: 680px;
+	background-color: #FFF;
+	padding: 20px;
+	border-radius: 6px;
+	box-shadow: -2px 0px 13px #ccc;
+	margin-bottom: 40px;
+}
+
+.ContainerCadastraAnuncio .TipoAnuncio {
+	display: flex;
+	flex-direction: column;
+	margin: 5px 0;
+}
+.ContainerCadastraAnuncio .TipoAnuncio input {
+	height: 40px;
+	padding-left: 10px;
+	border-radius: 5px;
+	border: 1px solid #39aae1;
+	outline-color: #3ba6db;
+	font-size: 17px;
+}
+.ContainerCadastraAnuncio .TipoAnuncioButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ContainerCadastraAnuncio .TipoAnuncioButton button {
+	padding: 20px 60px;
+	font-size: 18px;
+	color: #FFF;
+	background-color: #2699d3;
+	border-radius: 5px;
+	border: 0;
+}
