@@ -483,3 +483,167 @@ nav a:hover {
 	width: 30px;
 	height: 30px;
 }
+
+/* Tela de Meu Perfil */
+
+.container-perfil{
+	width: 100vw;
+	height: 100vh;
+}
+.container-perfil .container-box-perfil{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.perfil-box{
+	width: 45%;
+	height: 70%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    -webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+    box-shadow: 0px 0px 15px 2px #7e7575;
+}
+.avatar-ft{
+	width: 80%;
+	height: 35%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.avatar{
+	width: 160px;
+	height: 160px;
+	border-radius: 50%;
+	background-image: url('/assets/images/avatar.jpg');
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.dados-perfil{
+	width: 80%;
+	height: 10%;
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+}
+.dados-perfil div{
+	width:100%;
+	height:60%;
+	font-size: 14px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 200;
+	color: #2684DE;
+}
+.dados-perfil input {
+	width: 100%;
+	height: 30px;
+	border: 1px solid #2684DE;
+	border-radius: 8px;
+	background-color: #FFF;
+	color: #000;
+	padding: 14px;
+}
+.dados-importantes-perfil{
+	width: 80%;
+	height: 17%;
+	flex-direction: row;
+	display: flex;
+	justify-content: space-around;
+	padding-top: 11px;
+}
+.conteudo-dados-perfil{
+	flex: 2;
+}
+.conteudo-dados-perfil2{
+	flex: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.conteudo-dados-perfil2 .cont-perfil2{
+	width:28%;
+	height:20px;
+}
+.dados-importantes-perfil .conteudo-dados-perfil div{
+	width:28%;
+	height:20px;
+	font-size: 14px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 200;
+	color: #2684DE;
+}
+.dados-importantes-perfil .conteudo-dados-perfil2 div{
+	width:40%;
+	height:20px;
+	font-size: 14px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 200;
+	color: #2684DE;
+}
+.dados-importantes-perfil input{
+	width: 100%;
+	height: 30px;
+	border: 1px solid #2684DE;
+	border-radius: 8px;
+	background-color: #FFF;
+	padding: 10px;
+}
+.conteudo-dados-perfil2 .uf{
+	padding-right: 20px;
+	font-size: 14px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 200;
+	color: #2684DE;
+}
+.dados-importantes-perfil .entrada-uf{
+	width: 100%;
+	height: 30px;
+}
+.entrada-cidade{
+	width: 20%;
+	height: 30px;
+}  
+.container-botao-perfil{
+	width: 80%;
+	height: 15%;
+	/* margin-top: 20px; */
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+.botao-voltar-perfil{
+	width: 140px;
+	height: 35px;
+	border-radius: 8px;
+	border-style: none;
+	background-color:#2684DE ;
+	font-size: 15px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: #FFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.botao-enviar-perfil{
+	width: 140px;
+	height: 35px;
+	border-radius: 8px;
+	border-style: none;
+	background-color:#2684DE ;
+	font-size: 15px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	color: #FFF;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
