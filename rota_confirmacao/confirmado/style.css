@@ -95,11 +95,9 @@
       font-size: 15px;
       font-family: Georgia, 'Times New Roman', Times, serif;
       color: #FFF;
-
       display: flex;
       justify-content: center;
       align-items: center;
-
       cursor: pointer;
   }
   .loading-button{
