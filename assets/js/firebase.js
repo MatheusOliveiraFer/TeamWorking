@@ -43,6 +43,9 @@ const tw = {};
                 if(action == 'get_all_project_user'){
                     project_database.getAllOfUser(parameters[0])
                 }
+                if(action == 'project_create'){
+                    project_database.new(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5],parameters[6],parameters[7],parameters[8])
+                }
             }catch(e){
                 if(trys <= 5){
                     setTimeout(function () {
