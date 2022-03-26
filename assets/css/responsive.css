@@ -140,4 +140,26 @@
 }
 
 
+/* Tela de Meu Perfil */
+
+@media (max-width:930px) {
+
+	.perfil-box{
+		width: 65%;
+		height: 60%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		background: rgba(255,255,255,0.1);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+		box-shadow: 0px 0px 15px 2px #7e7575;
+	}
+	
+}
+
+
 
