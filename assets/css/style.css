@@ -137,19 +137,19 @@ form .form-title h1 {
 .dados div{
   width:30%;
   height:20px;
-  font-size: 14px;
+  font-size: 17px;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 200;
   color: #2684DE;
 }
 .dados input {
   width: 94%;
-  height: 30px;
+  height: 47px;
   border: 1px solid #2684DE;
   border-radius: 8px;
   background-color: #FFF;
   color: black;
-
+  font-size: 15px;
   padding-left: 10px;
 }
 .errorDiv{
@@ -189,15 +189,15 @@ form .form-button {
   align-items: center;
 }
 .enviar{
-    width: 160px;
-    height: 35px;
-    border-radius: 8px;
-    border-style: none;
-    background-color:#2684DE ;
-    font-size: 15px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: #FFF;
-    cursor: pointer;
+  width: 100%;
+  height: 49px;
+  border-radius: 8px;
+  border-style: none;
+  background-color: #2684DE;
+  font-size: 20px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #FFF;
+  cursor: pointer;
 }
 .loading-button{
   width: 160px;

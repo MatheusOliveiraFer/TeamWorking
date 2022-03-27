@@ -1,21 +1,100 @@
 const project_database = {};
 
 (function () {
-    function new_project(title, ownerID, smallDescription, fullDescription, lookingFor, linkVideo, valor) {
+    function new_project(title, ownerID, smallDescription, fullDescription, type, linkVideo, valor, imageArray, keyArray) {
         const project = firebase.database().ref("Projetos")
+        const loading = document.getElementById('loading-button')
+        const saveButton = document.getElementById('save')
+        const errorElement = document.getElementById('errorElement')
 
-        const project_data = {
+        storage_id = Date.now() + title.replace(' ','_') + ownerID
+        const upload = firebase.storage().ref(`Project images/${storage_id}/`)
+
+        let project_data = {
             titulo: title,
             IDdono: ownerID,
             descricaoPequena: smallDescription,
             descricaoCompleta: fullDescription,
-            buscando: lookingFor,
+            imagens: [],
+            tipo: type,
             linkVideo: linkVideo,
-            valor: valor
+            valor: parseFloat(valor),
+            IDArmazenamento: storage_id
         }
+        
+        let num = 0 //NÚMERO DE ITENS DO keyArray PERCORRIDOS
+        let count = 0 //NÚMERO DE IMAGENS UPADAS COM SUCESSO
+        let error = 0 //CONTADOR DE ERROS, NO FINAL EXISTE UMA VERIFICAÇÃO PARA REMOVER TODAS AS IMAGENS ENVIADOS CASO HOUVER ALGUM ERRO
+        let arrayLinks = [] //ARRAY QUE GUARDA OS LINKS GERADOS PELO PRÓPRIO FIREBASE PARA CADA IMAGEM PARA PODER ENVIAR JUNTO NO JSON
+        let arrayImageNames = [] //ARRAY QUE GUARDA O imagemName DAS IMAGENS PARA PODER DELETAR TODAS AS ENVIADOS CASO DER ERRO EM ALGUMA
+        keyArray.forEach(item => {
+            let imageName = `${ownerID}_${num}`
+            arrayImageNames.push(imageName)
 
-        let exist = false;
-        let project_executed = true;
+            var imageFile = imageArray[item]
+
+            upload.child(imageName).put(imageFile).then(function(){
+                upload.child(imageName).getDownloadURL().then(function(url_imagem){
+                    console.log(url_imagem)
+                    arrayLinks.push(url_imagem)
+
+                    count++
+                })
+                .catch(function(e){
+                    error++
+                    console.log('Erro:',e)
+                })
+            })
+            .catch(function(e){
+                error++
+                console.log('Erro:',e)
+            })
+
+            num++
+        })
+
+        function check(){
+            if(error == 0){
+                if(num == count){
+                    project_data.imagens = arrayLinks
+
+                    project.push(project_data)
+                        .then(function () {
+                            console.log("Projeto criado com sucesso!")
+                            document.location.replace('/meusanuncios/index.html')
+                        })
+                        .catch(function (erro) {
+                            console.log("Um erro ocorreu ao tentar criar o projeto: ", erro)
+
+                            loading.style.display = 'none'
+                            saveButton.style.display = 'flex'
+                            errorElement.innerText = 'Erro interno, por favor tente novamente!'
+
+                            error++
+                            check()
+                        })
+                }else{
+                    setTimeout(function () {
+                        check();
+                    }, 1000);
+                }
+            }else{
+                console.log('Ocorreu um erro ao tentar upar uma imagem')
+
+                loading.style.display = 'none'
+                saveButton.style.display = 'flex'
+                errorElement.innerText = 'Erro interno, por favor tente novamente!'
+
+                arrayImageNames.forEach(item => {
+                    upload.child(item).delete()
+                })
+            }
+        }
+        
+        check()
+
+        //let exist = false;
+        //let project_executed = true;
 
         // project.on('value', (snapshot) => {
         //     if (!project_executed) {
@@ -36,13 +115,13 @@ const project_database = {};
         //         if (exist) {
         //             console.log("Existe um projeto com este nome já registrado no sistema")
         //         } else {
-        project.push(project_data)
-            .then(function () {
-                console.log("Projeto criado com sucesso!")
-            })
-            .catch(function (erro) {
-                console.log("Um erro ocorreu ao tentar criar o projeto: ", erro)
-            })
+        //project.push(project_data)
+        //    .then(function () {
+        //        console.log("Projeto criado com sucesso!")
+        //    })
+        //    .catch(function (erro) {
+        //        console.log("Um erro ocorreu ao tentar criar o projeto: ", erro)
+        //    })
         //         }
         //     } else {
         //         setTimeout(function () {
@@ -94,7 +173,7 @@ const project_database = {};
                     for (let gp in get_projects) {
                         if (get_projects[gp].IDdono == userID) {
                             console.log(get_projects[gp]);
-                            anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo,get_projects[gp].descricaoPequena,get_projects[gp].buscando,ownerData.nome,ownerData.cidade,ownerData.uf,get_projects[gp].valor,gp)
+                            anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo,get_projects[gp].descricaoPequena,get_projects[gp].tipo,ownerData.nome,ownerData.cidade,ownerData.uf,get_projects[gp].valor,gp,get_projects[gp].linkVideo)
                             
 
                             const lista = document.getElementById(`lista-imagem_${gp}`)

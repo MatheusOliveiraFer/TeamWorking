@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!--CSS GERAL-->
@@ -12,15 +12,13 @@
 
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-storage.js"></script>
 
     <script src="/assets/js/firebase.js" defer></script>
-    <script defer src="/assets/js/controllers/meusAnunciosController.js"></script>
+    <script defer src="/assets/js/controllers/cadastrarAnuncioController.js"></script>
 
     <script src="/assets/js/databases/project_database.js"></script>
-    <script src="/assets/js/templates/meusAnuncios_Item.js"></script>
+    <script src="/assets/js/cookieAccess.js"></script>
   </head>
   <body>
     <header>
@@ -36,9 +34,10 @@
               <div class="mm_line"></div>
             </div>
             <ul>
-              <li><a href="">Anúncios</a></li>
-              <li><a href="">Meus Anúncios</a></li>
-              <li class="active"><a href="">Cadastrar Anúncios</a></li>
+              <li><a href="/cadastro/Home.html">Anúncios</a></li>
+              <li><a href="/meusanuncios/index.html">Meus Anúncios</a></li>
+              <li class="active"><a style="cursor:default">Cadastrar Anúncios</a></li>
+              <li ><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li>
               <li><a href="">Meu Perfil</a></li>
             </ul>
           </nav>
@@ -47,45 +46,57 @@
     </header>
     <div class="ContainerCadastraAnuncio">
         <h1>Cadastrar Anúncio</h1>
-        <form method="post">
+        <form id="projectSender" method="post">
             <div class="TipoAnuncio">
                 <label>Tipo de Anúncio:</label>
-                <input type="text" placeholder="Insira um tipo de anúncio" />
+                <input id="type" type="text" placeholder="Insira um tipo de anúncio" />
             </div>
             <div class="TipoAnuncio">
                 <label>Título de Anúncio:</label>
-                <input type="text" placeholder="Insira o título do anúncio" />
+                <input id="title" type="text" placeholder="Insira o título do anúncio" />
             </div>
             <div class="TipoAnuncio">
                 <label>Breve descrição:</label>
-                <input type="text" placeholder="Insira uma descrição para o anúncio" />
+                <input id="smallDescription" type="text" placeholder="Insira uma descrição para o anúncio" />
             </div>
             <div class="TipoAnuncio">
                 <label>Apresentação completa: </label>
-                <input type="text" placeholder="Não economize nas palavras..." />
+                <input id="fullDescription" type="text" placeholder="Não economize nas palavras..." />
             </div>
             <div class="TipoAnuncio">
                 <label>Valor do anúncio: </label>
-                <input type="text" placeholder="Insira o valor. Ex.: R$50.000,00" />
+                <input id="value" type="text" placeholder="Insira o valor. Ex.: R$50.000,00" />
             </div>
-            <div class="TipoAnuncio">
-                <label class="labelFile">Imagem do projeto: </label>
-                <input type="file" class="file" placeholder="Insira a imagem do projeto" />
+            <div class="ImagemAnuncio">
+                <label>Imagens do projeto: </label>
+                <div>
+                  <input id="image" type="file" style="display: none" accept="image/png, image/gif, image/jpeg, image/webp"/>
+                  <div id="image_front" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click()">+</div>
+                  <div id="image_container_anuncio" class="image_container_anuncio">
+                    
+                  </div>
+                </div>
             </div>
             <div class="TipoAnuncio">
                 <label>Video do vídeo: </label>
-                <input type="text" placeholder="Insira o link do youtube" />
+                <input id="videoAnuncio" type="text" placeholder="Insira o link do youtube" />
             </div>
-            <div class="TipoAnuncio">
+            <!-- <div class="TipoAnuncio">
                 <label>Criador da proposta: </label>
                 <input type="text" placeholder="Insira o nome do criador" />
             </div>
             <div class="TipoAnuncio">
                 <label>Cidade: </label>
                 <input type="text" placeholder="Insira o nome da cidade" />
+            </div> -->
+            <div class="errorDiv">
+              <div id="errorElement"></div>
             </div>
             <div class="TipoAnuncioButton">
-                <button>Salvar</button>
+              <div id="loading-button" class="loading-button">
+                <img src="../assets/images/Loading.gif" class="loading"/>
+              </div>
+                <button id="save" type="submit">Salvar</button>
             </div>
         </form>
     </div>

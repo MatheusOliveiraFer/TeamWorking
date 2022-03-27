@@ -123,7 +123,7 @@ nav a:hover {
 	width: 150px;
 	height: 150px;
 	margin-right: 50px;
-	background-color: #2699d3;
+	/* background-color: #2699d3; */
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -136,7 +136,11 @@ nav a:hover {
 .image_of_project{
 	width: 100%;
 	height: 100%;
+	min-width: 100%;
+	min-height: 100%;
+
 	display:none;
+	object-fit: fill;
 }
 .lista-imagem .imagem2{
 	width: 150px;
@@ -328,6 +332,8 @@ input[type=file]::-webkit-file-upload-button {
 	border-radius: 6px;
 	box-shadow: -2px 0px 13px #ccc;
 	margin-bottom: 40px;
+
+
 }
 
 .ContainerCadastraAnuncio .TipoAnuncio {
@@ -343,18 +349,152 @@ input[type=file]::-webkit-file-upload-button {
 	outline-color: #3ba6db;
 	font-size: 17px;
 }
+.ContainerCadastraAnuncio .ImagemAnuncio {
+	display: flex;
+	flex-direction: column;
+	margin: 5px 0;
+	/* background-color: red; */
+}
+.ContainerCadastraAnuncio .ImagemAnuncio div{
+	display: flex;
+	flex-direction: row;
+}
+.image_button_cadastro_anuncio{
+	width: 60px;
+	height: 60px;
+
+	border-radius: 5px;
+	background-color: #2699d3;
+
+	font-size: 35px;
+	color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+}
+.image_button_cadastro_anuncio:hover{
+	width: 60px;
+	height: 60px;
+
+	border-radius: 5px;
+	border: 1px solid #2699d3;
+	background-color: white;
+
+	font-size: 35px;
+	color: #2699d3;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+}
+.image_container_anuncio{
+	width: calc(100% - 70px);
+	margin-left: 10px;
+	/* background-color: blue; */
+	overflow-x: auto;
+    overflow-y: hidden;
+	display: flex;
+}
+.image_anuncio{
+	width: 60px;
+	height: 60px;
+	min-width: 60px;
+
+	border-radius: 5px;
+	background-color: green;
+	border: 1px solid #2699d3;
+	margin-right: 10px;
+
+	font-size: 35px;
+	color: white;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+	object-fit: cover;
+}
+.trash{
+	width: 60px;
+	height: 60px;
+	min-width: 60px;
+
+	border-radius: 5px;
+	background-color: red;
+	margin-right: -60px;
+	padding: 10px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	cursor: pointer;
+	object-fit: cover;
+
+	/* display: none; */
+}
+.image_anuncio:hover{
+	opacity: 0.4;
+}
+/* .image_anuncio:hover > .trash{
+	display: flex;
+} */
 .ContainerCadastraAnuncio .TipoAnuncioButton {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	/* flex-direction: column; */
 }
 .ContainerCadastraAnuncio .TipoAnuncioButton button {
-	padding: 20px 60px;
-	font-size: 18px;
-	color: #FFF;
+	width: 170px;
+	height: 60px;
+
 	background-color: #2699d3;
 	border-radius: 5px;
 	border: 0;
+
+	font-size: 18px;
+	color: #FFF;
+
+	cursor: pointer;
+}
+.errorDiv{
+	width: 100%;
+	height: 30px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  }
+.errorDiv div{
+	height: 100%;
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.loading-button{
+	width: 170px;
+	height: 60px;
+	background-color: white;
+
+	border-radius: 5px;
+	border: 2px solid #2699d3;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	display: none;
+}
+.loading{
+	width: 30px;
+	height: 30px;
 }
 
 /* Tela de Meu Perfil */

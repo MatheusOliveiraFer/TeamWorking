@@ -155,11 +155,11 @@ const user_database = {};
                     if (confirmation) {
                         console.log(`O nome do usuário é ${username} e seu ID é ${userID}`)
 
-                        errorElement.innerText = `O nome do usuário é ${username}!`
-                        errorElement.style.color = "green"
+                        var cookieData = new Date(5100,0,01);
+                        cookieData = cookieData.toUTCString()
+                        document.cookie = `userID=${userID};expires=${cookieData};`
 
-                        loading.style.display = 'none'
-                        enviar.style.display = 'inline'
+                        document.location.replace('/cadastro/Home.html')
                     } else {
                         errorElement.innerHTML = `Usuário não confirmado, <a style="
                             cursor: pointer;
