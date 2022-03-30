@@ -10,3 +10,9 @@
 #together {
     background-image: url('../assets/images/together.jpg');
 }
+#teste2 {
+    width: 350px;
+    height: 350px;
+    background-image: url('../assets/images/background-landingpage.jpg');
+    border-radius: 50%;
+}
