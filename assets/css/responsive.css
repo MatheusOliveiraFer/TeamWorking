@@ -23,6 +23,15 @@
 
 /* RESPONSIVIDADE DA TELA DE ANÚNCIOS */
 @media(max-width: 473px) {
+	.ContainerCadastraAnuncio form {
+		width: 90%;
+		height: 580px;
+		background-color: #FFF;
+		padding: 20px;
+		border-radius: 6px;
+		box-shadow: -2px 0px 13px #ccc;
+		margin-bottom: 40px;
+	}
 	.tipo-txt{
 		flex-direction: column;
 		justify-content: center;
@@ -42,6 +51,15 @@
 	}
 }
 @media(max-width: 500px) {
+	.ContainerCadastraAnuncio form {
+		width: 80%;
+		height: 580px;
+		background-color: #FFF;
+		padding: 20px;
+		border-radius: 6px;
+		box-shadow: -2px 0px 13px #ccc;
+		margin-bottom: 40px;
+	}
 	.tipo-txt{
 		padding-left: 30px;
 	}
@@ -55,6 +73,15 @@
 
 
 @media(max-width: 600px) {
+	.ContainerCadastraAnuncio form {
+		width: 70%;
+		height: 580px;
+		background-color: #FFF;
+		padding: 20px;
+		border-radius: 6px;
+		box-shadow: -2px 0px 13px #ccc;
+		margin-bottom: 40px;
+	}
 	#anuncios 
 	.container
 	.anuncio {
@@ -109,6 +136,15 @@
 }
 
 @media(max-width: 618px) {
+	.ContainerCadastraAnuncio form {
+		width: 60%;
+		height: 580px;
+		background-color: #FFF;
+		padding: 20px;
+		border-radius: 6px;
+		box-shadow: -2px 0px 13px #ccc;
+		margin-bottom: 40px;
+	}
 	.anuncio .lista-imagem {
 		width: 92%;
 		height: 37%;
@@ -142,11 +178,33 @@
 
 /* Tela de Meu Perfil */
 
+@media (max-width:1240px) {
+	nav ul {
+		flex-direction: column;
+		display:none;
+		position: absolute;
+	    left: 0;
+	    width: 100%;
+	    background-color: #2699d3;
+	}
+	header {
+		height:auto;
+	}
+	.logo {
+		padding-left:20px;
+	}
+	.menuMobile {
+		display:flex;
+		flex-direction: column;
+		justify-content:space-around;
+	}
+	
+}
 @media (max-width:930px) {
 
 	.perfil-box{
 		width: 65%;
-		height: 60%;
+		height: 55%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -158,8 +216,230 @@
 		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
 		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
+	.avatar{
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+	}
 	
 }
 
+@media (max-width:680px) {
+
+	.perfil-box{
+		width: 82%;
+		height: 70%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		background: rgba(255,255,255,0.1);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+		box-shadow: 0px 0px 15px 2px #7e7575;
+	}
+	.avatar{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+	}
+	.dados-perfil div{
+		width:100%;
+		height:60%;
+		font-size: 12px;
+	}
+	.dados-perfil input {
+		width: 100%;
+		height: 25px;
+		padding: 10px;
+	}	
+	.dados-importantes-perfil .conteudo-dados-perfil div{
+		width:28%;
+		height:18px;
+		font-size: 12px;
+	}
+	.dados-importantes-perfil .conteudo-dados-perfil2 div{
+		width:40%;
+		height:16px;
+		font-size: 12px;
+		font-family: Georgia, 'Times New Roman', Times, serif;
+		font-weight: 200;
+		color: #2684DE;
+	}
+	.dados-importantes-perfil input{
+		width: 100%;
+		height: 25px;
+		padding: 10px;
+	}
+	.conteudo-dados-perfil2 .uf{
+		padding-right: 16px;
+		font-size: 12px;
+	}
+	.dados-importantes-perfil .entrada-uf{
+		width: 100%;
+		height: 25px;
+		padding: 10px;
+	}
+	.botao-voltar-perfil{
+		width: 110px;
+		height: 30px;
+		font-size: 14px;
+	}
+	.botao-enviar-perfil{
+		width: 110px;
+		height: 30px;
+		font-size: 14px;
+	}
+	
+}
+@media (max-width:510px) {
+
+	.logo {
+		font-size: 16px;
+	}
+	.perfil-box{
+		width: 85%;
+		height: 65%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		background: rgba(255,255,255,0.1);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+		box-shadow: 0px 0px 15px 2px #7e7575;
+	}
+	.avatar{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+	}
+	.dados-perfil div{
+		width:100%;
+		height:35%;
+		font-size: 10px;
+	}
+	.dados-perfil input {
+		width: 100%;
+		height: 25px;
+		font-size: 10px;
+		padding: 6px;
+	}	
+	.dados-importantes-perfil .conteudo-dados-perfil div{
+		width:28%;
+		height:16px;
+		font-size: 10px;
+	}
+	.dados-importantes-perfil .conteudo-dados-perfil2 div{
+		width:40%;
+		height:16px;
+		font-size: 10px;
+	}
+	.dados-importantes-perfil input{
+		width: 100%;
+		height: 25px;
+		font-size: 10px;
+		padding: 6px;
+	}
+	.conteudo-dados-perfil2 .uf{
+		font-size: 10px;
+	}
+	.dados-importantes-perfil .entrada-uf{
+		width: 100%;
+		height: 25px;
+		padding: 6px;
+	}
+	.botao-voltar-perfil{
+		width: 100px;
+		height: 25px;
+		font-size: 12px;
+	}
+	.botao-enviar-perfil{
+		width: 100px;
+		height: 25px;
+		font-size: 12px;
+	}
+}
+@media (max-width:320px) {
+	.logo {
+		font-size: 20px;
+	}
+	.menuMobile {
+		width: 30px;
+		height: 30px;
+		display:flex;
+		flex-direction: column;
+		justify-content:space-around;
+	}
+	.perfil-box{
+		width: 85%;
+		height: 65%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		border-radius: 10px;
+		background: rgba(255,255,255,0.1);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
+		box-shadow: 0px 0px 15px 2px #7e7575;
+	}
+	.avatar{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+	}
+	.dados-perfil div{
+		width:100%;
+		height:60%;
+		font-size: 10px;
+	}
+	.dados-perfil input {
+		width: 100%;
+		height: 25px;
+		font-size: 10px;
+		padding: 6px;
+	}	
+	.dados-importantes-perfil .conteudo-dados-perfil div{
+		width:28%;
+		height:16px;
+		font-size: 10px;
+	}
+	.dados-importantes-perfil .conteudo-dados-perfil2 div{
+		width:40%;
+		height:16px;
+		font-size: 10px;
+	}
+	.dados-importantes-perfil input{
+		width: 100%;
+		height: 25px;
+		font-size: 10px;
+		padding: 6px;
+	}
+	.conteudo-dados-perfil2 .uf{
+		padding-right: 12px;
+		font-size: 10px;
+	}
+	.dados-importantes-perfil .entrada-uf{
+		width: 100%;
+		height: 25px;
+		padding: 6px;
+	}
+	.botao-voltar-perfil{
+		width: 90px;
+		height: 25px;
+		font-size: 11px;
+	}
+	.botao-enviar-perfil{
+		width: 90px;
+		height: 25px;
+		font-size: 11px;
+	}
+}
 
 

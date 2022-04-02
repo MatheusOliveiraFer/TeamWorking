@@ -334,6 +334,19 @@ nav a:hover {
 	cursor: pointer;
   }
 
+/* Tela de Cadastro de anuncios */
+
+.labelFile, .file {
+	display: block;
+}
+ 
+input[type=file]::-webkit-file-upload-button {
+	border: 1px solid rgb(53, 49, 49);
+	background: #39aae1;
+	margin-top: 6px;
+	color: #FFF;
+}
+
 .ContainerCadastraAnuncio {
 	display: flex;
 	justify-content: center;
@@ -353,8 +366,6 @@ nav a:hover {
 	border-radius: 6px;
 	box-shadow: -2px 0px 13px #ccc;
 	margin-bottom: 40px;
-
-
 }
 
 .ContainerCadastraAnuncio .TipoAnuncio {
@@ -553,6 +564,8 @@ nav a:hover {
 .container-perfil{
 	width: 100vw;
 	height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 .container-perfil .container-box-perfil{
 	width: 100%;
@@ -564,7 +577,7 @@ nav a:hover {
 }
 .perfil-box{
 	width: 45%;
-	height: 70%;
+	height: 75%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
