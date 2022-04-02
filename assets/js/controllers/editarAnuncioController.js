@@ -5,37 +5,43 @@ const fullDescription = document.getElementById('fullDescription')
 const value = document.getElementById('value')
 const videoAnuncio = document.getElementById('videoAnuncio')
 const image = document.getElementById('image')
-const imageFront1 = document.getElementById('image_front_1')
-const imageFront2 = document.getElementById('image_front_2')
-const imageFront3 = document.getElementById('image_front_3')
-const imageFront4 = document.getElementById('image_front_4')
+const imageFront = document.getElementById('image_front')
 const images = document.getElementById('image_container_anuncio')
-const projectSender = document.getElementById('projectSender')
+const projectEditor = document.getElementById('projectEditor')
 const save = document.getElementById('save')
 const errorElement = document.getElementById('errorElement')
 const loading = document.getElementById('loading-button')
-var image_array = []
-// var key_array = []
 var active_slot = 0
+
+projectEditor.display = 'none'
+
+var images_array = []
+var deleted_indexes = []
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const projectID = urlParams.get('a')
 
 var userID = cookieAccess.valor('userID')
 
-if(!userID){
+if(!userID || !projectID){
     document.location.replace('/index.html')
+}else{
+    tw.init('get_project_info', [projectID])
 }
 
 image.addEventListener('change', (e) => {
     var slot = active_slot
 
     if (image.files[0].type == 'image/png' || image.files[0].type == 'image/jpeg' || image.files[0].type == 'image/gif' || image.files[0].type == 'image/webp') {
-        
-        image_array[slot] = image.files[0]
-        // key_array.push(slot)
-        let url = URL.createObjectURL(image_array[slot])
 
-        let activeButton = document.getElementById(`image_front_${slot}`)
-        
-        activeButton.outerHTML = `<div>
+        images_array[slot] = image.files[0]
+        let url = URL.createObjectURL(images_array[slot])
+        let activeButton = document.getElementById(`image_box_${slot}`)
+
+        console.log('Imagem recebida:',slot)
+
+        activeButton.innerHTML = `<div>
                                 <img id="image-${slot}-trash" class="trash" src="/assets/images/lixeira.png"/>
                                 <img id="image-${slot}" 
                                     class="image_anuncio" 
@@ -44,8 +50,21 @@ image.addEventListener('change', (e) => {
                                     onmouseover="document.getElementById('image-${slot}-trash').style.display = 'flex';" 
                                     onmouseout="document.getElementById('image-${slot}-trash').style.display = 'none';"/>
                                 
-                                <img id="image-${slot}-loading" class="image-loading-box"/>
+                                <img id="image-${slot}-loading" class="image_loading_box"/>
                             </div>`
+
+
+        console.log(`Deleted antes da adição do ${slot}: ${deleted_indexes}`)
+        deleted_indexes = deleted_indexes.sort()
+        for(var i=0; i <= deleted_indexes.length + 1; i++){
+            if(deleted_indexes[i] == slot){
+                deleted_indexes.splice(i,1)
+            }
+        }
+        console.log(`Deleted depois da adição do ${slot}: ${deleted_indexes}`)
+
+        image.type = 'text'
+        image.type = 'file'
     } else {
         console.log('Formato inválido')
         image.type = 'text'
@@ -54,30 +73,19 @@ image.addEventListener('change', (e) => {
 })
 
 function removeImage(id){
-    const removableImage = document.getElementById(id)
-    const removableImage_trash = document.getElementById(id + "-trash")
-    const removableImage_loading = document.getElementById(id + "-loading")
+    let itemId = id.split('-')
 
-    itemId = id.split('-')
+    deleted_indexes.push(itemId[1])
+    deleted_indexes = deleted_indexes.sort()
 
-    // image_array.splice(itemId[1],1)
+    const removableImage = document.getElementById(`image_box_${itemId[1]}`)
 
-    // var num = 0
-    // key_array.forEach(key => {
-    //     if(key == itemId[1]){
-    //         key_array.splice(num,1)
-    //     }
+    console.log('Imagem excluída:',itemId[1])
 
-    //     num++
-    // })
-
-    delete image_array[itemId[1]]
-    removableImage.outerHTML = `<div id="image_front_${itemId[1]}" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=${itemId[1]}">+</div>`
-    removableImage_trash.remove()
-    removableImage_loading.remove()
+    removableImage.innerHTML = `<div id="image_front_${itemId[1]}" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=${itemId[1]}">+</div>`
 }
 
-projectSender.addEventListener('submit', (e) => {
+projectEditor.addEventListener('submit', (e) => {
     userID = cookieAccess.valor('userID')
 
     if(!userID){
@@ -92,7 +100,7 @@ projectSender.addEventListener('submit', (e) => {
     setTimeout(function(){
         let errors = 0;
 
-        if(!videoAnuncio.value.includes('www.youtube.com/') && !(videoAnuncio.value === '' || videoAnuncio.value == null)){
+        if(!videoAnuncio.value.includes('www.youtube.com/')){
             errors++
             videoAnuncio.style.border = '2px solid red'
             errorElement.innerText = "Recomendamos subir seu vídeo no Youtube"
@@ -122,18 +130,11 @@ projectSender.addEventListener('submit', (e) => {
             value.style.border = '2px solid red'
             errorElement.innerText = "Existem campos sem preencher!"
         }
-        // if(image_array.length == 0){
-        //     errors++
-        //     console.log('array vazio')
-
-        //     imageFront.style.border = '2px solid red'
-        //     errorElement.innerText = "Recomendamos inserir no mínimo uma imagem"
-        // }
-        // if(videoAnuncio.value === '' || videoAnuncio.value == null){
-        //     errors++
-        //     videoAnuncio.style.border = '2px solid red'
-        //     errorElement.innerText = "Existem campos sem preencher!"
-        // }
+        if(videoAnuncio.value === '' || videoAnuncio.value == null){
+            errors++
+            videoAnuncio.style.border = '2px solid red'
+            errorElement.innerText = "Existem campos sem preencher!"
+        }
 
         if(errors > 0){
             loading.style.display = 'none'
@@ -141,7 +142,7 @@ projectSender.addEventListener('submit', (e) => {
 
             e.preventDefault()
         }else{
-            tw.init('project_create', [title.value, userID, smallDescription.value, fullDescription.value, type.value, videoAnuncio.value, value.value, image_array])
+            tw.init('project_update', [projectID, type.value, title.value, smallDescription.value, fullDescription.value, value.value, videoAnuncio.value, images_array, deleted_indexes])
         }
     },500)
 
@@ -149,10 +150,7 @@ projectSender.addEventListener('submit', (e) => {
     e.preventDefault()
 })
 
-projectSender.addEventListener('submit', (e) => {
-
-
-
-
-    e.preventDefault()
-})
+function caseNotImage(index){       
+    var image_slot = document.getElementById(`image_box_${index}`)
+    image_slot.innerHTML = `<div id="image_front_${index}" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=${index}">+</div>`
+}

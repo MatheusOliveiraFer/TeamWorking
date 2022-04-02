@@ -16,12 +16,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 
+  <script defer src="/assets/js/cookieAccess.js"></script>
+  
   <script src="/assets/js/firebase.js" defer></script>
   <script defer src="/assets/js/controllers/meusAnunciosController.js"></script>
 
   <script src="/assets/js/databases/project_database.js"></script>
   <script src="/assets/js/templates/meusAnuncios_Item.js"></script>
-  <script src="/assets/js/cookieAccess.js"></script>
 </head>
 
 <body>
@@ -41,16 +42,18 @@
             <li><a href="/cadastro/Home.html">Anúncios</a></li>
             <li class="active"><a style="cursor:default">Meus Anúncios</a></li>
             <li><a href="/meusanuncios/CadastroAnuncio.html">Cadastrar Anúncio</a></li>
-            <li><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li>
-            <li><a href="">Meu Perfil</a></li>
+            <!-- <li><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li> -->
+            <li><a href="/meusanuncios/Perfil.html">Meu Perfil</a></li>
           </ul>
         </nav>
       </div>
     </div>
   </header>
   <section id="anuncios">
+    <img id="anuncioLoading"class="anuncioLoading" src="/assets/images/Loading.gif">
+    
     <div id="anuncioContainer" class="container">
-      
+
     </div>
   </section>
   <div id="myModal" class="modal">

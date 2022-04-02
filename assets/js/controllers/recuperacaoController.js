@@ -1,3 +1,4 @@
+const enviar = document.getElementById('enviar')
 const recuperacao = document.getElementById('recuperacao')
 const password = document.getElementById('password')
 const confirmPassword = document.getElementById('confirmPassword')

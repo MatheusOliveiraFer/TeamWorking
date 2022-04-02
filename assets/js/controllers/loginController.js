@@ -5,12 +5,11 @@ const errorElement = document.getElementById('errorElement')
 const enviar = document.getElementById('enviar')
 const loading = document.getElementById('loading-button')
 
-// var userID = cookieAccess.valor('userID')
+var userID = cookieAccess.valor('userID')
 
-
-// if(userID){
-//     document.location.replace('/cadastro/Home.html')
-// }
+if(userID){
+    document.location.replace('/cadastro/Home.html')
+}
 
 signIn.addEventListener('submit', (e) => {
     enviar.style.display = 'none'

@@ -12,15 +12,18 @@
 
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-storage.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 
-    <script src="/assets/js/firebase.js" defer></script>
-    <script defer src="/assets/js/controllers/meusAnunciosController.js"></script>
+    <script defer src="/assets/js/cookieAccess.js"></script>
 
-    <script src="/assets/js/databases/project_database.js"></script>
-    <script src="/assets/js/templates/meusAnuncios_Item.js"></script>
+    <script defer src="/assets/js/databases/project_database.js"></script>
+    
+    <script src="/assets/js/firebase.js" defer></script>
+    <script defer src="/assets/js/controllers/editarAnuncioController.js"></script>
+    
   </head>
   <body>
     <header>
@@ -40,7 +43,7 @@
               <li><a href="/meusanuncios/index.html">Meus Anúncios</a></li>
               <li><a href="/meusanuncios/CadastroAnuncio.html">Cadastrar Anúncio</a></li>
               <li class="active"><a style="cursor:default">Editar Anúncios</a></li>
-              <li><a href="">Meu Perfil</a></li>
+              <li><a href="/meusanuncios/Perfil.html">Meu Perfil</a></li>
             </ul>
           </nav>
         </div>
@@ -48,45 +51,74 @@
     </header>
     <div class="ContainerCadastraAnuncio">
         <h1>Editar Anúncio</h1>
-        <form method="post">
+        <form id="projectEditor" method="post">
             <div class="TipoAnuncio">
                 <label>Tipo de Anúncio:</label>
-                <input type="text" value="Projeto implementar um especialista em programçõa e sócio para alanvancar os meios de comunicação empresarial" />
+                <select id="type">
+                  <option value="1">Compra e venda de empresas e negócios</option>
+                  <option value="2">Formação de Startups, projetos e vagas de emprego</option>
+                  <option value="3">Oportunidade de investimento, sociedade e parceria</option>
+                </select>
             </div>
             <div class="TipoAnuncio">
                 <label>Título de Anúncio:</label>
-                <input type="text" value="Anuncio para programador"/>
+                <input id="title" type="text" value=""/>
             </div>
             <div class="TipoAnuncio">
                 <label>Breve descrição:</label>
-                <input type="text" value="Anuncio gerado para conserguirmos novos integrantes/sócio na emrpesa " />
+                <input id="smallDescription" type="text" value="" />
             </div>
             <div class="TipoAnuncio">
                 <label>Apresentação completa: </label>
-                <input type="text" value="A empresa trabalha no ramo de indústrias de tecelagem" />
+                <input id="fullDescription" type="text" value="" />
             </div>
             <div class="TipoAnuncio">
                 <label>Valor do anúncio: </label>
-                <input type="text" value="R$5.000,00" />
+                <input id="value" type="text" value="" />
             </div>
-            <div class="TipoAnuncio">
-                <label>Imagem do projeto: </label>
-                <input type="file" value="imgem inserida talvez posso ser modificada pelo usuário" />
-            </div>
+            <div class="ImagemAnuncio">
+              <label id="image_label">Imagens do projeto: </label>
+              <div>
+                <input id="image" type="file" style="display: none" accept="image/png, image/gif, image/jpeg, image/webp"/>
+                <div id="image_box_0">
+                  <div id="image_front_0" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=0">+</div>
+                </div>
+                <div id="image_box_1">
+                  <div id="image_front_1" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=1">+</div>
+                </div>
+                <div id="image_box_2">
+                  <div id="image_front_2" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=2">+</div>
+                </div>
+                <div id="image_box_3">
+                  <div id="image_front_3" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=3">+</div>
+                </div>
+
+                
+                <!-- <div id="image_container_anuncio" class="image_container_anuncio">
+                  
+                </div> -->
+              </div>
+          </div>
             <div class="TipoAnuncio">
                 <label>Video do vídeo: </label>
-                <input type="text" value="https://www.youtube.com/watch?v=GcsxcmTP0lQ" />
+                <input id="videoAnuncio" type="text" value=""/>
             </div>
-            <div class="TipoAnuncio">
+            <!-- <div class="TipoAnuncio">
                 <label>Criador da proposta: </label>
                 <input type="text" value="Vitória Lessa"/>
             </div>
             <div class="TipoAnuncio">
                 <label>Cidade: </label>
                 <input type="text" value="Volta Redonda-RJ" />
+            </div> -->
+            <div class="errorDiv">
+              <div id="errorElement"></div>
             </div>
             <div class="TipoAnuncioButton">
-                <button>Salvar</button>
+              <div id="loading-button" class="loading-button">
+                <img src="../assets/images/Loading.gif" class="loading"/>
+              </div>
+                <button id="save" type="submit">Salvar</button>
             </div>
         </form>
     </div>

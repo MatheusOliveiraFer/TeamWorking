@@ -18,8 +18,8 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
         <div class="txt-info">${type}</div>
       </div>
       <div class="cont2">
-        <div class="link-info">Link:</div>
-        <div class="link"><a href="${link}">Youtube</a></div>
+        <div class="link-info"></div>
+        <div class="link"><a href="${link}"></a></div>
       </div>
     </div>
     <div class="dados-publi">
