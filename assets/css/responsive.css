@@ -149,11 +149,16 @@
 		width: 92%;
 		height: 37%;
 	}
+	
 }
 
 @media(max-width: 700px) {
 	.container {
 		width: 100%;
+	}
+	.button-detalhes{
+		width: 100px;
+		height: 25px;
 	}
 }
 @media(max-width: 812px) {
@@ -168,11 +173,17 @@
 		justify-content: center;
 		align-items: center;
 	}
+
 }
 @media(max-width: 1015px) {
 	.info-dados {
 		width: 100%;
 	}
+	.button-detalhes{
+		width: 120px;
+		height: 25px;
+	}
+	
 }
 
 
