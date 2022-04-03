@@ -14,11 +14,15 @@
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-storage.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script defer src="/assets/js/cookieAccess.js"></script>
+
     <script src="/assets/js/firebase.js" defer></script>
     <script defer src="/assets/js/controllers/cadastrarAnuncioController.js"></script>
-
+    
     <script src="/assets/js/databases/project_database.js"></script>
-    <script src="/assets/js/cookieAccess.js"></script>
   </head>
   <body>
     <header>
@@ -37,8 +41,8 @@
               <li><a href="/cadastro/Home.html">Anúncios</a></li>
               <li><a href="/meusanuncios/index.html">Meus Anúncios</a></li>
               <li class="active"><a style="cursor:default">Cadastrar Anúncios</a></li>
-              <li ><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li>
-              <li><a href="">Meu Perfil</a></li>
+              <!-- <li ><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li> -->
+              <li><a href="/meusanuncios/Perfil.html">Meu Perfil</a></li>
             </ul>
           </nav>
         </div>
@@ -47,9 +51,13 @@
     <div class="ContainerCadastraAnuncio">
         <h1>Cadastrar Anúncio</h1>
         <form id="projectSender" method="post">
-            <div class="TipoAnuncio">
+              <div class="TipoAnuncio">
                 <label>Tipo de Anúncio:</label>
-                <input id="type" type="text" placeholder="Insira um tipo de anúncio" />
+                <select id="type">
+                  <option value="1">Compra e venda de empresas e negócios</option>
+                  <option value="2">Formação de Startups, projetos e vagas de emprego</option>
+                  <option value="3">Oportunidade de investimento, sociedade e parceria</option>
+                </select>
             </div>
             <div class="TipoAnuncio">
                 <label>Título de Anúncio:</label>
@@ -71,10 +79,15 @@
                 <label>Imagens do projeto: </label>
                 <div>
                   <input id="image" type="file" style="display: none" accept="image/png, image/gif, image/jpeg, image/webp"/>
-                  <div id="image_front" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click()">+</div>
-                  <div id="image_container_anuncio" class="image_container_anuncio">
+                  <div id="image_front_0" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=0">+</div>
+                  <div id="image_front_1" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=1">+</div>
+                  <div id="image_front_2" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=2">+</div>
+                  <div id="image_front_3" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=3">+</div>
+
+                  
+                  <!-- <div id="image_container_anuncio" class="image_container_anuncio">
                     
-                  </div>
+                  </div> -->
                 </div>
             </div>
             <div class="TipoAnuncio">

@@ -1,36 +1,35 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!--CSS GERAL-->
-    <link rel="stylesheet" href="../assets/css/main.css"/>
-    <title>Anúncios</title>
-  </head>
-  <body>
-    <header>
-      <div class="container">
-        <div class="logo">
-          QueroUmSócio
-        </div>
-        <div class="menu">
-          <nav>
-            <div class="menuMobile">
-              <div class="mm_line"></div>
-              <div class="mm_line"></div>
-              <div class="mm_line"></div>
-            </div>
-            <ul>
-              <li class="active"><a style="cursor:default">Anúncios</a></li>
-              <li><a href="/meusanuncios/index.html">Meus Anúncios</a></li>
-              <li><a href="/meusanuncios/CadastroAnuncio.html">Cadastrar Anúncio</a></li>
-              <li ><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li>
-              <li><a href="">Meu Perfil</a></li>
-           
-          </nav>
-        </div>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--CSS GERAL-->
+  <link rel="stylesheet" href="../assets/css/main.css" />
+  <title>Anúncios</title>
+
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+  <script defer src="/assets/js/cookieAccess.js"></script>
+  
+  <script src="/assets/js/firebase.js" defer></script>
+  <script defer src="/assets/js/controllers/homeController.js"></script>
+
+  <script src="/assets/js/databases/project_database.js"></script>
+  <script src="/assets/js/templates/anuncios_Item.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        QueroUmSócio
       </div>
     </header>
     <section id="anuncios">
@@ -82,215 +81,228 @@
               <div class="info-valor">Valor</div>
               <div class="valor">R$: 5.500,00</div>
             </div>
-        </div>
-        </div>
-        <div class="anuncio">
-          <div class="txt-inicial">
-            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
+      <div class="menu">
+        <nav>
+          <div class="menuMobile">
+            <div class="mm_line"></div>
+            <div class="mm_line"></div>
+            <div class="mm_line"></div>
           </div>
-          <div class="subtitulo">
-            Inspeção e criação de novas tecnologias usando .NET
-          </div>
-          <div class="lista-imagem">
-            <div class="imagem1"></div>
-            <div class="imagem2"></div>
-            <div class="imagem3"></div>
-          </div>
-          <div class="lista-imagem-modal">
-            <button id="myBtn" class="imagem-modal">Open Modal</button>
-          </div>
-          <div class="tipo-txt">
-            <div class="cont1">
-              <div class="tipo">Tipo:</div>
-              <div class="txt-info">Colaborador da equipe</div>
-            </div>
-            <div class="cont2">
-              <button onclick="" class="button-detalhes">Detalhes</button>
-            </div>
-          </div>
-          <div class="dados-publi">
-            <div class="info-dados">
-              <div class="info-criador">
-                <div class="info-proposta">
-                  Criador da proposta:
-                </div>
-                <div>
-                  Ricardo Vasconcelos Bitteti
-                </div>
-              </div>
-              <div class="info-loc">
-                <div class="info-cidade">
-                  Cidade de atuação da proposta:
-                </div>
-                <div class="loc-criador">
-                  São Paulo - SP
-                </div>
-              </div>
-            </div>
-            <div class="valor-dados">
-              <div class="info-valor">Valor</div>
-              <div class="valor">R$: 5.500,00</div>
-            </div>
-        </div>
-        </div>
-        <div class="anuncio">
-          <div class="txt-inicial">
-            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
-          </div>
-          <div class="subtitulo">
-            Inspeção e criação de novas tecnologias usando .NET
-          </div>
-          <div class="lista-imagem">
-            <div class="imagem1"></div>
-            <div class="imagem2"></div>
-            <div class="imagem3"></div>
-          </div>
-          <div class="lista-imagem-modal">
-            <button id="myBtn" class="imagem-modal">Open Modal</button>
-          </div>
-          <div class="tipo-txt">
-            <div class="cont1">
-              <div class="tipo">Tipo:</div>
-              <div class="txt-info">Colaborador da equipe</div>
-            </div>
-            <div class="cont2">
-              <button onclick="" class="button-detalhes">Detalhes</button>
-            </div>
-          </div>
-          <div class="dados-publi">
-            <div class="info-dados">
-              <div class="info-criador">
-                <div class="info-proposta">
-                  Criador da proposta:
-                </div>
-                <div>
-                  Ricardo Vasconcelos Bitteti
-                </div>
-              </div>
-              <div class="info-loc">
-                <div class="info-cidade">
-                  Cidade de atuação da proposta:
-                </div>
-                <div class="loc-criador">
-                  São Paulo - SP
-                </div>
-              </div>
-            </div>
-            <div class="valor-dados">
-              <div class="info-valor">Valor</div>
-              <div class="valor">R$: 5.500,00</div>
-            </div>
-        </div>
-        </div>
-        <div class="anuncio">
-          <div class="txt-inicial">
-            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
-          </div>
-          <div class="subtitulo">
-            Inspeção e criação de novas tecnologias usando .NET
-          </div>
-          <div class="lista-imagem">
-            <div class="imagem1"></div>
-            <div class="imagem2"></div>
-            <div class="imagem3"></div>
-          </div>
-          <div class="lista-imagem-modal">
-            <button id="myBtn" class="imagem-modal">Open Modal</button>
-          </div>
-          <div class="tipo-txt">
-            <div class="cont1">
-              <div class="tipo">Tipo:</div>
-              <div class="txt-info">Colaborador da equipe</div>
-            </div>
-            <div class="cont2">
-              <button onclick="" class="button-detalhes">Detalhes</button>
-            </div>
-          </div>
-          <div class="dados-publi">
-            <div class="info-dados">
-              <div class="info-criador">
-                <div class="info-proposta">
-                  Criador da proposta:
-                </div>
-                <div>
-                  Ricardo Vasconcelos Bitteti
-                </div>
-              </div>
-              <div class="info-loc">
-                <div class="info-cidade">
-                  Cidade de atuação da proposta:
-                </div>
-                <div class="loc-criador">
-                  São Paulo - SP
-                </div>
-              </div>
-            </div>
-            <div class="valor-dados">
-              <div class="info-valor">Valor</div>
-              <div class="valor">R$: 5.500,00</div>
-            </div>
-        </div>
-        </div>
-        <div class="anuncio">
-          <div class="txt-inicial">
-            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
-          </div>
-          <div class="subtitulo">
-            Inspeção e criação de novas tecnologias usando .NET
-          </div>
-          <div class="lista-imagem">
-            <div class="imagem1"></div>
-            <div class="imagem2"></div>
-            <div class="imagem3"></div>
-          </div>
-          <div class="lista-imagem-modal">
-            <button id="myBtn" class="imagem-modal">Open Modal</button>
-          </div>
-          <div class="tipo-txt">
-            <div class="cont1">
-              <div class="tipo">Tipo:</div>
-              <div class="txt-info">Colaborador da equipe</div>
-            </div>
-            <div class="cont2">
-              <button onclick="" class="button-detalhes">Detalhes</button>
-            </div>
-          </div>
-          <div class="dados-publi">
-            <div class="info-dados">
-              <div class="info-criador">
-                <div class="info-proposta">
-                  Criador da proposta:
-                </div>
-                <div>
-                  Ricardo Vasconcelos Bitteti
-                </div>
-              </div>
-              <div class="info-loc">
-                <div class="info-cidade">
-                  Cidade de atuação da proposta:
-                </div>
-                <div class="loc-criador">
-                  São Paulo - SP
-                </div>
-              </div>
-            </div>
-            <div class="valor-dados">
-              <div class="info-valor">Valor</div>
-              <div class="valor">R$: 5.500,00</div>
-            </div>
-        </div>
-        </div>
-      </div>
-    </section>
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close" style="margin-right: 10px;">&times;</span>
-        <div></div>
-        <div></div>
-        <div></div>
+          <ul>
+            <li class="active"><a style="cursor:default">Anúncios</a></li>
+            <li><a href="/meusanuncios/index.html">Meus Anúncios</a></li>
+            <li><a href="/meusanuncios/CadastroAnuncio.html">Cadastrar Anúncio</a></li>
+            <!-- <li><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li> -->
+            <li><a href="/meusanuncios/Perfil.html">Meu Perfil</a></li>
+
+        </nav>
       </div>
     </div>
-    <script src="../assets/js/script.js"></script>
-  </body>
+  </header>
+  <section id="anuncios">
+    <img id="anuncioLoading"class="anuncioLoading" src="/assets/images/Loading.gif">
+
+    <div id="anuncioContainer" class="container">
+
+      <!-- <div class="anuncio">
+        <div class="txt-inicial">
+          <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
+        </div>
+        <div class="subtitulo">
+          Inspeção e criação de novas tecnologias usando .NET
+        </div>
+        <div class="anuncio">
+          <div class="txt-inicial">
+            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
+          </div>
+          <div class="subtitulo">
+            Inspeção e criação de novas tecnologias usando .NET
+          </div>
+          <div class="lista-imagem">
+            <div class="imagem1"></div>
+            <div class="imagem2"></div>
+            <div class="imagem3"></div>
+          </div>
+          <div class="lista-imagem-modal">
+            <button id="myBtn" class="imagem-modal">Open Modal</button>
+          </div>
+          <div class="tipo-txt">
+            <div class="cont1">
+              <div class="tipo">Tipo:</div>
+              <div class="txt-info">Colaborador da equipe</div>
+            </div>
+            <div class="cont2">
+              <button onclick="" class="button-detalhes">Detalhes</button>
+            </div>
+          </div>
+          <div class="dados-publi">
+            <div class="info-dados">
+              <div class="info-criador">
+                <div class="info-proposta">
+                  Criador da proposta:
+                </div>
+                <div>
+                  Ricardo Vasconcelos Bitteti
+                </div>
+              </div>
+              <div class="info-loc">
+                <div class="info-cidade">
+                  Cidade de atuação da proposta:
+                </div>
+                <div class="loc-criador">
+                  São Paulo - SP
+                </div>
+              </div>
+            </div>
+            <div class="valor-dados">
+              <div class="info-valor">Valor</div>
+              <div class="valor">R$: 5.500,00</div>
+            </div>
+        <div class="lista-imagem">
+          <div class="imagem1"></div>
+          <div class="imagem2"></div>
+          <div class="imagem3"></div>
+        </div>
+        <div class="lista-imagem-modal">
+          <button id="myBtn" class="imagem-modal">Open Modal</button>
+        </div>
+        <div class="tipo-txt">
+          <div class="cont1">
+            <div class="tipo">Tipo:</div>
+            <div class="txt-info">Colaborador da equipe</div>
+          </div>
+          <div class="cont2">
+            <div class="link-info">Link:</div>
+            <div class="link"><a href="###">youtube</a></div>
+          </div>
+          <div class="tipo-txt">
+            <div class="cont1">
+              <div class="tipo">Tipo:</div>
+              <div class="txt-info">Colaborador da equipe</div>
+            </div>
+            <div class="cont2">
+              <button onclick="" class="button-detalhes">Detalhes</button>
+            </div>
+          </div>
+          <div class="dados-publi">
+            <div class="info-dados">
+              <div class="info-criador">
+                <div class="info-proposta">
+                  Criador da proposta:
+                </div>
+                <div>
+                  Ricardo Vasconcelos Bitteti
+                </div>
+        </div>
+        <div class="dados-publi">
+          <div class="info-dados">
+            <div class="info-criador">
+              <div class="info-proposta">
+                Criador da proposta:
+              </div>
+              <div>
+                Ricardo Vasconcelos Bitteti
+              </div>
+            </div>
+            <div class="valor-dados">
+              <div class="info-valor">Valor</div>
+              <div class="valor">R$: 5.500,00</div>
+            </div>
+        </div>
+        </div>
+        <div class="anuncio">
+          <div class="txt-inicial">
+            <a href="##" style="color: #000">Projeto em busca de programador em .Net atuará no ramo de e-commerce</a>
+          </div>
+          <div class="subtitulo">
+            Inspeção e criação de novas tecnologias usando .NET
+          </div>
+          <div class="lista-imagem">
+            <div class="imagem1"></div>
+            <div class="imagem2"></div>
+            <div class="imagem3"></div>
+          </div>
+          <div class="lista-imagem-modal">
+            <button id="myBtn" class="imagem-modal">Open Modal</button>
+          </div>
+          <div class="tipo-txt">
+            <div class="cont1">
+              <div class="tipo">Tipo:</div>
+              <div class="txt-info">Colaborador da equipe</div>
+            </div>
+            <div class="cont2">
+              <button onclick="" class="button-detalhes">Detalhes</button>
+            </div>
+          </div>
+          <div class="dados-publi">
+            <div class="info-dados">
+              <div class="info-criador">
+                <div class="info-proposta">
+                  Criador da proposta:
+                </div>
+                <div>
+                  Ricardo Vasconcelos Bitteti
+                </div>
+            <div class="info-loc">
+              <div class="info-cidade">
+                Cidade de atuação da proposta:
+              </div>
+              <div class="loc-criador">
+                São Paulo - SP
+              </div>
+            </div>
+          </div>
+          <div class="valor-dados">
+            <div class="info-valor">Valor</div>
+            <div class="valor">R$: 5.500,00</div>
+          </div>
+          <div class="tipo-txt">
+            <div class="cont1">
+              <div class="tipo">Tipo:</div>
+              <div class="txt-info">Colaborador da equipe</div>
+            </div>
+            <div class="cont2">
+              <button onclick="" class="button-detalhes">Detalhes</button>
+            </div>
+          </div>
+          <div class="dados-publi">
+            <div class="info-dados">
+              <div class="info-criador">
+                <div class="info-proposta">
+                  Criador da proposta:
+                </div>
+                <div>
+                  Ricardo Vasconcelos Bitteti
+                </div>
+              </div>
+              <div class="info-loc">
+                <div class="info-cidade">
+                  Cidade de atuação da proposta:
+                </div>
+                <div class="loc-criador">
+                  São Paulo - SP
+                </div>
+              </div>
+            </div>
+            <div class="valor-dados">
+              <div class="info-valor">Valor</div>
+              <div class="valor">R$: 5.500,00</div>
+            </div>
+        </div>
+        </div>
+      </div> -->
+    </div>
+  </section>
+  <div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" style="margin-right: 10px;">&times;</span>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+  <script src="../assets/js/script.js"></script>
+</body>
+
 </html>

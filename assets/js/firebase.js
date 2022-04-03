@@ -36,15 +36,28 @@ const tw = {};
                     user_database.checkCode(parameters[0],parameters[1],parameters[2])
                 }
                 if(action == 'password_update'){
-                    console.log(1)
-
                     user_database.passwordUpdate(parameters[0],parameters[1],parameters[2])
+                }
+                if(action == 'get_user_info'){
+                    user_database.getUser()
+                }
+                if(action == 'update_user_info'){
+                    user_database.update(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5])
+                }
+                if(action == 'get_all_projects'){
+                    project_database.getAll(parameters[0])
                 }
                 if(action == 'get_all_project_user'){
                     project_database.getAllOfUser(parameters[0])
                 }
                 if(action == 'project_create'){
-                    project_database.new(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5],parameters[6],parameters[7],parameters[8])
+                    project_database.new(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5],parameters[6],parameters[7])
+                }
+                if(action == 'get_project_info'){
+                    project_database.getProject(parameters[0])
+                }
+                if(action == 'project_update'){
+                    project_database.update(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5],parameters[6],parameters[7],parameters[8])
                 }
             }catch(e){
                 if(trys <= 5){

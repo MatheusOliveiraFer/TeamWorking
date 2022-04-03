@@ -83,33 +83,126 @@ const user_database = {};
         check()
     }
 
-    function get_all_users() {
-        const user = firebase.database().ref("Usuarios")
-        let user_executed = false
+    // function remove_user(id) {
+    //     const user = firebase.database().ref("Usuarios").child(id)
 
-        user.on('value', (snapshot) => {
-            if (!user_executed) {
-                const get_users = snapshot.val();
+    //     user.remove()
+    //         .then(function () {
+    //             console.log("Usuário removido com sucesso!")
+    //         })
+    //         .catch(function (erro) {
+    //             console.log("Um erro ocorreu ao tentar excluir o usuário: ", erro)
+    //         })
+    // }
 
-                for (let gu in get_users) {
-                    console.log(get_users[gu]);
-                }
+    function update_user(name, phone, uf, city, image, updatedImage){
+        var userID = cookieAccess.valor('userID')
+
+        const user = firebase.database().ref(`Usuarios/${userID}`)
+        const upload = firebase.storage().ref(`Avatares/${userID}/`)
+        const save_button = document.getElementById('save_button')
+        const loading = document.getElementById('loading-button')
+
+        const errorElement = document.getElementById('errorElement')
+        errorElement.style.color = 'red'
+
+        let imageName = `${userID}_avatar`
+        let URLimagem = ''
+        let uploadImage = false;
+        let user_executed = false;
+
+        if(updatedImage){
+            upload.child(imageName).put(image).then(function(){
+                upload.child(imageName).getDownloadURL().then(function(url_imagem){
+                    URLimagem = url_imagem
+                    uploadImage = true
+                })
+                .catch(function(e){
+                    save_button.style.display = 'flex'
+                    loading.style.display = 'none'
+                    console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                    errorElement.innerText = 'Erro interno, por favor tente novamente!'
+
+                    return
+                })
+            })
+            .catch(function(e){
+                save_button.style.display = 'flex'
+                loading.style.display = 'none'
+                console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                errorElement.innerText = 'Erro interno, por favor tente novamente!'
+
+                return
+            })
+        }
+
+        function check(){
+
+            if(uploadImage){
+                user.on('value', (snapshot) => {
+                    if (!user_executed) {
+                        let user_info = snapshot.val()
+    
+                        user_info.nome = name;
+                        user_info.telefone = phone;
+                        user_info.uf = uf;
+                        user_info.city = city;
+                        user_info.image = URLimagem;
+    
+                        user.update(user_info).then(function(){
+                            console.log('Usuário atualizado com sucesso!')
+                            save_button.style.display = 'flex'
+                            loading.style.display = 'none'
+                            errorElement.innerText = 'Atualização feita com sucesso!'
+                            errorElement.style.color = 'green'
+    
+                        }).catch(function(e){
+                            save_button.style.display = 'flex'
+                            loading.style.display = 'none'
+                            console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                            errorElement.innerText = 'Erro interno, por favor tente novamente!'
+                        })
+                    }
+
+                    user_executed = true;
+                })
+            }else{
+                setTimeout(function(){
+                    check()
+                },500)
             }
+        }
 
-            user_executed = true
-        });
-    }
+        //CASO A IMAGEM TIVER SIDO ATUALIZADA É EXECUTADA A FUNÇÃO ACIMA PARA ATUALIZAR OS REGISTROS SÓ DEPOIS QUE A IMAGEM FOR UPADA, CASO CONTRÁRIO É FEITO A ATUALIZAÇÃO DOS REGISTROS IMEDIATAMENTE
+        if(updatedImage){
+            check()
+        }else{
+            user.on('value', (snapshot) => {
+                if (!user_executed) {                    
+                    let user_info = snapshot.val()
+        
+                    user_info.nome = name;
+                    user_info.telefone = phone;
+                    user_info.uf = uf;
+                    user_info.city = city;
+    
+                    user.update(user_info).then(function(){
+                        console.log('Usuário atualizado com sucesso!')
+                        save_button.style.display = 'flex'
+                        loading.style.display = 'none'
+                        errorElement.innerText = 'Atualização feita com sucesso!'
+                        errorElement.style.color = 'green'
+                    }).catch(function(e){
+                        save_button.style.display = 'flex'
+                        loading.style.display = 'none'
+                        console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                        errorElement.innerText = 'Erro interno, por favor tente novamente!'
+                    })
+                }
 
-    function remove_user(id) {
-        const user = firebase.database().ref("Usuarios").child(id)
-
-        user.remove()
-            .then(function () {
-                console.log("Usuário removido com sucesso!")
+                user_executed = true;
             })
-            .catch(function (erro) {
-                console.log("Um erro ocorreu ao tentar excluir o usuário: ", erro)
-            })
+        }
     }
 
     function validate_user(email, password) {
@@ -487,11 +580,40 @@ const user_database = {};
         check()
     }
 
+    function getUser() {
+        var userID = cookieAccess.valor('userID')
+
+        const user = firebase.database().ref("Usuarios").child(userID)
+        let user_executed = false
+
+        user.on('value', (snapshot) => {
+            if (!user_executed) {
+                const get_user = snapshot.val();
+
+                document.getElementById('name_input').value = get_user.nome
+                document.getElementById('email_input').value = get_user.email
+                document.getElementById('phone_input').value = get_user.telefone
+                document.getElementById('uf_input').value = get_user.uf
+                document.getElementById('city_input').value = get_user.cidade
+
+                if(get_user.image){
+                    document.getElementById('avatar-image').style.backgroundImage = `url('${get_user.image}')`
+                }
+            
+                console.log(get_user.image)
+            }
+            
+            user_executed = true
+            
+        });
+    }
+
     user_database.new = new_user;
-    user_database.getAll = get_all_users;
-    user_database.remove = remove_user;
+    user_database.update = update_user;
+    // user_database.remove = remove_user;
     user_database.validate = validate_user;
     user_database.request = open_request;
     user_database.checkCode = checkCode;
     user_database.passwordUpdate = passwordUpdate;
+    user_database.getUser = getUser;
 })()
