@@ -130,7 +130,7 @@ const project_database = {};
                                 case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                             }
 
-                            anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, get_projects[gp].descricaoPequena, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp, get_projects[gp].linkVideo)
+                            anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, get_projects[gp].descricaoPequena, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
 
                             const lista = document.getElementById(`lista-imagem_${gp}`)
 
@@ -240,7 +240,7 @@ const project_database = {};
                                 case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                             }
 
-                            anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo, get_projects[gp].descricaoPequena, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp, get_projects[gp].linkVideo)
+                            anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo, get_projects[gp].descricaoPequena, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
 
                             const lista = document.getElementById(`lista-imagem_${gp}`)
 

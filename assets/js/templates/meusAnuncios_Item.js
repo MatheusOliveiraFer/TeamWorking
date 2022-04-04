@@ -1,4 +1,4 @@
-function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,id,link){
+function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,id){
     return `<div class="anuncio">
     <div class="txt-inicial">
       <a href="##" style="color: #000">${title}</a>
@@ -19,7 +19,7 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
       </div>
       <div class="cont2">
         <div class="link-info"></div>
-        <div class="link"><a href="${link}"></a></div>
+        <div class="link"><a href=""></a></div>
       </div>
     </div>
     <div class="dados-publi">
