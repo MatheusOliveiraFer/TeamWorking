@@ -1,4 +1,4 @@
-function anuncios_item(title, smallDescription, type, ownerName, city, uf, value, id, link) {
+function anuncios_item(title, smallDescription, type, ownerName, city, uf, value, id) {
   return `<div class="anuncio">
             <div class="txt-inicial">
               <a href="##" style="color: #000">${title}</a>
