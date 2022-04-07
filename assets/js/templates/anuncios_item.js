@@ -18,8 +18,7 @@ function anuncios_item(title, smallDescription, type, ownerName, city, uf, value
                 <div class="txt-info">${type}</div>
               </div>
               <div class="cont2">
-                <div class="link-info"></div>
-                <div class="link"><a href=""></a></div>
+              <button class="button-detalhes"><a href="">Detalhe do Anúncio</a></button>
               </div>
             </div>
             <div class="dados-publi">
