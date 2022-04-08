@@ -11,18 +11,10 @@ const errorElement = document.getElementById('errorElement')
 const loading = document.getElementById('loading-button')
 const logout = document.getElementById('logout')
 
-var userID = cookieAccess.valor('userID')
 var avatar_image = ''
 var updatedImage = false
 
-if(!userID){
-    document.location.replace('/login/index.html')
-}else{
-    console.log('teste')
-
-    tw.init('get_user_info')
-
-}
+tw.init('user_exist',['get_user_info'])
 
 avatar_input.addEventListener('change', (e) => {
 

@@ -22,12 +22,10 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const projectID = urlParams.get('a')
 
-var userID = cookieAccess.valor('userID')
-
-if(!userID || !projectID){
+if(!projectID){
     document.location.replace('/login/index.html')
 }else{
-    tw.init('get_project_info', [projectID])
+    tw.init('user_exist',['get_project_info'])
 }
 
 image.addEventListener('change', (e) => {

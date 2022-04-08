@@ -3,16 +3,7 @@ const background_modal = document.getElementById('background-of-modal')
 
 anuncioContainer.style.padding = '0px'
 
-var userID = cookieAccess.valor('userID')
-// var userID = '-Mxm32PFUCV0AkVT0TCk'
-
-setTimeout(function(){
-    if(!userID){
-        document.location.replace('/login/index.html')
-    }
-
-    tw.init('get_all_project_user',[userID])
-},500)
+tw.init('user_exist',['get_all_project_user'])
 
 function open_modal(url){
     background_modal.innerHTML = `<div class="modal-image-container">

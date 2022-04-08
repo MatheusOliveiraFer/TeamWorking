@@ -24,6 +24,8 @@ if(!userID){
     document.location.replace('/login/index.html')
 }
 
+tw.init('user_exist')
+
 image.addEventListener('change', (e) => {
     var slot = active_slot
 

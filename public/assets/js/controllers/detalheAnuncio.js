@@ -4,10 +4,8 @@ const projectID = urlParams.get('a')
 
 console.log(projectID)
 
-var userID = cookieAccess.valor('userID')
-
-if(!userID || !projectID){
-    document.location.replace('/index.html')
+if(!projectID){
+    document.location.replace('/meusanuncios/index.html')
 }else{
-    tw.init('get_project_details', [projectID])
+    tw.init('user_exist', ["get_project_details", [projectID]])
 }

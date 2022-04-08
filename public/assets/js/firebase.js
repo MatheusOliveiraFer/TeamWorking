@@ -55,11 +55,14 @@ const tw = {};
                 if(action == 'update_user_info'){
                     user_database.update(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5])
                 }
+                if(action == 'user_exist'){
+                    user_database.exist(parameters[0],parameters[1])
+                }
                 if(action == 'get_all_projects'){
-                    project_database.getAll(parameters[0])
+                    project_database.getAll()
                 }
                 if(action == 'get_all_project_user'){
-                    project_database.getAllOfUser(parameters[0])
+                    project_database.getAllOfUser()
                 }
                 if(action == 'project_create'){
                     project_database.new(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5],parameters[6],parameters[7])

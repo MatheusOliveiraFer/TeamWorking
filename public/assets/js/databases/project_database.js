@@ -98,8 +98,10 @@ const project_database = {};
         check()
     }
 
-    function get_all_projects(userID) {
+    function get_all_projects() {
         const project = firebase.database().ref("Projetos")
+
+        var userID = cookieAccess.valor('userID')
 
         const anuncioContainer = document.getElementById('anuncioContainer')
         const anuncioLoading = document.getElementById('anuncioLoading')
@@ -119,92 +121,90 @@ const project_database = {};
                     user.on('value', (snapshot) => {
                         ownerData = snapshot.val()
 
-                        if(ownerData){
-                            if (get_projects[gp].IDdono != userID) {
-                                console.log(get_projects[gp]);
-    
-                                var type = ''
-    
-                                switch (get_projects[gp].tipo) {
-                                    case '1': type = 'Compra e venda de empresas e negócios'; break;
-                                    case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
-                                    case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
-                                }
-    
-                                let descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0,140)}...`
-    
-                                anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
-    
-                                const lista = document.getElementById(`lista-imagem_${gp}`)
-    
-                                if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-                                    lista.style.width = '100%'
-                                }else{
-                                    lista.style.width = '50%'
-                                }
-    
-                                //ADIÇÃO DE VÍDEO
-                                if (get_projects[gp].linkVideo) {
-                                    lista.innerHTML += `<div class="video-box">
+                        if (get_projects[gp].IDdono != userID && ownerData) {
+                            console.log(get_projects[gp]);
+
+                            var type = ''
+
+                            switch (get_projects[gp].tipo) {
+                                case '1': type = 'Compra e venda de empresas e negócios'; break;
+                                case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
+                                case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
+                            }
+
+                            let descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
+
+                            anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
+
+                            const lista = document.getElementById(`lista-imagem_${gp}`)
+
+                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                                lista.style.width = '100%'
+                            } else {
+                                lista.style.width = '50%'
+                            }
+
+                            //ADIÇÃO DE VÍDEO
+                            if (get_projects[gp].linkVideo) {
+                                lista.innerHTML += `<div class="video-box">
                                                             <img class="play-button" src="/assets/images/play.png" onclick='window.open("${get_projects[gp].linkVideo}")'
                                                         </div>`
-                                }
-    
-                                //ADIÇÃO DE IMAGENS
-    
-                                if (get_projects[gp].imagens) {
-                                    console.log(get_projects[gp].imagens)
-    
-                                    var photosNum = 0
-    
-                                    if (get_projects[gp].imagens[0] && get_projects[gp].imagens[0].lastIndexOf('deleted') == -1) {
-                                        imageID = `imagem_${gp}_0`
-    
-                                        lista.innerHTML += `<div class="imagem1">
+                            }
+
+                            //ADIÇÃO DE IMAGENS
+
+                            if (get_projects[gp].imagens) {
+                                console.log(get_projects[gp].imagens)
+
+                                var photosNum = 0
+
+                                if (get_projects[gp].imagens[0] && get_projects[gp].imagens[0].lastIndexOf('deleted') == -1) {
+                                    imageID = `imagem_${gp}_0`
+
+                                    lista.innerHTML += `<div class="imagem1">
                                             <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                             <img src="${get_projects[gp].imagens[0]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[gp].imagens[0]}')">
                                         </div>`
-    
-                                        photosNum++
-                                    }
-                                    if (get_projects[gp].imagens[1] && get_projects[gp].imagens[1].lastIndexOf('deleted') == -1) {
-                                        imageID = `image_${gp}_1`
-    
-                                        lista.innerHTML += `<div class="imagem1">
+
+                                    photosNum++
+                                }
+                                if (get_projects[gp].imagens[1] && get_projects[gp].imagens[1].lastIndexOf('deleted') == -1) {
+                                    imageID = `image_${gp}_1`
+
+                                    lista.innerHTML += `<div class="imagem1">
                                             <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                             <img src="${get_projects[gp].imagens[1]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[gp].imagens[1]}')">
                                         </div>`
-    
-                                        photosNum++
-                                    }
-                                    if (get_projects[gp].imagens[2] && get_projects[gp].imagens[2].lastIndexOf('deleted') == -1 && photosNum < 2) {
-                                        imageID = `image_${gp}_2`
-    
-                                        lista.innerHTML += `<div class="imagem1">
+
+                                    photosNum++
+                                }
+                                if (get_projects[gp].imagens[2] && get_projects[gp].imagens[2].lastIndexOf('deleted') == -1 && photosNum < 2) {
+                                    imageID = `image_${gp}_2`
+
+                                    lista.innerHTML += `<div class="imagem1">
                                             <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                             <img src="${get_projects[gp].imagens[2]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[gp].imagens[2]}')">
                                         </div>`
-    
-                                        photosNum++
-                                    }
-                                    if (get_projects[gp].imagens[3] && get_projects[gp].imagens[3].lastIndexOf('deleted') == -1 && photosNum < 2) {
-                                        imageID = `image_${gp}_3`
-    
-                                        lista.innerHTML += `<div class="imagem1">
+
+                                    photosNum++
+                                }
+                                if (get_projects[gp].imagens[3] && get_projects[gp].imagens[3].lastIndexOf('deleted') == -1 && photosNum < 2) {
+                                    imageID = `image_${gp}_3`
+
+                                    lista.innerHTML += `<div class="imagem1">
                                             <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                             <img src="${get_projects[gp].imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[gp].imagens[3]}')">
                                         </div>`
-    
-                                        photosNum++
-                                    }
-                                } else {
-                                    lista.innerHTML += `<div class="imagem1">
+
+                                    photosNum++
+                                }
+                            } else {
+                                lista.innerHTML += `<div class="imagem1">
                                             <img src="/assets/images/Loading.gif" id="image_${gp}_loading" class="image_of_loading"/>
                                             <img src="/assets/images/semImagem.png" id="image_${gp}" class="image_of_project" onload="document.getElementById('image_${gp}_loading').style.display = 'none'; document.getElementById('image_${gp}').style.display = 'flex';">
                                         </div>`
-                                }    
-                                // has = true;
                             }
+                            // has = true;
                         }
 
                         anuncioLoading.remove()
@@ -228,7 +228,11 @@ const project_database = {};
         });
     }
 
-    function get_all_project_user(userID) {
+    function get_all_project_user() {
+        var userID = cookieAccess.valor('userID')
+
+        console.log(userID)
+
         const project = firebase.database().ref("Projetos")
         const user = firebase.database().ref("Usuarios").child(userID)
 
@@ -249,8 +253,12 @@ const project_database = {};
                     ownerData = snapshot.val()
 
                     for (let gp in get_projects) {
-                        if (get_projects[gp].IDdono == userID) {
+                        console.log(gp)
+
+                        if (get_projects[gp].IDdono == userID && ownerData) {
                             console.log(get_projects[gp]);
+
+
 
                             var type = ''
 
@@ -260,15 +268,15 @@ const project_database = {};
                                 case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                             }
 
-                            let descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0,140)}...`
+                            let descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
 
                             anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
 
                             const lista = document.getElementById(`lista-imagem_${gp}`)
 
-                            if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
                                 lista.style.width = '100%'
-                            }else{
+                            } else {
                                 lista.style.width = '50%'
                             }
 
@@ -437,7 +445,7 @@ const project_database = {};
         const errorElement = document.getElementById('errorElement')
         var user_executed = false
         var project_executed = false
-        console.log("Deleted array recebido:",deletedIndexes)
+        console.log("Deleted array recebido:", deletedIndexes)
 
         user.on('value', (snapshot) => {
             if (!user_executed) {
@@ -497,12 +505,12 @@ const project_database = {};
                                 if (image_executed == imageArray.length) {
                                     projectInfo.imagens = projectInfo.imagens.sort()
 
-                                    console.log("Deleted array:",deletedIndexes)
+                                    console.log("Deleted array:", deletedIndexes)
                                     deletedIndexes.forEach(i => {
                                         projectInfo.imagens[i] = `${projectInfo.imagens[i].split('?')[0]}_deleted`
                                     })
-                                    
-                                    console.log("Array final:",projectInfo.imagens)
+
+                                    console.log("Array final:", projectInfo.imagens)
 
                                     projectInfo.tipo = type
                                     projectInfo.titulo = title
@@ -523,13 +531,13 @@ const project_database = {};
                                         .catch(function (e) {
                                             errorElement.innerText('Erro interno, por favor tente novamente!')
 
-                                            console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)                
+                                            console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
                                         })
 
-                                        project_executed = true
+                                    project_executed = true
                                 } else {
                                     setTimeout(function () {
-                                        if(!project_executed){
+                                        if (!project_executed) {
                                             finalUpload()
                                         }
                                     }, 250)
@@ -545,30 +553,30 @@ const project_database = {};
         })
     }
 
-    function get_project_details(projectID){
+    function get_project_details(projectID) {
         const project = firebase.database().ref("Projetos").child(projectID)
 
         let project_executed = false
         let user_executed = false
 
         project.on('value', (snapshot) => {
-            if(!project_executed){
+            if (!project_executed) {
                 let projectInfo = snapshot.val()
-    
+
                 const user = firebase.database().ref("Usuarios").child(projectInfo.IDdono)
-    
+
                 user.on('value', (snapshot2) => {
-                    if(!user_executed){
+                    if (!user_executed) {
                         ownerData = snapshot2.val()
 
                         let type = ''
-            
+
                         switch (projectInfo.tipo) {
                             case '1': type = 'Compra e venda de empresas e negócios'; break;
                             case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
                             case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                         }
-            
+
                         document.getElementById('title').innerText = projectInfo.titulo
                         document.getElementById('fullDescription').innerText = projectInfo.descricaoCompleta
                         document.getElementById('type').innerText = type
@@ -622,7 +630,7 @@ const project_database = {};
                         }
                     }
                 })
-    
+
             }
         })
     }

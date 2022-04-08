@@ -250,7 +250,7 @@ const user_database = {};
 
                         var cookieData = new Date(5100,0,01);
                         cookieData = cookieData.toUTCString()
-                        document.cookie = `userID=${userID};expires=${cookieData};`
+                        document.cookie = `userID=${userID};expires=${cookieData}; path=/`
 
                         document.location.replace('/cadastro/Home.html')
                     } else {
@@ -608,6 +608,40 @@ const user_database = {};
         });
     }
 
+    function userExist(action, parameters){
+        var userID = cookieAccess.valor('userID')
+
+        const user = firebase.database().ref(`Usuarios/${userID}`)
+
+        if(!userID && action != 'login'){
+            document.location.replace('/login/index.html')
+        }
+
+        user.on('value', (snapshot) => {
+            const userInfo = snapshot.val()
+
+            if(!userInfo){
+                if(action != 'login'){
+                    var cookieData = new Date(5100,0,01);
+                    cookieData = cookieData.toUTCString()
+                    document.cookie = `userID=;expires=${cookieData};path=/`
+
+                    document.location.replace('/login/index.html')
+                }
+            }else{
+                if(action == 'login'){
+                    document.location.replace('/cadastro/Home.html')
+                }else{
+                    if(action && parameters){
+                        tw.init(action, parameters)
+                    }else if(action && !parameters){
+                        tw.init(action)
+                    }
+                }
+            }
+        })
+    }
+
     user_database.new = new_user;
     user_database.update = update_user;
     // user_database.remove = remove_user;
@@ -616,4 +650,5 @@ const user_database = {};
     user_database.checkCode = checkCode;
     user_database.passwordUpdate = passwordUpdate;
     user_database.getUser = getUser;
+    user_database.exist = userExist;
 })()
