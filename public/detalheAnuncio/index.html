@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <title>Detalhe do Anúncio</title>
+    
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-storage.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script defer src="/assets/js/cookieAccess.js"></script>
+
+    <script defer src="/assets/js/databases/project_database.js"></script>
+    
+    <script src="/assets/js/firebase.js" defer></script>
+    <script defer src="/assets/js/controllers/detalheAnuncio.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <div class="logo">
+            QueroUmSócio
+          </div>
+          <div class="menu">
+            <nav>
+              <div class="menuMobile">
+                <div class="mm_line"></div>
+                <div class="mm_line"></div>
+                <div class="mm_line"></div>
+              </div>
+              <ul>
+                <li class="active"><a style="cursor:default">Anúncios</a></li>
+                <li><a href="/meusanuncios/index.html">Meus Anúncios</a></li>
+                <li><a href="/meusanuncios/CadastroAnuncio.html">Cadastrar Anúncio</a></li>
+                <!-- <li><a href="/meusanuncios/EditarAnuncio.html">Editar Anúncios</a></li> -->
+                <li><a href="/meusanuncios/Perfil.html">Meu Perfil</a></li>
+    
+            </nav>
+          </div>
+        </div>
+      </header>
+      <section class="anunciosDetalhe">
+        <!-- <img id="anuncioLoading"class="anuncioLoading" src="/assets/images/Loading.gif"> -->
+    
+        <div id="anuncioContainer" class="containerDetalhe">
+         
+            <div class="anuncio-detalhe">
+                <div class="txt-inicial-detalhe">
+                  <a id="title" href="##" style="color: #000"></a>
+                </div>
+                <div id="fullDescription" class="subtitulo"></div>
+                <div id="image-list" class="lista-imagem-detalhe">
+                  <div class="imagem-detalhe"></div>
+                </div>
+                <!-- <div class="lista-imagem-modal-detalhe">
+                  <button id="myBtn" class="imagem-modal">Open Modal</button>
+                </div> -->
+                <div class="tipo-txt-detalhe">
+                  <!-- <div class="cont1-detalhe">
+                    <div class="tipo">Tipo:</div>
+                    <div class="txt-info-detalhe">Colaborador da equipe</div>
+                  </div> -->
+                  <div class="cont2-detalhe">
+                    <!-- <button class="button-voltar-detalhe">voltar</button> -->
+                  </div>
+                </div>
+                <div class="dados-publi-detalhe">
+                  <div class="info-dados-detalhe">
+                    <div class="info-criador-detalhe">
+                      <div class="info-valor-detalhe">Valor:</div>
+                      <div id="value" class="valor-detalhe"></div>
+                    </div>
+                    <div class="info-criador-detalhe">
+                      <div class="info-proposta-detalhe">Tipo:</div>
+                      <div id="type"></div>
+                    </div>
+                    <div class="info-criador-detalhe">
+                      <div class="info-proposta-detalhe">Criador da proposta:</div>
+                      <div id="ownerName"></div>
+                    </div>
+                    <div class="info-loc-detalhe">
+                      <div class="info-cidade-detalhe">Cidade de atuação da proposta:</div>
+                      <div id="ownerAddress" class="loc-criador-detalhe"></div>
+                    </div>
+                  </div>
+                  <!-- <div class="valor-dados-detalhe">
+                    <div class="info-valor-detalhe">Valor:</div>
+                    <div id="value" class="valor-detalhe"></div>
+                  </div> -->
+                </div>
+                <div class="container-comentario">
+                    <div class="text-titulo-comentario">Comentários</div>
+                    <div class="comentar">
+                      <input class="text-comentar" type="text" placeholder="Digite aqui suas dúvidas sobre o anúncio">
+                      <div class="enviar-comentario">Enviar</div>
+                    </div>
+                    <div class="comentarios-cont">
+                        <div class="comentarios">
+                            <div class="ft-detalhe"></div>
+                            <div class="cont-comentario-detalhe">
+                                <div class="text-comentario">Qual é o horário de trabalho?</div>
+                            </div>
+                        </div>
+                        <div class="responder">
+                            <div class="resp"><a href="">Responder</a></div>
+                        </div>
+                    </div>
+                    <!-- <div class="cont-voltar-detalhe">
+                        <button class="botao-voltar-detalhe">Voltar</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        
+        
+      </section>
+</body>
+</html>
