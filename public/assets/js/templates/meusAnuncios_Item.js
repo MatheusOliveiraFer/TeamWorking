@@ -10,7 +10,7 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
           </div>
         </div>
         <a href="##" style="color: #000; text-align: center">${title}</a>
-        
+        <div class="dropdown-balance" style="height: 40px; width: 60px;"></div>
       </div>
     <div class="subtitulo">
         ${smallDescription}
