@@ -14,4 +14,12 @@ function open_modal(url){
     background_modal.style.display = 'flex'
 }
 
+function confirmDelete(title, id){
+    var r = confirm(`Quer mesmo excluir o anúncio ${title}?`);
+
+    if (r == true){
+      tw.init('user_exist',['project_remove',[id]])
+    }
+}
+
 

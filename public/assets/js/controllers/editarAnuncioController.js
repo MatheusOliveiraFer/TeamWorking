@@ -25,7 +25,7 @@ const projectID = urlParams.get('a')
 if(!projectID){
     document.location.replace('/login/index.html')
 }else{
-    tw.init('user_exist',['get_project_info'])
+    tw.init('user_exist',['get_project_info',[projectID]])
 }
 
 image.addEventListener('change', (e) => {

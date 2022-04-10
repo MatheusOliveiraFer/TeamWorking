@@ -1,60 +1,53 @@
 const comments_database = {};
 
 (function () {
-    function new_comment(projectID, userID, password, email, content) {
-        const comments = firebase.database().ref("Comments")
-        const project = firebase.database().ref("Projects")
+    function new_comment(projectID, content, answer) {
+        const userID = cookieAccess.valor('userID')
+
+        const comments = firebase.database().ref("Comentarios")
+        const project = firebase.database().ref("Projetos").child(projectID)
+        const user = firebase.database().ref("Usuarios").child(userID)
 
         let project_executed = false
         let exist = false
-        let validation = user_database.validate(email, password)
 
         const comment_data = {
-            projectID: projectID,
+            projetoID: projectID,
             userID: userID,
-            content: content,
+            conteudo: content,
+            usuarioNome: '',
+            usuarioImagem: ''
         }
 
-        if(validation.userID == userID){
-            project.on('value', (snapshot) => {
-                if (!project_executed) {
-                    const get_projects = snapshot.val();
+        project.on('value', (snapshot) => {
+            if(!project_executed){
+                const projectInfo = snapshot.val()
     
-                    for (let gp in get_projects) {
-                        if(gp == projectID){
-                            exist = true
+                if(projectInfo){
+                    user.on('value', (snapshot2) => {
+                        const userInfo = snapshot2.val()
+    
+                        comment_data.usuarioNome = userInfo.nome
+    
+                        if(userInfo.imagem){
+                            comment_data.usuarioImagem = userInfo.imagem
+                        }else{
+                            comment_data.usuarioImagem = '/assets/images/avatar.png'
                         }
-                    }
     
-                    project_executed = true
+                        comments.push(comment_data).then(function(){
+                            console.log("Comentário inserido com sucesso!")
+                            document.location.reload()
+                        }).catch(function(e){
+                            console.log("Ocorreu um erro ao tentar criar o comentário:", e)
+                        })
+                    })
                 }
-            });
-    
-            function check() {
-                if (project_executed) {
-    
-                    if (exist) {
-                        comments.push(comment_data)
-                            .then(function () {
-                                console.log("Comentário inserido com sucesso!")
-                            })
-                            .catch(function (erro) {
-                                console.log("Ocorreu um erro ao tentar inserir o comentário: ", erro)
-                            })
-                    }else{
-                        console.log("O projeto informado não existe!")
-                    }
-                }else{
-                    setTimeout(function () {
-                        check();
-                    }, 1000);
-                }
+
+                project_executed = true
             }
-    
-            check()
-        }else{
-            console.log("Você não tem permissão para comentar!")
-        }
+        })
+        
     }
 
     function get_all_comments_project(projectID) {

@@ -19,7 +19,8 @@ const project_database = {};
             tipo: type,
             linkVideo: linkVideo,
             valor: parseFloat(valor),
-            IDArmazenamento: storage_id
+            IDArmazenamento: storage_id,
+            dataCriacao: Date.now()
         }
 
         let num = 0 //NÚMERO DE ITENS DO keyArray PERCORRIDOS
@@ -101,19 +102,25 @@ const project_database = {};
     function get_all_projects() {
         const project = firebase.database().ref("Projetos")
 
-        var userID = cookieAccess.valor('userID')
+        console.log('aqui 2')
+
+        const userID = cookieAccess.valor('userID')
 
         const anuncioContainer = document.getElementById('anuncioContainer')
         const anuncioLoading = document.getElementById('anuncioLoading')
 
         let project_executed = false
+        let has = false
 
         // anuncioContainer.innerHTML = ""
 
         project.on('value', (snapshot) => {
             if (!project_executed) {
 
-                const get_projects = snapshot.val();
+                let get_projects = snapshot.val();
+                
+                // let a = new Map()
+                // a.set("a","b")
 
                 for (let gp in get_projects) {
                     const user = firebase.database().ref("Usuarios").child(get_projects[gp].IDdono)
@@ -121,7 +128,14 @@ const project_database = {};
                     user.on('value', (snapshot) => {
                         ownerData = snapshot.val()
 
-                        if (get_projects[gp].IDdono != userID && ownerData) {
+                        if (get_projects[gp] && get_projects[gp].IDdono != userID && ownerData) {
+                            has = true
+                            anuncioContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.76)'
+
+                            if(document.getElementById('text_sem_anuncio')){
+                                document.getElementById('text_sem_anuncio').remove()
+                            }
+
                             console.log(get_projects[gp]);
 
                             var type = ''
@@ -132,8 +146,11 @@ const project_database = {};
                                 case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                             }
 
-                            let descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
+                            let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
+                            if(get_projects[gp].descricaoPequena.lenght > 140){
+                                descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
+                            }
                             anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
 
                             const lista = document.getElementById(`lista-imagem_${gp}`)
@@ -204,24 +221,21 @@ const project_database = {};
                                             <img src="/assets/images/semImagem.png" id="image_${gp}" class="image_of_project" onload="document.getElementById('image_${gp}_loading').style.display = 'none'; document.getElementById('image_${gp}').style.display = 'flex';">
                                         </div>`
                             }
-                            // has = true;
                         }
 
                         anuncioLoading.remove()
+
                     })
                 }
 
-                // function check(){
-                //     if()
-                // }
-                // if (!has) {
-                //     anuncioContainer.style.backgroundColor = 'white'
-                //     anuncioContainer.innerHTML += `<div class="sem_anuncios">Ainda não existem projetos cadastrados, seja o primeiro!</div>`
+                if (!has) {
+                    anuncioContainer.style.backgroundColor = 'white'
+                    anuncioContainer.innerHTML += `<div id="text_sem_anuncio" class="sem_anuncios">Ainda não existe nenhum anúncio para você!</div>`
 
-                //     anuncioLoading.remove()
+                    anuncioLoading.remove()
 
-                //     console.log("Este usuário ainda não criou nenhum projeto")
-                // }
+                    console.log("Ainda não existe nenhum anúncio que tal ser o primeiro?")
+                }
 
                 project_executed = true
             }
@@ -229,7 +243,7 @@ const project_database = {};
     }
 
     function get_all_project_user() {
-        var userID = cookieAccess.valor('userID')
+        const userID = cookieAccess.valor('userID')
 
         console.log(userID)
 
@@ -258,8 +272,6 @@ const project_database = {};
                         if (get_projects[gp].IDdono == userID && ownerData) {
                             console.log(get_projects[gp]);
 
-
-
                             var type = ''
 
                             switch (get_projects[gp].tipo) {
@@ -268,7 +280,11 @@ const project_database = {};
                                 case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                             }
 
-                            let descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
+                            let descricaoPequenaResumida = get_projects[gp].descricaoPequena
+
+                            if(get_projects[gp].descricaoPequena.lenght > 140){
+                                descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
+                            }
 
                             anuncioContainer.innerHTML += meusAnuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
 
@@ -419,22 +435,21 @@ const project_database = {};
         })
     }
 
-    function remove_project(id, email, password) {
-        const project = firebase.database().ref("Projetos").child(id)
+    function remove_project(projectID) {
+        const userID = cookieAccess.valor('userID')
 
-        let validation = user_database.validate(email, password)
+        const project = firebase.database().ref("Projetos").child(projectID)
 
-        if (validation.userID == project.val().ownerID) {
-            project.remove()
-                .then(function () {
-                    console.log("Projeto removido com sucesso!")
-                })
-                .catch(function (erro) {
-                    console.log("Um erro ocorreu ao tentar excluir o projeto: ", erro)
-                })
-        } else {
-            console.log("Você não tem permissão para efetuar a exclusão!")
-        }
+        project.on('value', (snapshot) => {
+            const projectInfo = snapshot.val()
+
+            if(userID == projectInfo.IDdono){
+                project.remove()
+                document.location.reload()
+
+                // console.log(projectInfo.titulo, 'excluído')
+            }
+        })
     }
 
     function update_project(projectID, type, title, smallDescription, fullDescription, value, video, imageArray, deletedIndexes) {

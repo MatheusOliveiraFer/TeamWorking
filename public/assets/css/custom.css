@@ -17,7 +17,7 @@
 /* Alinhamento do menu */
 .navbar-nav {
     display: flex;
-    justify-content: space-around; !importants;
+    justify-content: space-around !important;
 }
 
 /* Hambúrguer em modo responsívo */

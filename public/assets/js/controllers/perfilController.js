@@ -30,7 +30,7 @@ avatar_input.addEventListener('change', (e) => {
 logout.addEventListener('click', (e) => {
     var cookieData = new Date(5100,0,01);
     cookieData = cookieData.toUTCString()
-    document.cookie = `userID=;expires=${cookieData};path=/`
+    document.cookie = `userID=;expires=${cookieData};path=/;`
 
     document.location.replace('/')
 })

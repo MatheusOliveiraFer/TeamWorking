@@ -147,7 +147,7 @@ const user_database = {};
                         user_info.telefone = phone;
                         user_info.uf = uf;
                         user_info.city = city;
-                        user_info.image = URLimagem;
+                        user_info.imagem = URLimagem;
     
                         user.update(user_info).then(function(){
                             console.log('Usuário atualizado com sucesso!')
@@ -250,7 +250,7 @@ const user_database = {};
 
                         var cookieData = new Date(5100,0,01);
                         cookieData = cookieData.toUTCString()
-                        document.cookie = `userID=${userID};expires=${cookieData}; path=/`
+                        document.cookie = `userID=${userID};expires=${cookieData}; path=/;`
 
                         document.location.replace('/cadastro/Home.html')
                     } else {
@@ -610,36 +610,53 @@ const user_database = {};
 
     function userExist(action, parameters){
         var userID = cookieAccess.valor('userID')
+        console.log('aqui',userID)
 
-        const user = firebase.database().ref(`Usuarios/${userID}`)
-
-        if(!userID && action != 'login'){
+        if((!userID || userID == '') && action != 'login'){
             document.location.replace('/login/index.html')
+            console.log('Login de cima')
+        }
+        else if((!userID || userID == '') && action == 'login'){
+            console.log('Mantenha aqui')
         }
 
-        user.on('value', (snapshot) => {
-            const userInfo = snapshot.val()
+        let path = `Usuarios/${userID}`
 
-            if(!userInfo){
-                if(action != 'login'){
+        if(path != 'Usuarios/'){
+            const user = firebase.database().ref(path)
+    
+            user.on('value', (snapshot) => {
+                const userInfo = snapshot.val()
+    
+                console.log(userInfo)
+    
+                if(!userInfo){
                     var cookieData = new Date(5100,0,01);
                     cookieData = cookieData.toUTCString()
-                    document.cookie = `userID=;expires=${cookieData};path=/`
-
-                    document.location.replace('/login/index.html')
-                }
-            }else{
-                if(action == 'login'){
-                    document.location.replace('/cadastro/Home.html')
+                    document.cookie = `userID=;expires=${cookieData};path=/;`
+    
+                    if(action != 'login'){
+                        document.location.replace('/login/index.html')
+                        console.log('Login de baixo')
+                    }
                 }else{
-                    if(action && parameters){
-                        tw.init(action, parameters)
-                    }else if(action && !parameters){
-                        tw.init(action)
+                    console.log(userInfo.nome)
+
+                    if(action == 'login'){
+                        document.location.replace('/cadastro/Home.html')
+                        console.log('Home')
+                    }else{
+                        console.log("tw.init")
+    
+                        if(action && parameters){
+                            tw.init(action, parameters)
+                        }else if(action && !parameters){
+                            tw.init(action)
+                        }
                     }
                 }
-            }
-        })
+            })
+        }
     }
 
     user_database.new = new_user;

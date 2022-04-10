@@ -7,6 +7,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>Página principal</title>
+
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+    <script src="/assets/js/cookieAccess.js"></script>
+    
+    <script src="/assets/js/firebase.js" defer></script>
+    <script defer src="/assets/js/controllers/landingController.js"></script>
+
+    <script src="/assets/js/databases/user_database.js"></script>
 </head>
 <body>
     <header class="w-full h-16 shadow-lg shadow-cyan-500/50 px-10 top-0 fixed z-10 bg-white">
@@ -15,8 +28,8 @@
             <div class="w-2/4 flex items-center ">
                     <div class="w-3/5 h-full"></div>
                     <div class="w-2/5 h-full flex items-center justify-between">
-                        <a href="/cadastro/index.html" class="text-lg text-gray-400 hover:underline">Cadastre-se agora</a>
-                        <button class="border-2 rounded-md border-blue-500 text-blue-500 py-1.5 px-6 hover:bg-blue-500 hover:text-white text-lg"><a href="/login/index.html">Entrar</a></button>
+                        <a class="text-lg text-gray-400 hover:underline" href="/cadastro/index.html">Cadastre-se agora</a>
+                        <button class="border-2 rounded-md border-blue-500 text-blue-500 py-1.5 px-6 hover:bg-blue-500 hover:text-white text-lg" onclick="document.location.href = '/login/index.html'">Entrar</button>
                     </div>
             </div>
         </div>
@@ -63,7 +76,7 @@
     </section>
     <footer class="w-full flex justify-center items-center bg-green-300">
         <div class="flex flex-col items-center justify-center p-2">
-            <div>TeamWorking 2022</div>
+            <div>QueroUmSócio 2022</div>
             <div>© Todos os direitos reservados.</div>
         </div>
     </footer>

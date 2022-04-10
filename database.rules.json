@@ -1,6 +1,6 @@
 {
   "rules": {
-    ".read": "now == now",
-    ".write": "now == now"
+    ".read": "1 == 1",
+    ".write": "1 == 1"
   }
 }

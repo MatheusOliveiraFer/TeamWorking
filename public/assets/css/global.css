@@ -76,19 +76,26 @@ nav a:hover {
     align-items: center;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.76);
-    padding: 10px;
+    padding: 40px;
 }
 .anuncioLoading{
 	width: 100px;
 	height: 100px;
 }
 .sem_anuncios{
+	height:60px;
+
 	color: #39aae1;
 	font-weight: bolder;
 	font-size: 20px;
-	height:40px;
+	text-align: center;
+	vertical-align: bottom;
+
 	display:flex;
-	align-items: center;
+	align-items: flex-end;
+	justify-content: center;
+
+	background-color: red;
 }
 #anuncios 
 .container
@@ -100,29 +107,114 @@ nav a:hover {
 	align-items: center;
     background-color: #FFF;
     margin-top: 10px;
+	margin-bottom: 10px;
 }
 
  .txt-inicial{
 	width: 100%;
 	height: 14%;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	padding: 0 35px;
+
 	font-size: 20px;
 	font-family: Arial, Helvetica, sans-serif;
 } 
-.anuncio .subtitulo{
+.txt-inicial-editar{
 	width: 100%;
-	height: 15%;
+	height: 14%;
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	padding: 0 35px;
+
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+} 
+.dropdown-button{
+	width: 60px;
+	height: 40px;
+
+	/* background-color: #2699d3;
+	border-radius: 20px; */
+
+	display: inline-block;
+	position: relative;
+	justify-content: center;
+
+	cursor: pointer;
+}
+.dropdown-button-txt{
+	width: 60px;
+	height: 40px;
+	min-width: 60px;
+	min-height: 40px;
+
+	background-color: #2699d3;
+	border-radius: 20px;
+
+	color: white;
+	font-size: 30px;
+	font-weight: bold;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.dropdown-list{
+	height: max-content;
+	width: 150px;
+
+	display: none;
+	position: absolute;
+
+	background-color: white;
+	border: 2px solid #2699d3;
+	z-index: 1;
+}
+.dropdown-item{
+	height: 30px;
+	width: 150px;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-size: 15px;
+	color: #2699d3;
+	font-weight: bold;
+}
+.dropdown-item:hover{
+	background-color: #2699d3;
+
+	font-size: 15px;
+	color: white;
+	font-weight: bold;
+}
+.anuncio .subtitulo{
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+
+	overflow-x: hidden;
+	overflow-y: hidden;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
 	padding: 25px 90px;
-	font-size: 17px;
-	font-family: Arial, Helvetica, sans-serif;
 	padding-left: 90px;
 	padding-right: 90px;
+	
+	font-size: 17px;
+	font-family: Arial, Helvetica, sans-serif;
+	word-break: break-all;
 }
 .anuncio .lista-imagem{
 	width: 100%;
@@ -281,6 +373,13 @@ nav a:hover {
 
 	background-color: white;
 }
+.delete-alert{
+	width: 500px;
+	height: 300px;
+
+	background-color: white;
+	border: 2px solid #2699d3;
+}
 .tipo-txt{
 	width: 100%;
 	height: 12%;
@@ -292,7 +391,7 @@ nav a:hover {
 .cont1{
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .tipo-txt .tipo{
@@ -867,7 +966,7 @@ nav a:hover {
     background-color: rgba(0, 0, 0, 0.76);
     padding: 10px;
 }
-.anuncioLoading{
+/* .anuncioLoading{
 	width: 100px;
 	height: 100px;
 }
@@ -878,7 +977,7 @@ nav a:hover {
 	height:40px;
 	display:flex;
 	align-items: center;
-}
+} */
 .anunciosDetalhe
 .containerDetalhe
 .anuncio-detalhe{
@@ -894,12 +993,18 @@ nav a:hover {
  .txt-inicial-detalhe{
 	width: 100%;
 	height: 10%;
+	max-width: calc(100% - 70px);
+	
+	padding: 0 35px;
+	overflow-x: hidden;
+
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 35px;
+
 	font-size: 20px;
 	font-family: Arial, Helvetica, sans-serif;
+
 } 
 .anuncio-detalhe .subtitulo{
 	width: 100%;

@@ -14,14 +14,14 @@ const tw = {};
     //         };
 
         const firebaseConfig = {
-            apiKey: "AIzaSyDJ8jj3Iy-yqlUJp8i5EqgufcyY-iJGvpY",
-            authDomain: "teste3-b931e.firebaseapp.com",
-            databaseURL: "https://teste3-b931e-default-rtdb.firebaseio.com",
-            projectId: "teste3-b931e",
-            storageBucket: "teste3-b931e.appspot.com",
-            messagingSenderId: "645352773546",
-            appId: "1:645352773546:web:c4af00d3fa26352608fdd3",
-            measurementId: "G-KZ1ZFL9PEP"
+            apiKey: "AIzaSyA2f2TRgVCZumOvWRn9xbKaey38pRFZsXw",
+            authDomain: "teste-e58af.firebaseapp.com",
+            databaseURL: "https://teste-e58af-default-rtdb.firebaseio.com",          
+            projectId: "teste-e58af",          
+            storageBucket: "teste-e58af.appspot.com",          
+            messagingSenderId: "946883589121",          
+            appId: "1:946883589121:web:c3b909214a05c6ce7dbc00",          
+            measurementId: "G-SL3MKZV8E6"          
         };
 
         var trys = 0
@@ -76,6 +76,9 @@ const tw = {};
                 if(action == 'get_project_details'){
                     project_database.getProjectDetails(parameters[0])
                 }
+                if(action == 'project_remove'){
+                    project_database.remove(parameters[0])
+                }
             }catch(e){
                 if(trys <= 5){
                     setTimeout(function () {
@@ -101,6 +104,8 @@ const tw = {};
                         loading_reinvite.style.display = 'none'
                         reinvite.style.display = 'inline'
                     }
+
+                    // firebase.app().delete()
                 }
             }
         }

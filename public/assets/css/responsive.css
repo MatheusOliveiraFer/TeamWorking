@@ -99,7 +99,13 @@
 	} 
 	.anuncio .subtitulo{
 		width: 100%;
-		height: 18%;
+		height: auto;
+		max-width: 100%;
+
+		overflow-x: hidden;
+		overflow-y: hidden;
+
+		word-break: break-all;
 		font-size: 14px;
 		padding: 25px 10px;
 	}
@@ -165,6 +171,14 @@
 @media(max-width: 812px) {
 	.subtitulo{
 		width: 100%;
+		height: auto;
+		max-width: 100%;
+
+		overflow-x: hidden;
+		overflow-y: hidden;
+
+		word-break: break-all;
+
 		padding: 0px;
 		padding-left: 20px;
 		padding-right: 20px;

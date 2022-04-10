@@ -99,6 +99,11 @@ projectSender.addEventListener('submit', (e) => {
             videoAnuncio.style.border = '2px solid red'
             errorElement.innerText = "Recomendamos subir seu vídeo no Youtube"
         }
+        if(title.value.length > 40){
+            errors++
+            title.style.border = '2px solid red'
+            errorElement.innerText = "Tente um título menor!"
+        }
         if(type.value === '' || type.value == null){
             errors++
             type.style.border = '2px solid red'
