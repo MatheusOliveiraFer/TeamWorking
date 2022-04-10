@@ -1,14 +1,14 @@
 #background-header {
-    background-image: url('../assets/images/imagem-foco.jpeg');
+    background-image: url(../public/assets/images/imagem-foco.jpeg);
 }
 #contract {
-    background-image: url('../assets/images/contract.jpg');
+    background-image: url(../public/assets/images/contract.jpg);
 }
 #hands {
-    background-image: url('../assets/images/hands.jpg');
+    background-image: url(../public/assets/images/hands.jpg);
 }
 #together {
-    background-image: url('../assets/images/together.jpg');
+    background-image: url(../public/assets/images/together.jpg);
 }
 #teste2 {
     width: 350px;
