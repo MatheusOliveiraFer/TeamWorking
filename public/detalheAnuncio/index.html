@@ -18,6 +18,7 @@
 
     <script defer src="/assets/js/databases/project_database.js"></script>
     <script defer src="/assets/js/databases/user_database.js"></script>
+    <script defer src="/assets/js/databases/comments_database.js"></script>
     
     <script src="/assets/js/firebase.js" defer></script>
     <script defer src="/assets/js/controllers/detalheAnuncio.js"></script>
@@ -98,19 +99,11 @@
                 <div class="container-comentario">
                     <div class="text-titulo-comentario">Comentários</div>
                     <div class="comentar">
-                      <input class="text-comentar" type="text" placeholder="Digite aqui suas dúvidas sobre o anúncio">
-                      <div class="enviar-comentario">Enviar</div>
+                      <input id="text-comentar" class="text-comentar" type="text" placeholder="Digite aqui suas dúvidas sobre o anúncio">
+                      <div id="enviar-comentario" class="enviar-comentario">Enviar</div>
                     </div>
-                    <div class="comentarios-cont">
-                        <div class="comentarios">
-                            <div class="ft-detalhe"></div>
-                            <div class="cont-comentario-detalhe">
-                                <div class="text-comentario">Qual é o horário de trabalho?</div>
-                            </div>
-                        </div>
-                        <div class="responder">
-                            <div class="resp"><a href="">Responder</a></div>
-                        </div>
+                    <div id="comentarios-container" class="comentarios-cont">
+                        
                     </div>
                     <!-- <div class="cont-voltar-detalhe">
                         <button class="botao-voltar-detalhe">Voltar</button>
