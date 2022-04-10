@@ -79,6 +79,9 @@ const tw = {};
                 if(action == 'project_remove'){
                     project_database.remove(parameters[0])
                 }
+                if(action == 'comment_create'){
+                    comments_database.new(parameters[0],parameters[1])
+                }
             }catch(e){
                 if(trys <= 5){
                     setTimeout(function () {

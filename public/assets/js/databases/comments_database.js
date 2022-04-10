@@ -1,7 +1,7 @@
 const comments_database = {};
 
 (function () {
-    function new_comment(projectID, content, answer) {
+    function new_comment(projectID, content) {
         const userID = cookieAccess.valor('userID')
 
         const comments = firebase.database().ref("Comentarios")
@@ -9,11 +9,10 @@ const comments_database = {};
         const user = firebase.database().ref("Usuarios").child(userID)
 
         let project_executed = false
-        let exist = false
 
         const comment_data = {
             projetoID: projectID,
-            userID: userID,
+            usuarioID: userID,
             conteudo: content,
             usuarioNome: '',
             usuarioImagem: ''
@@ -32,7 +31,7 @@ const comments_database = {};
                         if(userInfo.imagem){
                             comment_data.usuarioImagem = userInfo.imagem
                         }else{
-                            comment_data.usuarioImagem = '/assets/images/avatar.png'
+                            comment_data.usuarioImagem = '/assets/images/avatar.jpg'
                         }
     
                         comments.push(comment_data).then(function(){

@@ -1,3 +1,6 @@
+const textComentar = document.getElementById('text-comentar')
+const enviarComentario = document.getElementById('enviar-comentario')
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const projectID = urlParams.get('a')
@@ -9,3 +12,9 @@ if(!projectID){
 }else{
     tw.init('user_exist', ["get_project_details", [projectID]])
 }
+
+enviarComentario.addEventListener('click', function(e){
+    if(textComentar.value != ''){
+        tw.init('user_exist',['comment_create',[projectID,textComentar.value]])
+    }
+})

@@ -148,7 +148,7 @@ const project_database = {};
 
                             let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
-                            if(get_projects[gp].descricaoPequena.lenght > 140){
+                            if(get_projects[gp].descricaoPequena.length > 140){
                                 descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
                             }
                             anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
@@ -282,7 +282,7 @@ const project_database = {};
 
                             let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
-                            if(get_projects[gp].descricaoPequena.lenght > 140){
+                            if(get_projects[gp].descricaoPequena.length > 140){
                                 descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
                             }
 
@@ -378,7 +378,7 @@ const project_database = {};
     }
 
     function get_project(projectID) {
-        userID = cookieAccess.valor('userID')
+        const userID = cookieAccess.valor('userID')
 
         const project = firebase.database().ref("Projetos").child(projectID)
 
@@ -453,7 +453,7 @@ const project_database = {};
     }
 
     function update_project(projectID, type, title, smallDescription, fullDescription, value, video, imageArray, deletedIndexes) {
-        userID = cookieAccess.valor('userID')
+        const userID = cookieAccess.valor('userID')
 
         const project = firebase.database().ref("Projetos").child(projectID)
         const user = firebase.database().ref("Usuarios").child(userID)
@@ -569,6 +569,8 @@ const project_database = {};
     }
 
     function get_project_details(projectID) {
+        const userID = cookieAccess.valor('userID')
+
         const project = firebase.database().ref("Projetos").child(projectID)
 
         let project_executed = false
@@ -579,6 +581,7 @@ const project_database = {};
                 let projectInfo = snapshot.val()
 
                 const user = firebase.database().ref("Usuarios").child(projectInfo.IDdono)
+                const comments = firebase.database().ref("Comentarios")
 
                 user.on('value', (snapshot2) => {
                     if (!user_executed) {
@@ -642,6 +645,42 @@ const project_database = {};
                                     <img src="${projectInfo.imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[3]}')">
                                 </div>`
                             }
+
+                            const comments_container = document.getElementById('comentarios-container')
+                            comments_container.innerHTML = ''
+
+                            comments.on('value', (snapshot3) => {
+                                let commentInfo = snapshot3.val()
+
+                                console.log(commentInfo)
+
+                                if(commentInfo){
+                                    for(gc in commentInfo){
+                                        if(commentInfo[gc].projetoID == projectID){
+                                            comments_container.innerHTML += `<div class="comentarios">
+                                                                                <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
+                                                                                <div class="cont-comentario-detalhe">
+                                                                                    <div class="text-comentario">${commentInfo[gc].conteudo}</div>
+                                                                                </div>
+                                                                            </div>`
+    
+                                            if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
+                                                comments_container.innerHTML +=`<div class="responder">
+                                                                                    <div id="resp_${gc}" class="enviar-comentario" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'">Responder</div>
+                                                                                    
+                                                                                    <input id="input_resp_${gc}" type="text" class="text-comentar" style="display: none"/>
+
+                                                                                    <div id="buttons_resp_${gc}" class="resp-buttons-container" style="display: none">
+                                                                                        <div class="enviar-comentario">Enviar</div>
+                                                                                        <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">Cancelar</div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                `
+                                            }
+                                        }
+                                    }
+                                }
+                            })
                         }
                     }
                 })
