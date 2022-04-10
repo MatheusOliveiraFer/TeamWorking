@@ -1,19 +1,19 @@
 #backgroundHeader {
-    background-image: url('./public/assets/images/imagem-foco.jpeg');
+    background-image: url('/public/assets/images/imagem-foco.jpeg');
 }
 #contract {
-    background-image: url('./public/assets/images/contract.jpg');
+    background-image: url('/public/assets/images/contract.jpg');
 }
 #hands {
-    background-image: url('./public/assets/images/hands.jpg');
+    background-image: url('/public/assets/images/hands.jpg');
 }
 #Together {
-    background-image: url('./public/assets/images/together.jpg');
+    background-image: url('/public/assets/images/together.jpg');
 }
 #teste {
     width: 350px;
     height: 350px;
-    background-image: url('./public/assets/images/background-landingpage.jpg');
+    background-image: url('/public/assets/images/background-landingpage.jpg');
     border-radius: 50%;
 }
 #saibaMais {
