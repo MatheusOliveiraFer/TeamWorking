@@ -104,6 +104,9 @@
 		padding-left: 10px;
 		padding-right: 10px;
 	} 
+	.dropdown-balance{
+		display: none;
+	}
 	.anuncio .subtitulo{
 		width: 100%;
 		height: auto;
