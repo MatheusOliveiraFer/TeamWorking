@@ -148,7 +148,7 @@ const project_database = {};
 
                             let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
-                            if(get_projects[gp].descricaoPequena.lenght > 140){
+                            if(get_projects[gp].descricaoPequena.length > 140){
                                 descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
                             }
                             anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
@@ -282,7 +282,7 @@ const project_database = {};
 
                             let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
-                            if(get_projects[gp].descricaoPequena.lenght > 140){
+                            if(get_projects[gp].descricaoPequena.length > 140){
                                 descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
                             }
 
