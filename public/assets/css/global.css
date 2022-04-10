@@ -1027,12 +1027,9 @@ nav a:hover {
 	height: max-content;
 	display: flex;
 	flex-direction: row;
-
 	/* background-color: red; */
-
 	overflow-x: scroll;
 	overflow-y: hidden;
-
 	justify-content: space-around;
 
 	margin-bottom: 40px;
