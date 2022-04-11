@@ -18,6 +18,26 @@ const emailSend = {};
         emailjs.init("DQv9YRXGKty4ghBhV");
     }
 
+    function notification(email, senderName, content, projectName){
+        console.log("senderName:",senderName)
+
+        var emailParams = {
+            senderName: senderName,
+            to_email: email,
+            content: content,
+            projectName: projectName
+        }
+
+        console.log(emailParams)
+
+        emailjs.send('service_ke3c08o','template_r9eieqb',emailParams).then(function(res){
+            console.log(res)
+
+            // document.location.reload()
+        })
+    }
+
     emailSend.password = passwordRecover
     emailSend.init = init
+    emailSend.notification = notification
 })()

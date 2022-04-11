@@ -82,6 +82,9 @@ const tw = {};
                 if(action == 'comment_create'){
                     comments_database.new(parameters[0],parameters[1])
                 }
+                if(action == 'answer_create'){
+                    comments_database.newAnswer(parameters[0],parameters[1],parameters[2])
+                }
             }catch(e){
                 if(trys <= 5){
                     setTimeout(function () {
