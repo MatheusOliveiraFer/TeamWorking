@@ -1,18 +1,23 @@
-#background-header {
-    background-image: url('../assets/images/imagem-foco.jpeg');
+/* #backgroundHeader {
+    background-image: url('../public/assets/images/imagem-foco.jpeg');
 }
 #contract {
-    background-image: url('../assets/images/contract.jpg');
+    background-image: url('../public/assets/images/contract.jpg');
 }
 #hands {
-    background-image: url('../assets/images/hands.jpg');
+    background-image: url('../public/assets/images/hands.jpg');
 }
-#together {
-    background-image: url('../assets/images/together.jpg');
-}
-#teste2 {
+#Together {
+    background-image: url('../public/assets/images/together.jpg');
+} */
+#teste {
     width: 350px;
     height: 350px;
-    background-image: url('../assets/images/background-landingpage.jpg');
+    background-image: url('../public/assets/images/background-landingpage.jpg');
     border-radius: 50%;
+}
+#saibaMais {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
 }
