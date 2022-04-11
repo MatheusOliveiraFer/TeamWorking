@@ -662,7 +662,7 @@ const project_database = {};
                                                                                 <div class="cont-comentario-detalhe">
                                                                                     <div class="text-comentario">${commentInfo[gc].conteudo}</div>
                                                                                     </div>
-                                                                                <div class="remove-comentario"> </div>
+                                                                                ${/*<div class="remove-comentario"></div>*/''}
                                                                             </div>`
     
                                             if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
