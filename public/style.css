@@ -26,3 +26,27 @@
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
 }
+#area-text {
+    background: rgba(255, 255, 255, 0.349);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+@media only screen and (min-width: 254px) {
+    #area-text {
+        width: 100%;
+        font-size: 20px;
+    }
+    .area-text-title {
+        font-size: 15px;
+    }
+}
+@media only screen and (min-width: 290px) {
+    #area-text {
+        width: 95%;
+    }
+}
+@media only screen and (min-width: 421px) {
+    #area-text {
+        width: 90%;
+    }
+}
