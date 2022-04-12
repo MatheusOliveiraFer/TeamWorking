@@ -85,6 +85,9 @@ const tw = {};
                 if(action == 'answer_create'){
                     comments_database.newAnswer(parameters[0],parameters[1],parameters[2])
                 }
+                if(action == 'comment_remove'){
+                    comments_database.remove(parameters[0])
+                }
             }catch(e){
                 if(trys <= 5){
                     setTimeout(function () {

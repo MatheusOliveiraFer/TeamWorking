@@ -566,6 +566,18 @@ nav a:hover {
 	outline-color: #3ba6db;
 	font-size: 17px;
 }
+.ContainerCadastraAnuncio .TipoAnuncio textArea{
+	height: 80px;
+
+	padding-top: 10px;
+	padding-left: 10px;
+	
+	border-radius: 5px;
+	border: 1px solid #39aae1;
+	outline-color: #3ba6db;
+
+	font-size: 17px;
+}
 .ContainerCadastraAnuncio .TipoAnuncio select {
 	height: 40px;
 	padding-left: 10px;
@@ -1249,14 +1261,14 @@ nav a:hover {
 .remove-comentario{
 	width: 25px;
 	height: 25px;
+	min-width: 25px;
+	min-height: 25px;
 	
 	background-image: url('/assets/images/lixeira.png');
 	background-size: contain;
 	background-repeat: no-repeat;
-	
-	display: inline;
-	position: relative;
-	right: 25px;
+
+	cursor: pointer;
 }
 .responder{
 	width: calc(100% - 180px);
