@@ -49,14 +49,22 @@ const comments_database = {};
 
                                    console.log("Username:",username)
     
-                                   emailSend.notification(ownerInfo.email, username[0], content, projectInfo.titulo)
+                                   emailSend.notification(ownerInfo.email, username[0], content, projectInfo.titulo, 'comment')
                                 })
                             }else{
                                 document.location.reload()
                             }
 
+                            document.getElementById('enviar-comentario').style.display = 'flex'
+                            document.getElementById('loading-button').style.display = 'none'
+                            document.getElementById('text-comentar').value = ''
+                            
                         }).catch(function(e){
                             console.log("Ocorreu um erro ao tentar criar o comentário:", e)
+
+                            document.getElementById('enviar-comentario').style.display = 'flex'
+                            document.getElementById('loading-button').style.display = 'none'
+                            document.getElementById('text-comentar').value = ''
                         })
                     })
                 }
@@ -64,7 +72,6 @@ const comments_database = {};
                 project_executed = true
             }
         })
-        
     }
 
     function new_answer(projectID, content, commentID){
@@ -115,14 +122,22 @@ const comments_database = {};
     
                                     const username = userInfo.nome.split(" ",2)
     
-                                    emailSend.notification(commentInfo.usuarioEmail, username[0], content, projectInfo.titulo)
+                                    emailSend.notification(commentInfo.usuarioEmail, username[0], content, projectInfo.titulo, 'answer')
 
                                     commentData_executed = true
                                 }
                             })
 
+                            document.getElementById(`button_answer_${commentID}`).style.display = 'flex'
+                            document.getElementById(`loading-button-${commentID}`).style.display = 'none'
+                            document.getElementById(`input_resp_${commentID}`).value = ''
+
                         }).catch(function(e){
                             console.log("Ocorreu um erro ao tentar criar a resposta:", e)
+
+                            document.getElementById(`button_answer_${commentID}`).style.display = 'flex'
+                            document.getElementById(`loading-button-${commentID}`).style.display = 'none'
+                            document.getElementById(`input_resp_${commentID}`).value = ''
                         })
                     })
                 }
