@@ -98,10 +98,15 @@ projectEditor.addEventListener('submit', (e) => {
     setTimeout(function(){
         let errors = 0;
 
-        if(!videoAnuncio.value.includes('www.youtube.com/')){
+        if(!videoAnuncio.value.includes('www.youtube.com/') && !(videoAnuncio.value === '' || videoAnuncio.value == null)){
             errors++
             videoAnuncio.style.border = '2px solid red'
             errorElement.innerText = "Recomendamos subir seu vídeo no Youtube"
+        }
+        if(title.value.length > 40){
+            errors++
+            title.style.border = '2px solid red'
+            errorElement.innerText = "Tente um título menor!"
         }
         if(type.value === '' || type.value == null){
             errors++
@@ -121,16 +126,6 @@ projectEditor.addEventListener('submit', (e) => {
         if(fullDescription.value === '' || fullDescription.value == null){
             errors++
             fullDescription.style.border = '2px solid red'
-            errorElement.innerText = "Existem campos sem preencher!"
-        }
-        if(value.value === '' || value.value == null){
-            errors++
-            value.style.border = '2px solid red'
-            errorElement.innerText = "Existem campos sem preencher!"
-        }
-        if(videoAnuncio.value === '' || videoAnuncio.value == null){
-            errors++
-            videoAnuncio.style.border = '2px solid red'
             errorElement.innerText = "Existem campos sem preencher!"
         }
 

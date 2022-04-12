@@ -108,12 +108,17 @@ const comments_database = {};
 
                             const commentData = firebase.database().ref("Comentarios").child(commentID)
                             
+                            let commentData_executed = false
                             commentData.on('value', (snapshot3) => {
-                                const commentInfo = snapshot3.val()
+                                if(!commentData_executed){
+                                    const commentInfo = snapshot3.val()
+    
+                                    const username = userInfo.nome.split(" ",2)
+    
+                                    emailSend.notification(commentInfo.usuarioEmail, username[0], content, projectInfo.titulo)
 
-                                const username = userInfo.nome.split(" ",2)
-
-                                emailSend.notification(commentInfo.usuarioEmail, username[0], content, projectInfo.titulo)
+                                    commentData_executed = true
+                                }
                             })
 
                         }).catch(function(e){
@@ -125,28 +130,56 @@ const comments_database = {};
         })
     }
 
-    // function remove_comment(id, email, password) {
-    //     var userID = ''
+    function remove_comment(commentID) {
+        const userID = cookieAccess.valor("userID")
+        const comment = firebase.database().ref("Comentarios").child(commentID)
 
-    //     //GET IS NOT A FUNCTION
-    //     const comments = firebase.database().ref("Comments").child(id)
+        let comment_executed = false
+        let answer_executed = false
 
-    //     var validation = await user_database.validate(email, password)
+        comment.on('value', (snapshot) => {
+            if(!comment_executed){
+                const commentInfo = snapshot.val()
 
-    //     if(validation == userID){
-    //         comments.remove()
-    //             .then(function () {
-    //                 console.log("Comentário removido com sucesso!")
-    //             })
-    //             .catch(function (erro) {
-    //                 console.log("Um erro ocorreu ao tentar excluir o comentário: ", erro)
-    //             })
-    //     }else{
-    //         console.log("Você não tem permissão para efetuar a exclusão!")
-    //     }
-    // }
+                if(commentInfo && commentInfo.usuarioID == userID){
+
+                    comment.remove().then(function(){
+                        const commentAnswers = firebase.database().ref("Comentarios")
+
+                        commentAnswers.on('value', (snapshot2) => {
+                            if(!answer_executed){
+                                const answerInfo = snapshot2.val()
+    
+                                for(a in answerInfo){
+                                    if(answerInfo[a].respostaDe && answerInfo[a].respostaDe == commentID){
+                                        const answer = firebase.database().ref("Comentarios").child(a) 
+
+                                        answer.remove().then(function(msg){
+                                            console.log("Resposta excluída",msg)
+                                        }).catch(function(e){
+                                            console.log("Ocorreu um erro ao tentar excluir a resposta:",e)
+                                        })
+
+                                        console.log("Excluido resposta:", answerInfo[a].conteudo)
+                                    }
+                                }
+
+                                answer_executed = true
+                            }
+                        })
+                    }).catch(function(e){
+                        console.log("Ocorreu um erro ao tentar excluir o comentário:",e)
+                    })
+
+                    console.log("Excluido comentário:", commentInfo.conteudo)
+                }
+
+                comment_executed = true
+            }
+        })
+    }
 
     comments_database.new = new_comment;
     comments_database.newAnswer = new_answer;
-    // comments_database.remove = remove_comment;
+    comments_database.remove = remove_comment;
 })()

@@ -124,23 +124,6 @@ projectSender.addEventListener('submit', (e) => {
             fullDescription.style.border = '2px solid red'
             errorElement.innerText = "Existem campos sem preencher!"
         }
-        if(value.value === '' || value.value == null){
-            errors++
-            value.style.border = '2px solid red'
-            errorElement.innerText = "Existem campos sem preencher!"
-        }
-        // if(image_array.length == 0){
-        //     errors++
-        //     console.log('array vazio')
-
-        //     imageFront.style.border = '2px solid red'
-        //     errorElement.innerText = "Recomendamos inserir no mínimo uma imagem"
-        // }
-        // if(videoAnuncio.value === '' || videoAnuncio.value == null){
-        //     errors++
-        //     videoAnuncio.style.border = '2px solid red'
-        //     errorElement.innerText = "Existem campos sem preencher!"
-        // }
 
         if(errors > 0){
             loading.style.display = 'none'
@@ -151,14 +134,6 @@ projectSender.addEventListener('submit', (e) => {
             tw.init('project_create', [title.value, userID, smallDescription.value, fullDescription.value, type.value, videoAnuncio.value, value.value, image_array])
         }
     },500)
-
-
-    e.preventDefault()
-})
-
-projectSender.addEventListener('submit', (e) => {
-
-
 
 
     e.preventDefault()

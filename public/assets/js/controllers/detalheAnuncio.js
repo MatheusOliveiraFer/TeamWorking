@@ -18,7 +18,9 @@ if(!projectID){
 enviarComentario.addEventListener('click', function(e){
     if(textComentar.value != ''){
         tw.init('user_exist',['comment_create',[projectID,textComentar.value]])
-    }
+    }else(
+        textComentar.focus()
+    )
 })
 
 function send_answer(commentID){
@@ -26,6 +28,8 @@ function send_answer(commentID){
 
     if(textAnswer.value != ''){
         tw.init('user_exist',['answer_create',[projectID,textAnswer.value,commentID]])
+    }else{
+        textAnswer.focus()
     }
 }
 
@@ -37,4 +41,12 @@ function see_answers(id){
         document.getElementById(`answers_box_${id}`).style.display = 'none'
         document.getElementById(`see_answers_${id}`).innerText = '▶ Ver respostas'
     } 
+}
+
+function removeComment(commentID){
+    var r = confirm('Quer mesmo excluir este comentário? Respostas dadas a este comentário também serão excluídas no processo!');
+
+    if(r == true){
+        tw.init('user_exist',['comment_remove',[`${commentID}`]])
+    }
 }

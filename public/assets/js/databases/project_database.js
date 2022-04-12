@@ -364,7 +364,7 @@ const project_database = {};
 
                     if (!has) {
                         anuncioContainer.style.backgroundColor = 'white'
-                        anuncioContainer.innerHTML += `<div class="sem_anuncios">Você ainda não possui anúncios, que tal criar o primeiro?</div>`
+                        anuncioContainer.innerHTML += `<div class="sem_anuncios">Você ainda não possui anúncios, anuncie agora.</div>`
 
                         anuncioLoading.remove()
 
@@ -660,16 +660,17 @@ const project_database = {};
                                             comments_container.innerHTML += `<div class="comentarios">
                                                                                 <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
                                                                                 <div class="cont-comentario-detalhe">
-                                                                                    <div class="text-comentario">${commentInfo[gc].conteudo}</div>
+                                                                                    <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
+                                                                                        ${commentInfo[gc].conteudo}
                                                                                     </div>
-                                                                                ${/*<div class="remove-comentario"></div>*/''}
+                                                                                </div>
                                                                             </div>`
     
                                             if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
                                                 comments_container.innerHTML +=`<div class="responder" id="responder_${gc}">
                                                                                     <div id="no_answer_box_${gc}" class="no_answer_box">
                                                                                         <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')" style="display: none">▶ Ver respostas</div>
-                                                                                        <div id="resp_${gc}" class="enviar-comentario" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'">Responder</div>
+                                                                                        <div id="resp_${gc}" class="enviar-comentario" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'; document.getElementById('input_resp_${gc}').focus()">Responder</div>
                                                                                     </div>
 
                                                                                     <div id="answers_box_${gc}" class="answers_box"></div>
@@ -699,19 +700,30 @@ const project_database = {};
 
                                         }else if(commentInfo[gc].projetoID == projectID && commentInfo[gc].respostaDe){
                                             const answers_box = document.getElementById(`answers_box_${commentInfo[gc].respostaDe}`)
-                                            document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                            document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
-                                            document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                            document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
-                                            document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
 
-                                            answers_box.innerHTML += `<div class="comentarios" style="width:100%">
-                                                                        <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
-                                                                        <div class="cont-comentario-detalhe">
-                                                                            <div class="text-comentario">${commentInfo[gc].conteudo}</div>
-                                                                        </div>
-                                                                    </div>`
+                                            if(document.getElementById(`responder_${commentInfo[gc].respostaDe}`) && document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`) && document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`)){
+                                                document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
+                                                document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
+                                                document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                            }
 
+                                            if(answers_box){
+                                                answers_box.innerHTML += `<div class="comentarios" style="width:100%">
+                                                                            <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
+                                                                            <div class="cont-comentario-detalhe">
+                                                                                <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
+                                                                                    ${commentInfo[gc].conteudo}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>`
+                                            }
+
+                                        }
+
+                                        if(document.getElementById(`text-comentario-${gc}`) && commentInfo[gc].usuarioID == userID){
+                                            document.getElementById(`text-comentario-${gc}`).innerHTML += `<div class="remove-comentario" onclick="removeComment('${gc}')"></div>`
                                         }
                                     }
                                 }
