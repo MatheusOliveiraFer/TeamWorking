@@ -116,6 +116,9 @@
             </div>
         </div>
     </section>
+    <section class="w-full h-[100px] bg-yellow-200">
+
+    </section>
     <div class="contact">
         <a href="https://api.whatsapp.com/send?phone=5511954889000&text=Equipe%20QueroUmSócio" target="_blank"
             style="position:fixed;bottom:40px;right:30px;">
@@ -129,6 +132,32 @@
                         fill="#FAFAFA" />
                 </svg>
         </a>
+    </div>
+    <div class="contact">
+        <a onclick="document.getElementById('id01').style.display='block'"
+            style="position:fixed;bottom:40px;left:30px;">
+            <div style="width: 55px; height:55px; border-radius: 50%; background-color: rgb(59 130 246);" class="flex border justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="rgb(255 255 255)" class="bi bi-house" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+                    <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/>
+                </svg>
+            </div>
+        </a>
+    </div>
+    <div id="id01" class="modal h-screen">
+        <div class="w-[100%] h-screen flex justify-center items-center">
+            <div id="modalDialog" class="w-[90%] h-[200px] bg-white rounded-md">
+                <div class="flex justify-end pr-6 pt-2">
+                    <button onclick="document.getElementById('id01').style.display='none'" class="font-bold text-blue-500">x</button>
+                </div>
+                <div class="w-full flex justify-center items-center">
+                    <div class="w-[90%] flex flex-col justify-center mt-8">
+                        <div class="border-2 border-blue-400 rounded-md p-2 mb-4 text-center text-blue-600 hover:bg-blue-400 hover:text-white"><a onclick="document.location.href = './cadastro/index.html'">Cadastre-se</a></div>
+                        <div class="border-2 border-blue-400 rounded-md p-2 text-center text-blue-600 hover:bg-blue-400 hover:text-white"><a onclick="document.location.href = './login/index.html'">Entrar</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- <footer class="w-full flex justify-center items-center bg-white">
         <div class="flex flex-col items-center justify-center p-2 text-blue-500">
