@@ -1,5 +1,7 @@
 const textComentar = document.getElementById('text-comentar')
 const enviarComentario = document.getElementById('enviar-comentario')
+const comments_container = document.getElementById('comentarios-container')
+comments_container.innerHTML = ''
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -18,3 +20,21 @@ enviarComentario.addEventListener('click', function(e){
         tw.init('user_exist',['comment_create',[projectID,textComentar.value]])
     }
 })
+
+function send_answer(commentID){
+    const textAnswer = document.getElementById(`input_resp_${commentID}`)
+
+    if(textAnswer.value != ''){
+        tw.init('user_exist',['answer_create',[projectID,textAnswer.value,commentID]])
+    }
+}
+
+function see_answers(id){
+    if(document.getElementById(`see_answers_${id}`).innerText == '▶ Ver respostas'){
+        document.getElementById(`answers_box_${id}`).style.display = 'flex'
+        document.getElementById(`see_answers_${id}`).innerText = '▼ Ver respostas'
+    }else{
+        document.getElementById(`answers_box_${id}`).style.display = 'none'
+        document.getElementById(`see_answers_${id}`).innerText = '▶ Ver respostas'
+    } 
+}

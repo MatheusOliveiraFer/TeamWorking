@@ -646,45 +646,81 @@ const project_database = {};
                                 </div>`
                             }
 
-                            const comments_container = document.getElementById('comentarios-container')
-                            comments_container.innerHTML = ''
-
                             comments.on('value', (snapshot3) => {
+                                const comments_container = document.getElementById('comentarios-container')
+                                comments_container.innerHTML = ''
+
                                 let commentInfo = snapshot3.val()
 
                                 console.log(commentInfo)
 
                                 if(commentInfo){
                                     for(gc in commentInfo){
-                                        if(commentInfo[gc].projetoID == projectID){
+                                        if(commentInfo[gc].projetoID == projectID && !commentInfo[gc].respostaDe){
                                             comments_container.innerHTML += `<div class="comentarios">
                                                                                 <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
                                                                                 <div class="cont-comentario-detalhe">
                                                                                     <div class="text-comentario">${commentInfo[gc].conteudo}</div>
-                                                                                </div>
+                                                                                    </div>
+                                                                                ${/*<div class="remove-comentario"></div>*/''}
                                                                             </div>`
     
                                             if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
-                                                comments_container.innerHTML +=`<div class="responder">
-                                                                                    <div id="resp_${gc}" class="enviar-comentario" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'">Responder</div>
-                                                                                    
+                                                comments_container.innerHTML +=`<div class="responder" id="responder_${gc}">
+                                                                                    <div id="no_answer_box_${gc}" class="no_answer_box">
+                                                                                        <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')" style="display: none">▶ Ver respostas</div>
+                                                                                        <div id="resp_${gc}" class="enviar-comentario" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'">Responder</div>
+                                                                                    </div>
+
+                                                                                    <div id="answers_box_${gc}" class="answers_box"></div>
                                                                                     <input id="input_resp_${gc}" type="text" class="text-comentar" style="display: none"/>
 
                                                                                     <div id="buttons_resp_${gc}" class="resp-buttons-container" style="display: none">
-                                                                                        <div class="enviar-comentario">Enviar</div>
+                                                                                        <div class="enviar-comentario" onclick="send_answer('${gc}')">Enviar</div>
                                                                                         <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">Cancelar</div>
                                                                                     </div>
                                                                                 </div>
                                                                                 `
                                             }
+                                            if(projectInfo.IDdono != userID){
+                                                comments_container.innerHTML +=`<div class="responder" id="responder_${gc}" style="display: none">
+                                                                                    <div id="no_answer_box_${gc}" class="no_answer_box">
+                                                                                        <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')">▶ Ver respostas</div>
+                                                                                    </div>
+
+                                                                                    <div id="answers_box_${gc}" class="answers_box"></div>
+                                                                                </div>
+                                                                                `
+                                            }
+
+                                            if( document.getElementById(`answers_box_${gc}`)){
+                                                document.getElementById(`answers_box_${gc}`).innerHTML = ''
+                                            }
+
+                                        }else if(commentInfo[gc].projetoID == projectID && commentInfo[gc].respostaDe){
+                                            const answers_box = document.getElementById(`answers_box_${commentInfo[gc].respostaDe}`)
+                                            document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                            document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
+                                            document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                            document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
+                                            document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+
+                                            answers_box.innerHTML += `<div class="comentarios" style="width:100%">
+                                                                        <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
+                                                                        <div class="cont-comentario-detalhe">
+                                                                            <div class="text-comentario">${commentInfo[gc].conteudo}</div>
+                                                                        </div>
+                                                                    </div>`
+
                                         }
                                     }
                                 }
                             })
                         }
+                        user_executed = true
                     }
                 })
-
+                project_executed = true
             }
         })
     }

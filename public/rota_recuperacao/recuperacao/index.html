@@ -12,12 +12,20 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <script src="/assets/js/firebase.js" defer></script>
     <script defer src="/assets/js/controllers/recuperacaoController.js"></script>
 
     <script src="/assets/js/databases/user_database.js"></script>
+
+    <script src="/assets/js/emailSender.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("DQv9YRXGKty4ghBhV");
+        })();
+    </script>
 </head>
 <body>
     <div class="esquecer-senha">
