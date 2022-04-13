@@ -32,8 +32,6 @@ const emailSend = {};
 
         emailjs.send('service_ke3c08o','template_r9eieqb',emailParams).then(function(res){
             console.log(res)
-
-            // document.location.reload()
         })
     }
 

@@ -1,6 +1,7 @@
 const textComentar = document.getElementById('text-comentar')
 const enviarComentario = document.getElementById('enviar-comentario')
 const comments_container = document.getElementById('comentarios-container')
+const loading_button = document.getElementById('loading-button')
 comments_container.innerHTML = ''
 
 const queryString = window.location.search;
@@ -16,21 +17,40 @@ if(!projectID){
 }
 
 enviarComentario.addEventListener('click', function(e){
-    if(textComentar.value != ''){
-        tw.init('user_exist',['comment_create',[projectID,textComentar.value]])
-    }else(
-        textComentar.focus()
-    )
+    enviarComentario.style.display = 'none'
+    loading_button.style.display = 'flex'
+
+    setTimeout(function(){
+        if(textComentar.value != ''){
+            tw.init('user_exist',['comment_create',[projectID,textComentar.value]])
+        }else{
+            textComentar.focus()
+
+            enviarComentario.style.display = 'flex'
+            loading_button.style.display = 'none'
+        }
+    },500)
 })
 
 function send_answer(commentID){
     const textAnswer = document.getElementById(`input_resp_${commentID}`)
+    const buttonAnswer = document.getElementById(`button_answer_${commentID}`)
+    const loadingAnswer = document.getElementById(`loading-button-${commentID}`)
 
-    if(textAnswer.value != ''){
-        tw.init('user_exist',['answer_create',[projectID,textAnswer.value,commentID]])
-    }else{
-        textAnswer.focus()
-    }
+    buttonAnswer.style.display = 'none'
+    loadingAnswer.style.display = 'flex'
+
+    setTimeout(function(){
+        if(textAnswer.value != ''){
+            tw.init('user_exist',['answer_create',[projectID,textAnswer.value,commentID]])
+        }else{
+            textAnswer.focus()
+
+            buttonAnswer.style.display = 'flex'
+            loadingAnswer.style.display = 'none'
+        }
+    },500)
+
 }
 
 function see_answers(id){

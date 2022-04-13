@@ -677,7 +677,11 @@ const project_database = {};
                                                                                     <input id="input_resp_${gc}" type="text" class="text-comentar" style="display: none"/>
 
                                                                                     <div id="buttons_resp_${gc}" class="resp-buttons-container" style="display: none">
-                                                                                        <div class="enviar-comentario" onclick="send_answer('${gc}')">Enviar</div>
+                                                                                        <div id="button_answer_${gc}" class="enviar-comentario" onclick="send_answer('${gc}')">Enviar</div>
+                                                                                        <div id="loading-button-${gc}" class="loading-button">
+                                                                                            <img src="../assets/images/Loading.gif" class="loading"/>
+                                                                                        </div>
+
                                                                                         <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">Cancelar</div>
                                                                                     </div>
                                                                                 </div>
