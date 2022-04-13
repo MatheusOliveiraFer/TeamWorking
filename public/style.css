@@ -28,7 +28,7 @@
 }
 #area-text {
     background: rgba(255, 255, 255, 0.349);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(15px);
 }
 .modal {
@@ -69,3 +69,33 @@
         width: 90%;
     }
 }
+@media only screen and (min-width: 474px) {
+    #area-text {
+        width: 80%;
+    }
+}
+@media only screen and (min-width: 580px) {
+    #area-text {
+        width: 70%;
+    }
+}
+@media only screen and (min-width: 768px) {
+    #area-text {
+        width: 50%;
+    }
+}
+@media only screen and (min-width: 1024px) {
+    #area-text {
+        width: 50%;
+    }
+    .form {
+        display: none;
+    }
+    #container {
+        display: none;
+    }
+    #container2 {
+        display: none;
+    }
+}
+

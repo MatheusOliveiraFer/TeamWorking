@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    
     <title>Página principal</title>
 
     <script src="https://www.gstatic.com/firebasejs/6.1.1/firebase-app.js"></script>
@@ -20,7 +21,9 @@
     <script defer src="/assets/js/controllers/landingController.js"></script>
 
     <script src="/assets/js/databases/user_database.js"></script>
-
+    <style>
+        .mySlides {display:none;}
+    </style>
 </head>
 <body>
     <!-- <header class="w-full h-16 shadow-lg shadow-cyan-500/50 px-10 top-0 fixed z-10 bg-white">
@@ -107,7 +110,7 @@
         <div class="w-[60%] h-[400px] bg-blue-500 bg-[url('assets/images/img-section-1.jpeg')] bg-center bg-no-repeat bg-cover">...</div>
     </section> -->
 
-    <section>
+    <section class="lg:hidden">
         <div id="container" class="w-full min-h-[200px] flex items-center justify-center bg-[url('assets/images/img-section-1.jpeg')] bg-center bg-no-repeat bg-cover">
             <div id="area-text" class="w-[80%] h-[150px] flex flex-col justify-center items-center p-2 rounded-md">
                 <div class="area-text-title text-center text-[20px] font-semibold">Seja bem-vindo em ao novo portal de emprededorismo do Brasil.</div>
@@ -116,8 +119,44 @@
             </div>
         </div>
     </section>
-    <section class="w-full h-[100px] bg-yellow-200">
-
+    <section>
+        <div class="hidden lg:flex w-full h-[340px]">
+            <div class="area-left w-[42%] flex flex-col p-4">
+                <div class="text-[13px] font-semibold text-right xl:text-2xl">Seja bem-vindo em ao novo portal de emprededorismo do Brasil.</div>
+                <div class="text-right text-blue-500 font-bold text-xl">QueroUmSócio</div>
+                <div class="flex flex-col mt-2">
+                    <div class="border border-2 border-blue-200 rounded-md mt-2 p-1 pl-2 font-semibold">Tudo em um só lugar!</div>
+                    <div class="border border-2 border-blue-200 rounded-md mt-2 p-1 pl-2 font-semibold">Compra e venda de empresas e negócios.</div>
+                    <div class="border border-2 border-blue-200 rounded-md mt-2 p-1 pl-2 font-semibold">Formação de Startups, projetos e vagas de emprego.</div>
+                    <div class="border border-2 border-blue-200 rounded-md mt-2 p-1 pl-2 font-semibold">Oportunidades de investimentos, sociedades e parcerias.</div>
+                </div>
+                <div class="flex mt-4">
+                    <button class="flex-1 bg-blue-500 text-white p-2 pr-4 pl-4 mr-2 font-semibold rounded-md">Cadastre-se</button>
+                    <button class="flex-1 bg-green-500 text-white p-2 pr-4 pl-4 font-semibold rounded-md">Efetuar Login</button>
+                </div>
+            </div>
+            <div class="area-right w-[58%] bg-[url('assets/images/img-section-1.jpeg')] bg-center bg-no-repeat bg-cover bg-left"></div>
+        </div>
+    </section>
+    <section class="lg:hidden w-full h-[200px] flex flex-col bg-green-100">
+        <div class="text-center p-2 text-black font-bold text-xl">Tudo em um só lugar!</div>
+        <div class="mySlides h-[100%] bg-[url('assets/images/imagem-cadastro.jpg')] bg-center bg-no-repeat bg-cover">
+            <div class="h-full flex items-center justify-center text-white">
+                <div class="shadow-lg shadow-gray-500/50 bg-gray-100 text-black p-1 rounded-md">Compra e venda de empresas e negócios.</div>
+            </div>
+        </div>
+        <div class="mySlides h-[100%] bg-[url('assets/images/background-landingpage.jpg')] bg-center bg-no-repeat bg-cover">
+            <div class="h-full flex items-center justify-center text-white">
+                <div class="shadow-lg shadow-gray-500/50 bg-gray-100 text-black p-1 rounded-md text-center">Formação de Startups, projetos e vagas de emprego.</div>
+            </div>
+        </div>
+        <div class="mySlides h-[100%] bg-[url('assets/images/img-section-1.jpeg')] bg-center bg-no-repeat bg-cover">
+            <div class="h-full flex items-center justify-center text-white">
+                <div class="shadow-lg shadow-gray-500/50 bg-gray-100 text-black p-1 rounded-md text-center">Oportunidades de investimentos, sociedades e parcerias.</div>
+            </div>
+        </div>
+        <button class="text-white bg-black opacity-50 p-3" style="position:fixed; bottom: 280px; left: 0px;" onclick="plusDivs(-1)">&#10094;</button>
+        <button class="text-white bg-black opacity-50 p-3" style="position:fixed; bottom: 280px; right: 0px;" onclick="plusDivs(1)">&#10095;</button>
     </section>
     <div class="contact">
         <a href="https://api.whatsapp.com/send?phone=5511954889000&text=Equipe%20QueroUmSócio" target="_blank"
@@ -133,7 +172,7 @@
                 </svg>
         </a>
     </div>
-    <div class="contact">
+    <div class="form">
         <a onclick="document.getElementById('id01').style.display='block'"
             style="position:fixed;bottom:40px;left:30px;">
             <div style="width: 55px; height:55px; border-radius: 50%; background-color: rgb(59 130 246);" class="flex border justify-center items-center">
@@ -166,5 +205,24 @@
             <div>Contato: sitequeroumsocio@gmail.com</div>
         </div>
     </footer> -->
+    <script>
+        var slideIndex = 1;
+        showDivs(slideIndex);
+        
+        function plusDivs(n) {
+          showDivs(slideIndex += n);
+        }
+        
+        function showDivs(n) {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          if (n > x.length) {slideIndex = 1}
+          if (n < 1) {slideIndex = x.length}
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";  
+          }
+          x[slideIndex-1].style.display = "block";  
+        }
+        </script>
 </body>
 </html>
