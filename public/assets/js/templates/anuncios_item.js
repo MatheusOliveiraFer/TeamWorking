@@ -1,7 +1,7 @@
 function anuncios_item(title, smallDescription, type, ownerName, city, uf, value, id) {
   return `<div class="anuncio">
             <div class="txt-inicial">
-              <a href="##" style="color: #000">${title}</a>
+              <a href="##" style="color: #000" style="width: 100%">${title}</a>
             </div>
             <div class="subtitulo">
               ${smallDescription}

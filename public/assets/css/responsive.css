@@ -153,6 +153,9 @@
 }
 
 @media(max-width: 618px) {
+	.txt-inicial{
+		width: 100%;
+	}
 	.ContainerCadastraAnuncio form {
 		width: calc(100% - 70px);
 		background-color: #FFF;
