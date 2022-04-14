@@ -25,7 +25,7 @@
 @media(max-width: 473px) {
 	.ContainerCadastraAnuncio form {
 		width: 90%;
-		height: 580px;
+		min-width: calc(100% - 10px);
 		background-color: #FFF;
 		padding: 20px;
 		border-radius: 6px;
@@ -54,7 +54,7 @@
 @media(max-width: 500px) {
 	.ContainerCadastraAnuncio form {
 		width: 80%;
-		height: 580px;
+		min-width: calc(100% - 30px);
 		background-color: #FFF;
 		padding: 20px;
 		border-radius: 6px;
@@ -75,7 +75,7 @@
 @media(max-width: 600px) {
 	.ContainerCadastraAnuncio form {
 		width: 70%;
-		height: 580px;
+		min-width: calc(100% - 50px);
 		background-color: #FFF;
 		padding: 20px;
 		border-radius: 6px;
@@ -154,8 +154,7 @@
 
 @media(max-width: 618px) {
 	.ContainerCadastraAnuncio form {
-		width: 60%;
-		height: 580px;
+		width: calc(100% - 70px);
 		background-color: #FFF;
 		padding: 20px;
 		border-radius: 6px;
@@ -224,6 +223,14 @@
 }
 
 @media(max-width: 812px) {
+	.ContainerCadastraAnuncio form {
+		width: calc(100% - 90px);
+		background-color: #FFF;
+		padding: 20px;
+		border-radius: 6px;
+		box-shadow: -2px 0px 13px #ccc;
+		margin-bottom: 40px;
+	}
 	.subtitulo{
 		width: 100%;
 		height: auto;
