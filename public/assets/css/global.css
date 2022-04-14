@@ -1375,6 +1375,26 @@ nav a:hover {
 
 	cursor: pointer;
 }
+.comentar .loading-button{
+	width: 90px;
+	height: 40px;
+
+	min-width: 90px;
+	min-height: 40px;
+
+	margin-left: 10px;
+	border-radius: 8px;
+}
+.resp-buttons-container .loading-button{
+	width: 90px;
+	height: 40px;
+
+	min-width: 90px;
+	min-height: 40px;
+
+	margin-left: 10px;
+	border-radius: 8px;
+}
 .modal {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
