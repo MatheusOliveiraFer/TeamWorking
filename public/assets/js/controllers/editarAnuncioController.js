@@ -103,6 +103,11 @@ projectEditor.addEventListener('submit', (e) => {
             videoAnuncio.style.border = '2px solid red'
             errorElement.innerText = "Recomendamos subir seu vídeo no Youtube"
         }
+        if(value.value != '' && isNaN(value.value)){
+            errors++
+            value.style.border = '2px solid red'
+            errorElement.innerText = "Valor inválido para o campo valor!"
+        }
         if(title.value.length > 40){
             errors++
             title.style.border = '2px solid red'

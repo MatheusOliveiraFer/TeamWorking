@@ -38,8 +38,7 @@ function anuncios_item(title, smallDescription, type, ownerName, city, uf, value
                 </div>
               </div>
               <div class="valor-dados">
-                <div class="info-valor">Valor</div>
-                <div class="valor">R$ ${value.toFixed(2).toString().replace('.', ',')}</div>
+                ${value ? `<div class="info-valor">Valor:</div><div class="valor">R$${value.toFixed(2).toString().replace('.', ',')}</div></div>` : ''}
               </div>
             </div>
           </div>`
