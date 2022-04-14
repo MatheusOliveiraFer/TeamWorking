@@ -20,15 +20,31 @@ if(!projectID){
 function open_modal(url){
     background_modal.innerHTML = `<div class="modal-image-container">
                                     <img class="modal-image" src="${url}">
-                                      <div class="modal-close-button" onclick="document.getElementById('background-of-modal').style.display = 'none'">X</div>
+                                      <div class="modal-close-button" onclick="close_modal()">X</div>
                                   </div>`
 
     background_modal.style.display = 'flex'
 
-    let comment = document.getElementByClassName('comentarios')
+    let comments = document.getElementsByClassName('comentarios')
+    let ft_comments = document.getElementsByClassName('ft-detalhe')
 
-    
+    for(i=0; i<comments.length; i++) {
+        comments[i].style.position = 'static';
+        ft_comments[i].style.position = 'static';
+    }
 }
+
+function close_modal(){
+    document.getElementById('background-of-modal').style.display = 'none'
+  
+    let comments = document.getElementsByClassName('comentarios')
+    let ft_comments = document.getElementsByClassName('ft-detalhe')
+
+    for(i=0; i<comments.length; i++) {
+        comments[i].style.position = 'relative';
+        ft_comments[i].style.position = 'relative';
+    }
+  }
 
 enviarComentario.addEventListener('click', function(e){
     enviarComentario.style.display = 'none'

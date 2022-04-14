@@ -309,8 +309,6 @@ nav a:hover {
 	align-items: center;
 
 	display: none;
-
-	z-index: 2;
 }
 .modal-image-container{
 	max-width: max-content;
