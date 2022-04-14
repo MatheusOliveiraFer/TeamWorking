@@ -2,6 +2,7 @@ const textComentar = document.getElementById('text-comentar')
 const enviarComentario = document.getElementById('enviar-comentario')
 const comments_container = document.getElementById('comentarios-container')
 const loading_button = document.getElementById('loading-button')
+const background_modal = document.getElementById('background-of-modal')
 comments_container.innerHTML = ''
 
 const queryString = window.location.search;
@@ -14,6 +15,15 @@ if(!projectID){
     document.location.replace('/meusanuncios/index.html')
 }else{
     tw.init('user_exist', ["get_project_details", [projectID]])
+}
+
+function open_modal(url){
+    background_modal.innerHTML = `<div class="modal-image-container">
+                                    <img class="modal-image" src="${url}">
+                                      <div class="modal-close-button" onclick="document.getElementById('background-of-modal').style.display = 'none'">X</div>
+                                  </div>`
+
+    background_modal.style.display = 'flex'
 }
 
 enviarComentario.addEventListener('click', function(e){

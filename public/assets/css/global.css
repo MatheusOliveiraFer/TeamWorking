@@ -253,7 +253,7 @@ nav a:hover {
 	border: 2px solid #2699d3;
 	border-radius: 10px;
 }
-.video-box :hover{
+.video-box:hover{
 	opacity: 0.5;
 }
 .play-button{
@@ -1061,8 +1061,8 @@ nav a:hover {
 	margin-right: 5px;
 }
 .lista-imagem-detalhe .video-box .play-button{
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 }
 .lista-imagem-detalhe .imagem1{
 	width: 200px;
