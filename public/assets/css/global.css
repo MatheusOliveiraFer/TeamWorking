@@ -1168,14 +1168,14 @@ nav a:hover {
 	font-family: Arial, Helvetica, sans-serif;
 }
 .valor-dados-detalhe{
-	width: 50%;
+	width: 0%;
 	height: 100%;
 	display: flex;
 	padding-right: 90px;
 	justify-content: flex-end;
 	align-items: center;
 }
-.info-valor-detalhe{
+/* .info-valor-detalhe{
 	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 550;
@@ -1184,7 +1184,7 @@ nav a:hover {
 .valor-detalhe{
 	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
-}
+} */
 .container-comentario{
 	width: 100%;
 	height: max-content;
