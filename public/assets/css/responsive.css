@@ -189,8 +189,9 @@
 
 		font-size: 15px;
 	}
-	.anuncio-detalhe .lista-imagem-detalhe{
+	.anuncio-detalhe .lista-imagem-detalhe-box{
 		width: calc(100% - 20px);
+		max-width: calc(100% - 20px);
 	}
 	.info-criador-detalhe{
 		padding-left: 20px;

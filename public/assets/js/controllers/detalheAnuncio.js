@@ -24,6 +24,10 @@ function open_modal(url){
                                   </div>`
 
     background_modal.style.display = 'flex'
+
+    let comment = document.getElementByClassName('comentarios')
+
+    
 }
 
 enviarComentario.addEventListener('click', function(e){
