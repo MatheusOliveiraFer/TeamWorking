@@ -25,6 +25,8 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
     loading = document.getElementById('loading-button_modal')
 }
 
+tw.init('user_exist', ['login'])
+
 signUp.addEventListener('submit', (e) => {
     enviar.style.display = 'none'
     loading.style.display = 'flex'

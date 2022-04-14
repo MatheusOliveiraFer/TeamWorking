@@ -50,6 +50,7 @@
 		align-items: center;
 	}
 }
+
 @media(max-width: 500px) {
 	.ContainerCadastraAnuncio form {
 		width: 80%;
@@ -70,7 +71,6 @@
 		padding-left: 30px;
 	}
 }
-
 
 @media(max-width: 600px) {
 	.ContainerCadastraAnuncio form {
@@ -222,6 +222,7 @@
 		width: calc(100% - 20px);
 	}
 }
+
 @media(max-width: 812px) {
 	.subtitulo{
 		width: 100%;
@@ -230,8 +231,6 @@
 
 		overflow-x: hidden;
 		overflow-y: hidden;
-
-		word-break: break-all;
 
 		padding: 0px;
 		padding-left: 20px;
@@ -248,8 +247,8 @@
 		justify-content: center;
 		align-items: center;
 	}
-
 }
+
 @media(max-width: 1015px) {
 	.info-dados {
 		width: 100%;
@@ -258,9 +257,7 @@
 		width: 160px;
 		height: 25px;
 	}
-	
 }
-
 
 /* Tela de Meu Perfil */
 
@@ -294,7 +291,7 @@
 
 	.perfil-box{
 		width: 65%;
-		height: 50%;
+		height: 65%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -306,10 +303,22 @@
 		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
 		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
+	.avatar-ft{
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+	}
 	.avatar{
 		width: 120px;
 		height: 120px;
 		border-radius: 50%;
+	}
+	.avatar_image_icon{
+		width: 120px;
+		height: 120px;
+		border-radius: 50%;
+
+		margin-left: -120px;
 	}
 	.botao-voltar-perfil{
 		width: 110px;
@@ -332,7 +341,7 @@
 
 	.perfil-box{
 		width: 82%;
-		height: 70%;
+		height: 65%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -344,10 +353,22 @@
 		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
 		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
+	.avatar-ft{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+	}
 	.avatar{
 		width:90px;
 		height: 90px;
 		border-radius: 50%;
+	}
+	.avatar_image_icon{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+
+		margin-left: -90px;
 	}
 	.dados-perfil div{
 		width:100%;
@@ -395,7 +416,7 @@
 	}
 	.perfil-box{
 		width: 100%;
-		height: 60%;
+		height: 65%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -407,10 +428,22 @@
 		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
 		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
+	.avatar-ft{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+	}
 	.avatar{
 		width:90px;
 		height: 90px;
 		border-radius: 50%;
+	}
+	.avatar_image_icon{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+
+		margin-left: -90px;
 	}
 	.dados-perfil div{
 		width:100%;
@@ -488,10 +521,22 @@
 		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
 		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
+	.avatar-ft{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+	}
 	.avatar{
 		width:90px;
 		height: 90px;
 		border-radius: 50%;
+	}
+	.avatar_image_icon{
+		width:90px;
+		height: 90px;
+		border-radius: 50%;
+
+		margin-left: -90px;
 	}
 	.dados-perfil div{
 		width:100%;
