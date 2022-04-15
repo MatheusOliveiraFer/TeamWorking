@@ -7,6 +7,26 @@ anuncioContainer.style.padding = '0px'
 
 tw.init('user_exist',['get_all_project_user'])
 
+function dropboxOpen(id){
+  if(dropdownButton){
+    let dropdown_button = document.getElementById(`dropdown-button-${dropdownButton}`)
+    document.getElementById(`dropdown-list-${dropdownButton}`).style.display = 'none'
+          
+    dropdown_button.style.borderBottomLeftRadius = "20px"
+    dropdown_button.style.borderBottomRightRadius = "20px"
+    dropdown_button.innerHTML = "..."
+  }
+
+  dropdownButton = id
+  let dropdown_button = document.getElementById(`dropdown-button-${dropdownButton}`)
+
+  document.getElementById(`dropdown-list-${id}`).style.display = 'block'
+
+  dropdown_button.style.borderBottomLeftRadius = "0px"
+  dropdown_button.style.borderBottomRightRadius = "0px"
+  dropdown_button.innerHTML = "-"
+}
+
 function open_modal(url){
     background_modal.innerHTML = `<div class="modal-image-container">
                                     <img class="modal-image" src="${url}">
@@ -38,26 +58,6 @@ function confirmDelete(title, id){
     if (r == true){
       tw.init('user_exist',['project_remove',[id]])
     }
-}
-
-function dropboxOpen(id){
-  if(dropdownButton){
-    let dropdown_button = document.getElementById(`dropdown-button-${dropdownButton}`)
-    document.getElementById(`dropdown-list-${dropdownButton}`).style.display = 'none'
-          
-    dropdown_button.style.borderBottomLeftRadius = "20px"
-    dropdown_button.style.borderBottomRightRadius = "20px"
-    dropdown_button.innerHTML = "..."
-  }
-
-  dropdownButton = id
-  let dropdown_button = document.getElementById(`dropdown-button-${dropdownButton}`)
-
-  document.getElementById(`dropdown-list-${id}`).style.display = 'block'
-
-  dropdown_button.style.borderBottomLeftRadius = "0px"
-  dropdown_button.style.borderBottomRightRadius = "0px"
-  dropdown_button.innerHTML = "-"
 }
 
 
