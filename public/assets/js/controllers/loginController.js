@@ -5,12 +5,6 @@ const errorElement = document.getElementById('errorElement')
 const enviar = document.getElementById('enviar')
 const loading = document.getElementById('loading-button')
 
-// var userID = cookieAccess.valor('userID')
-
-// if(userID){
-//     document.location.replace('/cadastro/Home.html')
-// }
-
 tw.init('user_exist', ['login'])
 
 signIn.addEventListener('submit', (e) => {

@@ -253,7 +253,7 @@ nav a:hover {
 	border: 2px solid #2699d3;
 	border-radius: 10px;
 }
-.video-box :hover{
+.video-box:hover{
 	opacity: 0.5;
 }
 .play-button{
@@ -542,21 +542,23 @@ nav a:hover {
 }
 
 .ContainerCadastraAnuncio form {
-	width: 50%;
-	height: 680px;
+	width: 60%;
+	height: max-content;
 	background-color: #FFF;
 	padding: 20px;
 	border-radius: 6px;
 	box-shadow: -2px 0px 13px #ccc;
 	margin-bottom: 40px;
-
-
 }
 
 .ContainerCadastraAnuncio .TipoAnuncio {
 	display: flex;
 	flex-direction: column;
 	margin: 5px 0;
+}
+.ContainerCadastraAnuncio label{
+	margin-top: 10px;
+	margin-bottom: 5px;
 }
 .ContainerCadastraAnuncio .TipoAnuncio input {
 	height: 40px;
@@ -599,6 +601,9 @@ nav a:hover {
 .image_button_cadastro_anuncio{
 	width: 60px;
 	height: 60px;
+
+	min-width: 60px;
+	min-height: 60px;
 
 	margin-right: 10px;
 	border-radius: 5px;
@@ -1021,9 +1026,10 @@ nav a:hover {
 .anuncio-detalhe .subtitulo{
 	width: 100%;
 	height: max-content;
-	max-width: 100vw;
+	max-width: 100%;
 
 	overflow-x: hidden;
+	overflow-wrap: break-word;
 	
 	padding: 25px 90px;
 
@@ -1034,18 +1040,27 @@ nav a:hover {
 	font-size: 17px;
 	font-family: Arial, Helvetica, sans-serif;
 }
-.anuncio-detalhe .lista-imagem-detalhe{
-	width: calc(100% - 180px);
+.anuncio-detalhe .lista-imagem-detalhe-box{
+	width: 100%;
+	height: 100%;
+
+	max-width: (100% - 180px);
+
+	display: flex;
+	justify-content: center;
+}
+.lista-imagem-detalhe-box .lista-imagem-detalhe{
+	width: max-content;
 	height: max-content;
 	display: flex;
 	flex-direction: row;
 
-	/* background-color: red; */
+	max-width: (100% - 180px);
 
-	overflow-x: scroll;
+	overflow-x: auto;
 	overflow-y: hidden;
 
-	justify-content: space-around;
+	justify-content: space-between;
 
 	margin-bottom: 40px;
 }
@@ -1054,10 +1069,13 @@ nav a:hover {
 	height: 200px;
 	min-width: 200px;
 	min-height: 200px;
+
+	margin-left: 5px;
+	margin-right: 5px;
 }
 .lista-imagem-detalhe .video-box .play-button{
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 }
 .lista-imagem-detalhe .imagem1{
 	width: 200px;
@@ -1070,6 +1088,8 @@ nav a:hover {
 	justify-content: center;
 
 	cursor: pointer;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 .lista-imagem-detalhe .imagem1 .image_of_project{
 	width: 200px;
@@ -1097,6 +1117,8 @@ nav a:hover {
 	font-size: 14px;
 	font-weight: 550;
 	font-family: Arial, Helvetica, sans-serif;
+
+	background-color: red;
 }
 .txt-info-detalhe{	
 	/* background-color: red; */
@@ -1129,21 +1151,21 @@ nav a:hover {
 	width: 100%;
 	height: 12%;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 
 	margin-bottom: 40px;
+
+	/* background-color: red; */
 }
-.info-dados-detalhe{
-	width: 50%;
-	height: 100%;
-}
+
 .info-criador-detalhe{
 	width:100%;
 	height: 50%;
-	display: flex;
 	flex-direction: row;
 	padding-left: 90px;
-	align-items: center;
+
+	display: flex;
+	align-items: flex-start;
 }
 .info-proposta-detalhe{
 	padding-right: 4px;
@@ -1151,21 +1173,11 @@ nav a:hover {
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 550;
 }
-.info-loc-detalhe{
-	width:100%;
-	height: 50%;
-	display: flex;
-	padding-left: 90px;
-}
 .info-cidade-detalhe{
 	padding-right: 4px;
 	font-size: 14px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 550;
-}
-.loc-criador-detalhe{
-	font-size: 14px;
-	font-family: Arial, Helvetica, sans-serif;
 }
 .valor-dados-detalhe{
 	width: 0%;
@@ -1175,12 +1187,13 @@ nav a:hover {
 	justify-content: flex-end;
 	align-items: center;
 }
-/* .info-valor-detalhe{
+.info-valor-detalhe{
 	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 550;
 	padding-right: 4px;
 }
+/*
 .valor-detalhe{
 	font-size: 15px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -1257,6 +1270,9 @@ nav a:hover {
 
 	color: #000;
 	font-size: 15px;
+
+	display: flex;
+	align-items: center;
 }
 .remove-comentario{
 	width: 25px;
@@ -1357,10 +1373,10 @@ nav a:hover {
 	font-size: 17px;
 }
 .enviar-comentario{
-	width: 90px;
+	width: 40px;
 	height: 40px;
 
-	min-width: 90px;
+	min-width: 40px;
 	min-height: 40px;
 
 	margin-left: 10px;
@@ -1376,20 +1392,26 @@ nav a:hover {
 	cursor: pointer;
 }
 .comentar .loading-button{
-	width: 90px;
+	width: 40px;
 	height: 40px;
 
-	min-width: 90px;
+	min-width: 40px;
 	min-height: 40px;
 
 	margin-left: 10px;
 	border-radius: 8px;
 }
+.responder-button{
+	color: #2684DE;
+	font-weight: bold;
+
+	cursor: pointer;
+}
 .resp-buttons-container .loading-button{
-	width: 90px;
+	width: 40px;
 	height: 40px;
 
-	min-width: 90px;
+	min-width: 40px;
 	min-height: 40px;
 
 	margin-left: 10px;

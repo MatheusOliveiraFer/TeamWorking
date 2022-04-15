@@ -1,7 +1,7 @@
 function anuncios_item(title, smallDescription, type, ownerName, city, uf, value, id) {
   return `<div class="anuncio">
             <div class="txt-inicial">
-              <a href="##" style="color: #000">${title}</a>
+              <a href="##" style="color: #000" style="width: 100%">${title}</a>
             </div>
             <div class="subtitulo">
               ${smallDescription}
@@ -38,8 +38,7 @@ function anuncios_item(title, smallDescription, type, ownerName, city, uf, value
                 </div>
               </div>
               <div class="valor-dados">
-                <div class="info-valor">Valor</div>
-                <div class="valor">R$ ${value.toFixed(2).toString().replace('.', ',')}</div>
+                ${value ? `<div class="info-valor">Valor:</div><div class="valor">R$${value.toFixed(2).toString().replace('.', ',')}</div></div>` : ''}
               </div>
             </div>
           </div>`

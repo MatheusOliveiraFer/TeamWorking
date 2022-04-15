@@ -18,7 +18,7 @@ const project_database = {};
             imagens: [],
             tipo: type,
             linkVideo: linkVideo,
-            valor: parseFloat(valor),
+            valor: valor ? parseFloat(valor) : '',
             IDArmazenamento: storage_id,
             dataCriacao: Date.now()
         }
@@ -72,7 +72,7 @@ const project_database = {};
                             console.log("Um erro ocorreu ao tentar criar o projeto: ", erro)
 
                             loading.style.display = 'none'
-                            saveButton.style.display = 'flex'
+                            saveButton.style.display = 'inline'
                             errorElement.innerText = 'Erro interno, por favor tente novamente!'
 
                             error++
@@ -87,7 +87,7 @@ const project_database = {};
                 console.log('Ocorreu um erro ao tentar upar uma imagem')
 
                 loading.style.display = 'none'
-                saveButton.style.display = 'flex'
+                saveButton.style.display = 'inline'
                 errorElement.innerText = 'Erro interno, por favor tente novamente!'
 
                 arrayImageNames.forEach(item => {
@@ -504,6 +504,8 @@ const project_database = {};
                                         }).catch(function (e) {
                                             projectInfo.imagens.push('')
                                             image_executed++
+
+                                            console.log('Erro ao tentar upar imagem:',a)
                                         })
                                         imgNum++
                                     }
@@ -531,7 +533,7 @@ const project_database = {};
                                     projectInfo.titulo = title
                                     projectInfo.descricaoPequena = smallDescription
                                     projectInfo.descricaoCompleta = fullDescription
-                                    projectInfo.valor = parseFloat(value)
+                                    projectInfo.valor = value ? parseFloat(value) : ''
                                     projectInfo.linkVideo = video
                                     // projectInfo.imagens = projectInfo.imagens.sort()
 
@@ -543,11 +545,13 @@ const project_database = {};
 
                                         project_executed = true
                                     })
-                                        .catch(function (e) {
-                                            errorElement.innerText('Erro interno, por favor tente novamente!')
+                                    .catch(function (e) {
+                                        errorElement.innerText('Erro interno, por favor tente novamente!')
 
-                                            console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
-                                        })
+                                        console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
+
+
+                                    })
 
                                     project_executed = true
                                 } else {
@@ -600,7 +604,12 @@ const project_database = {};
                         document.getElementById('type').innerText = type
                         document.getElementById('ownerName').innerText = ownerData.nome
                         document.getElementById('ownerAddress').innerText = `${ownerData.cidade} - ${ownerData.uf}`
-                        document.getElementById('value').innerText = projectInfo.valor.toFixed(2).toString().replace('.', ',')
+
+                        if(projectInfo){
+                            document.getElementById('value').innerText = `R$${projectInfo.valor.toFixed(2).toString().replace('.', ',')}`
+                        }else{
+                            document.getElementById('value-label').style.display = 'none'
+                        }
 
                         let lista = document.getElementById('image-list')
 
@@ -670,19 +679,19 @@ const project_database = {};
                                                 comments_container.innerHTML +=`<div class="responder" id="responder_${gc}">
                                                                                     <div id="no_answer_box_${gc}" class="no_answer_box">
                                                                                         <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')" style="display: none">▶ Ver respostas</div>
-                                                                                        <div id="resp_${gc}" class="enviar-comentario" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'; document.getElementById('input_resp_${gc}').focus()">Responder</div>
+                                                                                        <div id="resp_${gc}" class="responder-button" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'; document.getElementById('input_resp_${gc}').focus()">Responder</div>
                                                                                     </div>
 
                                                                                     <div id="answers_box_${gc}" class="answers_box"></div>
                                                                                     <input id="input_resp_${gc}" type="text" class="text-comentar" style="display: none"/>
 
                                                                                     <div id="buttons_resp_${gc}" class="resp-buttons-container" style="display: none">
-                                                                                        <div id="button_answer_${gc}" class="enviar-comentario" onclick="send_answer('${gc}')">Enviar</div>
+                                                                                        <div id="button_answer_${gc}" class="enviar-comentario" onclick="send_answer('${gc}')">▶</div>
                                                                                         <div id="loading-button-${gc}" class="loading-button">
                                                                                             <img src="../assets/images/Loading.gif" class="loading"/>
                                                                                         </div>
 
-                                                                                        <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">Cancelar</div>
+                                                                                        <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">X</div>
                                                                                     </div>
                                                                                 </div>
                                                                                 `

@@ -56,6 +56,8 @@
           </div>
         </div>
       </header>
+      <div id="background-of-modal" class="background-of-modal"></div>
+
       <section class="anunciosDetalhe">
         <!-- <img id="anuncioLoading"class="anuncioLoading" src="/assets/images/Loading.gif"> -->
     
@@ -66,25 +68,13 @@
                   <a id="title" href="##" style="color: #000"></a>
                 </div>
                 <div id="fullDescription" class="subtitulo"></div>
-                <div id="image-list" class="lista-imagem-detalhe">
-                  <div class="imagem-detalhe"></div>
+                <div class="lista-imagem-detalhe-box">
+                  <div id="image-list" class="lista-imagem-detalhe"></div>
                 </div>
-                <!-- <div class="lista-imagem-modal-detalhe">
-                  <button id="myBtn" class="imagem-modal">Open Modal</button>
-                </div> -->
-                <div class="tipo-txt-detalhe">
-                  <!-- <div class="cont1-detalhe">
-                    <div class="tipo">Tipo:</div>
-                    <div class="txt-info-detalhe">Colaborador da equipe</div>
-                  </div> -->
-                  <div class="cont2-detalhe">
-                    <!-- <button class="button-voltar-detalhe">voltar</button> -->
-                  </div>
-                </div>
+
                 <div class="dados-publi-detalhe">
-                  <div class="info-dados-detalhe">
                     <div class="info-criador-detalhe">
-                      <div class="info-valor-detalhe">Valor:</div>
+                      <div id="value-label" class="info-valor-detalhe">Valor:</div>
                       <div id="value" class="valor-detalhe"></div>
                     </div>
                     <div class="info-criador-detalhe">
@@ -95,19 +85,16 @@
                       <div class="info-proposta-detalhe">Criador da proposta:</div>
                       <div id="ownerName"></div>
                     </div>
-                    <div class="info-loc-detalhe">
-                      <div class="info-cidade-detalhe">Cidade de atuação da proposta:</div>
-                      <div id="ownerAddress" class="loc-criador-detalhe"></div>
+                    <div class="info-criador-detalhe">
+                      <div class="info-proposta-detalhe">Cidade de atuação da proposta:</div>
+                      <div id="ownerAddress"></div>
                     </div>
-                  </div>
-                  <div class="valor-dados-detalhe">
-                  </div>
                 </div>
                 <div class="container-comentario">
                     <div class="text-titulo-comentario">Comentários</div>
                     <div class="comentar">
                       <input id="text-comentar" class="text-comentar" type="text" placeholder="Digite aqui suas dúvidas sobre o anúncio">
-                      <div id="enviar-comentario" class="enviar-comentario">Responder</div>
+                      <div id="enviar-comentario" class="enviar-comentario">▶</div>
 
                       <div id="loading-button" class="loading-button">
                         <img src="../assets/images/Loading.gif" class="loading"/>
@@ -116,9 +103,6 @@
                     <div id="comentarios-container" class="comentarios-cont">
                         
                     </div>
-                    <!-- <div class="cont-voltar-detalhe">
-                        <button class="botao-voltar-detalhe">Voltar</button>
-                    </div> -->
                 </div>
             </div>
         </div>
