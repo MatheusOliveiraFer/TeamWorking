@@ -151,11 +151,50 @@ const user_database = {};
     
                         user.update(user_info).then(function(){
                             console.log('Usuário atualizado com sucesso!')
-                            save_button.style.display = 'flex'
-                            loading.style.display = 'none'
-                            errorElement.innerText = 'Atualização feita com sucesso!'
-                            errorElement.style.color = 'green'
+
+                            const comments = firebase.database().ref('Comentarios')
+                            let comments_executed = false
+                            
+                            comments.on('value', (snapshot2) => {
+                                if(!comments_executed){
+                                    let commentsInfo = snapshot2.val()
+                                    let num = 0 //NUMERO DE ITERAÇÕES DO FOR
+                                    let count = 0 //NÚMERO DE UPDATES REALIZADOS
     
+                                    for(gc in commentsInfo){
+                                        if(commentsInfo[gc].usuarioID == userID){
+                                            commentsInfo[gc].usuarioNome == user_info.nome
+                                            commentsInfo[gc].usuarioImagem == URLimagem
+    
+                                            comments.child(gc).update(commentsInfo[gc]).then(function(e){
+                                                count++
+                                            })
+                                            .catch(function(e){
+                                                console.log("Ocorreu um erro ao tentar atualizar as informações do comentário",gc,e)
+                                            })
+
+                                            num++
+                                        }
+
+                                        function check(){
+                                            if(count == num){
+                                                save_button.style.display = 'flex'
+                                                loading.style.display = 'none'
+                                                errorElement.innerText = 'Atualização feita com sucesso!'
+                                                errorElement.style.color = 'green'
+                                            }else{
+                                                setTimeout(function(){
+                                                    check()
+                                                },500)
+                                            }
+                                        }
+
+                                        check()
+                                    }
+
+                                    comments_executed = true
+                                }
+                            })
                         }).catch(function(e){
                             save_button.style.display = 'flex'
                             loading.style.display = 'none'
