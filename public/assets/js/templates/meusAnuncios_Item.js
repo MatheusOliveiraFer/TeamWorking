@@ -2,7 +2,7 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
     return `<div class="anuncio">
       <div class="txt-inicial-editar">
         <div class="dropdown-button">
-          <p id="dropdown-button-${id}" class="dropdown-button-txt">...</p>
+          <p id="dropdown-button-${id}" class="dropdown-button-txt" onclick="dropboxOpen('${id}')">...</p>
           <div id="dropdown-list-${id}" class="dropdown-list">
             <p class="dropdown-item" onclick="document.location.replace('/detalheAnuncio/index.html?a=${id}')">Detalhes</p>
             <p class="dropdown-item" onclick="document.location.replace('/meusanuncios/EditarAnuncio.html?a=${id}')">Editar</p>
@@ -50,27 +50,5 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
       <div class="valor-dados">    
         ${value ? `<div class="info-valor">Valor:</div><div class="valor">R$${value.toFixed(2).toString().replace('.', ',')}</div></div>` : ''}
     </div>
-
-    <script>
-      ${
-        window.addEventListener('click', function(e){   
-          const dropdown_button = document.getElementById(`dropdown-button-${id}`)
-          
-          if (dropdown_button.contains(e.target)){
-            document.getElementById(`dropdown-list-${id}`).style.display = 'block'
-
-            dropdown_button.style.borderBottomLeftRadius = "0px"
-            dropdown_button.style.borderBottomRightRadius = "0px"
-            dropdown_button.innerHTML = "-"
-          } else{
-            document.getElementById(`dropdown-list-${id}`).style.display = 'none'
-          
-            dropdown_button.style.borderBottomLeftRadius = "20px"
-            dropdown_button.style.borderBottomRightRadius = "20px"
-            dropdown_button.innerHTML = "..."
-          }
-        })
-      }
-    </script>
   </div>`
 }
