@@ -291,7 +291,7 @@ const user_database = {};
                         cookieData = cookieData.toUTCString()
                         document.cookie = `userID=${userID};expires=${cookieData}; path=/;`
 
-                        document.location.replace('/cadastro/Home.html')
+                        document.location.replace('./cadastro/Home.html')
                     } else {
                         errorElement.innerHTML = `Usuário não confirmado, <a style="
                             cursor: pointer;
@@ -682,7 +682,7 @@ const user_database = {};
                     console.log(userInfo.nome)
 
                     if(action == 'login'){
-                        document.location.replace('/cadastro/Home.html')
+                        document.location.replace('./cadastro/Home.html')
                         console.log('Home')
                     }else{
                         console.log("tw.init")
