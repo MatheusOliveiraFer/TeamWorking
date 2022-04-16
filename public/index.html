@@ -15,12 +15,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
 
-    <script src="/assets/js/cookieAccess.js"></script>
+    <script src="./assets/js/cookieAccess.js"></script>
     
-    <script src="/assets/js/firebase.js" defer></script>
-    <script defer src="/assets/js/controllers/landingController.js"></script>
+    <script src="./assets/js/firebase.js" defer></script>
+    <script defer src="./assets/js/controllers/landingController.js"></script>
 
-    <script src="/assets/js/databases/user_database.js"></script>
+    <script src="./assets/js/databases/user_database.js"></script>
     <style>
         .mySlides {display:none;}
     </style>
@@ -48,8 +48,8 @@
                     <div class="rounded-md mt-2 p-1 pl-2 font-semibold">Oportunidades de investimentos, sociedades e parcerias.</div>
                 </div>
                 <div class="flex mt-3">
-                    <button class="flex-1 bg-blue-500 text-white p-2 pr-4 pl-4 mr-2 font-semibold rounded-md">Cadastre-se</button>
-                    <button class="flex-1 bg-green-500 text-white p-2 pr-4 pl-4 font-semibold rounded-md">Efetuar Login</button>
+                    <button class="flex-1 bg-blue-500 text-white p-2 pr-4 pl-4 mr-2 font-semibold rounded-md" onclick="window.location.href='./cadastro/index.html'">Cadastre-se</button>
+                    <button class="flex-1 bg-green-500 text-white p-2 pr-4 pl-4 font-semibold rounded-md" onclick="window.location.href='./login/index.html'">Efetuar Login</button>
                 </div>
             </div>
             <div class="area-right w-[58%] bg-[url('assets/images/img-section-1.jpeg')] bg-center bg-no-repeat bg-cover bg-left"></div>
@@ -119,8 +119,8 @@
         <div class="text-center font-bold text-[17px]">Divulgue, compartilhe, invista e cresça.</div>
         <div class="text-center font-bold text-[17px]">Fique visível para nossa base de investidores potencias!</div>
         <div>
-            <button class="bg-green-600 text-white rounded-md px-8 py-2 mt-2 min-w-[40%]" onclick="document.location.href = './login/index.html'">Login</button>
-            <button class="bg-blue-500 text-white rounded-md px-8 py-2 mt-2 min-w-[40%]" onclick="document.location.href = './cadastro/index.html'">Cadastre-se</button>
+            <button class="bg-green-600 text-white rounded-md px-8 py-2 mt-2 min-w-[40%]" onclick="window.location.href='/login/index.html'">Login</button>
+            <button class="bg-blue-500 text-white rounded-md px-8 py-2 mt-2 min-w-[40%]" onclick="document.location.href = '/cadastro/index.html'">Cadastre-se</button>
         </div>
     </div>
     <div class="lg:hidden w-full h-[40px] bg-green-100 flex flex-col items-center justify-center">
