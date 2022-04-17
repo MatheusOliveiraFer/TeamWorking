@@ -605,7 +605,7 @@ const project_database = {};
                         document.getElementById('ownerName').innerText = ownerData.nome
                         document.getElementById('ownerAddress').innerText = `${ownerData.cidade} - ${ownerData.uf}`
 
-                        if(projectInfo){
+                        if(projectInfo.valor){
                             document.getElementById('value').innerText = `R$${projectInfo.valor.toFixed(2).toString().replace('.', ',')}`
                         }else{
                             document.getElementById('value-label').style.display = 'none'

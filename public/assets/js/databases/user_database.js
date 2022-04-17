@@ -291,7 +291,7 @@ const user_database = {};
                         cookieData = cookieData.toUTCString()
                         document.cookie = `userID=${userID};expires=${cookieData}; path=/;`
 
-                        document.location.replace('./cadastro/Home.html')
+                        document.location.replace('/cadastro/Home.html')
                     } else {
                         errorElement.innerHTML = `Usuário não confirmado, <a style="
                             cursor: pointer;
@@ -635,11 +635,10 @@ const user_database = {};
                 document.getElementById('uf_input').value = get_user.uf
                 document.getElementById('city_input').value = get_user.cidade
 
-                if(get_user.image){
-                    document.getElementById('avatar-image').style.backgroundImage = `url('${get_user.image}')`
-                }
+                document.getElementById('avatar-image').style.backgroundImage = `url('${get_user.imagem}')`
+                
             
-                console.log(get_user.image)
+                console.log(get_user.imagem)
             }
             
             user_executed = true
@@ -682,7 +681,7 @@ const user_database = {};
                     console.log(userInfo.nome)
 
                     if(action == 'login'){
-                        document.location.replace('./cadastro/Home.html')
+                        document.location.replace('/cadastro/Home.html')
                         console.log('Home')
                     }else{
                         console.log("tw.init")

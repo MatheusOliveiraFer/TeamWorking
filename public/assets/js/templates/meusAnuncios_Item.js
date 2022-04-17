@@ -49,6 +49,7 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
               </div>
               <div class="valor-dados">    
                 ${value ? `<div class="info-valor">Valor:</div><div class="valor">R$${value.toFixed(2).toString().replace('.', ',')}</div></div>` : ''}
+              </div>  
             </div>
           </div>`
 }
