@@ -15,7 +15,7 @@ function anuncios_item(title, smallDescription, type, ownerName, city, uf, value
                 <div class="txt-info">${type}</div>
               </div>
               <div class="cont2">
-              <button class="button-detalhes"><a onclick="document.location.replace('/detalheAnuncio/?a=${id}')">Detalhe do Anúncio</a></button>
+              <button class="button-detalhes"><a onclick="document.location.replace('../detalheAnuncio/?a=${id}')">Detalhe do Anúncio</a></button>
               </div>
             </div>
             <div class="dados-publi">

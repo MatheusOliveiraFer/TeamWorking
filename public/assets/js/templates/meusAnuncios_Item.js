@@ -4,8 +4,8 @@ function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,i
                 <div class="dropdown-button">
                   <p id="dropdown-button-${id}" class="dropdown-button-txt" onclick="dropboxOpen('${id}')">...</p>
                   <div id="dropdown-list-${id}" class="dropdown-list">
-                    <p class="dropdown-item" onclick="document.location.replace('/detalheAnuncio/index.html?a=${id}')">Detalhes</p>
-                    <p class="dropdown-item" onclick="document.location.replace('/meusanuncios/EditarAnuncio.html?a=${id}')">Editar</p>
+                    <p class="dropdown-item" onclick="document.location.replace('../detalheAnuncio/index.html?a=${id}')">Detalhes</p>
+                    <p class="dropdown-item" onclick="document.location.replace('../meusanuncios/EditarAnuncio.html?a=${id}')">Editar</p>
                     <p id="dropdown-delete-${id}" class="dropdown-item" onclick="confirmDelete('${title}','${id}')">Excluir</p>
                   </div>
                 </div>
