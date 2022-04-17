@@ -123,12 +123,13 @@ const project_database = {};
                 // a.set("a","b")
 
                 for (let gp in get_projects) {
+
                     const user = firebase.database().ref("Usuarios").child(get_projects[gp].IDdono)
 
                     user.on('value', (snapshot) => {
                         ownerData = snapshot.val()
 
-                        if (get_projects[gp] && get_projects[gp].IDdono != userID && ownerData) {
+                        if (get_projects[gp] && ownerData) {
                             has = true
                             anuncioContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.76)'
 
