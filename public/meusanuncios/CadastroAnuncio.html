@@ -52,7 +52,7 @@
         <h1>Cadastrar Anúncio</h1>
         <form id="projectSender" method="post">
               <div class="TipoAnuncio">
-                <label>Tipo de Anúncio:</label>
+                <label>Tipo de Anúncio: <b style="color: red">*</b></label>
                 <select id="type">
                   <option value="1">Compra e venda de empresas e negócios</option>
                   <option value="2">Formação de Startups, projetos e vagas de emprego</option>
@@ -60,15 +60,15 @@
                 </select>
             </div>
             <div class="TipoAnuncio">
-                <label>Título de Anúncio:</label>
+                <label>Título de Anúncio: <b style="color: red">*</b></label>
                 <input id="title" type="text" placeholder="Insira o título do anúncio" />
             </div>
             <div class="TipoAnuncio">
-                <label>Breve descrição:</label>
+                <label>Breve descrição: <b style="color: red">*</b></label>
                 <textarea id="smallDescription" type="text" placeholder="Descrição que aparecerá na listagem do anúncio" style="resize: none;"></textarea>
             </div>
             <div class="TipoAnuncio">
-                <label>Apresentação completa: </label>
+                <label>Apresentação completa: <b style="color: red">*</b></label>
                 <textarea id="fullDescription" type="text" placeholder="Apresente em detalhes seu projeto" style="resize: none;"></textarea>
             </div>
             <div class="TipoAnuncio">
@@ -112,7 +112,8 @@
               
               <button id="save" type="submit">Salvar</button>
             </div>
-        </form>
+            <div style="position: relative; top: 10px"><b style="color: red">*</b> campos obrigatórios</div>
+          </form>
     </div>
   </body>
 </html>

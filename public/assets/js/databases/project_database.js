@@ -11,7 +11,7 @@ const project_database = {};
         const upload = firebase.storage().ref(`Project images/${storage_id}/`)
 
         let project_data = {
-            titulo: title.replace("'","´"),
+            titulo: title.replace("'", "´").replace('"', "´"),
             IDdono: ownerID,
             descricaoPequena: smallDescription,
             descricaoCompleta: fullDescription,
@@ -118,7 +118,7 @@ const project_database = {};
             if (!project_executed) {
 
                 let get_projects = snapshot.val();
-                
+
                 // let a = new Map()
                 // a.set("a","b")
 
@@ -133,7 +133,7 @@ const project_database = {};
                             has = true
                             anuncioContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.76)'
 
-                            if(document.getElementById('text_sem_anuncio')){
+                            if (document.getElementById('text_sem_anuncio')) {
                                 document.getElementById('text_sem_anuncio').remove()
                             }
 
@@ -149,7 +149,7 @@ const project_database = {};
 
                             let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
-                            if(get_projects[gp].descricaoPequena.length > 140){
+                            if (get_projects[gp].descricaoPequena.length > 140) {
                                 descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
                             }
                             anuncioContainer.innerHTML += anuncios_item(get_projects[gp].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[gp].valor, gp)
@@ -283,7 +283,7 @@ const project_database = {};
 
                             let descricaoPequenaResumida = get_projects[gp].descricaoPequena
 
-                            if(get_projects[gp].descricaoPequena.length > 140){
+                            if (get_projects[gp].descricaoPequena.length > 140) {
                                 descricaoPequenaResumida = `${get_projects[gp].descricaoPequena.substring(0, 140)}...`
                             }
 
@@ -386,11 +386,11 @@ const project_database = {};
         let project_executed = false
 
         project.on('value', (snapshot) => {
-            if(!project_executed){
+            if (!project_executed) {
                 projectInfo = snapshot.val()
-    
+
                 console.log(projectInfo)
-    
+
                 if (projectInfo) {
                     if (projectInfo.IDdono == userID) {
                         document.getElementById('projectEditor').style.display = 'inline'
@@ -400,20 +400,20 @@ const project_database = {};
                         document.getElementById('fullDescription').value = projectInfo.descricaoCompleta
                         document.getElementById('value').value = projectInfo.valor
                         document.getElementById('videoAnuncio').value = projectInfo.linkVideo
-    
+
                         let index = 0
-    
+
                         if (projectInfo.imagens) {
                             projectInfo.imagens.forEach(item => {
                                 var image_path = item.lastIndexOf(userID)
                                 image_path = item.substring(image_path)
                                 image_path = image_path.split('?')
                                 image_path = image_path[0]
-    
+
                                 images_array.push({ fileName: image_path, url: item })
-    
+
                                 let image_slot = document.getElementById(`image_box_${index}`)
-    
+
                                 image_slot.innerHTML = `<div>
                                                             <img id="image-${index}-trash" class="trash" src="/assets/images/lixeira.png"/>
                                                             <img id="image-${index}" 
@@ -428,7 +428,7 @@ const project_database = {};
                                                             
                                                             <img id="image-${index}-loading" class="image_loading_box"/>
                                                         </div>`
-    
+
                                 index++
                             })
                         }
@@ -449,27 +449,27 @@ const project_database = {};
 
         let project_executed = false
         project.on('value', (snapshot) => {
-            if(!project_executed){
+            if (!project_executed) {
                 const projectInfo = snapshot.val()
-    
-                if(projectInfo && userID == projectInfo.IDdono){
-                    project.remove().then(function(){
+
+                if (projectInfo && userID == projectInfo.IDdono) {
+                    project.remove().then(function () {
                         const comments = firebase.database().ref("Comentarios")
-    
+
                         let num = 0 //NÚMERO DE COMENTÁRIOS SELECIONADOS PARA EXCLUSÃO
                         let count = 0 //NÚMERO DE COMENTÁRIOS EXCLUÍDOS
 
                         let comment_executed = false
-    
+
                         comments.on('value', (snapshot2) => {
                             if (!comment_executed) {
                                 const commentInfo = snapshot2.val()
-    
+
                                 for (c in commentInfo) {
                                     if (commentInfo[c].projetoID == projectID) {
                                         const comment = firebase.database().ref("Comentarios").child(c)
                                         num++
-    
+
                                         comment.remove().then(function (msg) {
                                             console.log("Comentário excluído", msg)
                                             count++
@@ -477,42 +477,42 @@ const project_database = {};
                                             console.log("Ocorreu um erro ao tentar excluir a resposta:", e)
                                             count++
                                         })
-    
+
                                         console.log("Excluido resposta:", commentInfo[c].conteudo)
                                     }
                                 }
-    
-                                function check(){
-                                    if(num == count){
+
+                                function check() {
+                                    if (num == count) {
                                         const imageStorage = firebase.storage().ref(`Project images/${projectInfo.IDArmazenamento}/`)
 
                                         let deletes = 0
-                                        
-                                        imageStorage.child(`${projectInfo.IDdono}_0`).delete().then(function(){deletes++}).catch(function(){deletes++})
-                                        imageStorage.child(`${projectInfo.IDdono}_1`).delete().then(function(){deletes++}).catch(function(){deletes++})
-                                        imageStorage.child(`${projectInfo.IDdono}_2`).delete().then(function(){deletes++}).catch(function(){deletes++})
-                                        imageStorage.child(`${projectInfo.IDdono}_3`).delete().then(function(){deletes++}).catch(function(){deletes++})
 
-                                        function deleteCompleted(){
-                                            if(deletes == 4){
+                                        imageStorage.child(`${projectInfo.IDdono}_0`).delete().then(function () { deletes++ }).catch(function () { deletes++ })
+                                        imageStorage.child(`${projectInfo.IDdono}_1`).delete().then(function () { deletes++ }).catch(function () { deletes++ })
+                                        imageStorage.child(`${projectInfo.IDdono}_2`).delete().then(function () { deletes++ }).catch(function () { deletes++ })
+                                        imageStorage.child(`${projectInfo.IDdono}_3`).delete().then(function () { deletes++ }).catch(function () { deletes++ })
+
+                                        function deleteCompleted() {
+                                            if (deletes == 4) {
                                                 document.location.reload()
-                                            }else{
-                                                setTimeout(function(){
+                                            } else {
+                                                setTimeout(function () {
                                                     deleteCompleted()
-                                                },250)
+                                                }, 250)
                                             }
                                         }
 
                                         deleteCompleted()
-                                    }else{
-                                        setTimeout(function(){
+                                    } else {
+                                        setTimeout(function () {
                                             check()
-                                        },500)
+                                        }, 500)
                                     }
                                 }
-    
+
                                 check()
-    
+
                                 comment_executed = true
                             }
                         })
@@ -581,7 +581,7 @@ const project_database = {};
                                         projectInfo.imagens.push('')
                                         image_executed++
 
-                                        console.log('Erro ao tentar upar imagem:',a,e)
+                                        console.log('Erro ao tentar upar imagem:', a, e)
                                     })
                                     imgNum++
                                 }
@@ -606,7 +606,7 @@ const project_database = {};
                                     console.log("Array final:", projectInfo.imagens)
 
                                     projectInfo.tipo = type
-                                    projectInfo.titulo = title.replace("'","´")
+                                    projectInfo.titulo = title.replace("'", "´").replace('"', "´"),
                                     projectInfo.descricaoPequena = smallDescription
                                     projectInfo.descricaoCompleta = fullDescription
                                     projectInfo.valor = value ? parseFloat(value) : ''
@@ -620,13 +620,13 @@ const project_database = {};
 
                                         project_executed = true
                                     })
-                                    .catch(function (e) {
-                                        errorElement.innerText('Erro interno, por favor tente novamente!')
+                                        .catch(function (e) {
+                                            errorElement.innerText('Erro interno, por favor tente novamente!')
 
-                                        console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
+                                            console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
 
-                                        project_executed = true
-                                    })
+                                            project_executed = true
+                                        })
 
                                 } else {
                                     setTimeout(function () {
@@ -658,48 +658,48 @@ const project_database = {};
             if (!project_executed) {
                 let projectInfo = snapshot.val()
 
-                if(projectInfo){
+                if (projectInfo) {
                     const user = firebase.database().ref("Usuarios").child(projectInfo.IDdono)
                     const comments = firebase.database().ref("Comentarios")
-    
+
                     user.on('value', (snapshot2) => {
                         if (!user_executed) {
                             ownerData = snapshot2.val()
-    
+
                             let type = ''
-    
+
                             switch (projectInfo.tipo) {
                                 case '1': type = 'Compra e venda de empresas e negócios'; break;
                                 case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
                                 case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                             }
-    
+
                             document.getElementById('title').innerText = projectInfo.titulo
                             document.getElementById('fullDescription').innerText = projectInfo.descricaoCompleta
                             document.getElementById('type').innerText = type
                             document.getElementById('ownerName').innerText = ownerData.nome
                             document.getElementById('ownerAddress').innerText = `${ownerData.cidade} - ${ownerData.uf}`
-    
-                            if(projectInfo.valor){
+
+                            if (projectInfo.valor) {
                                 document.getElementById('value').innerText = `R$${projectInfo.valor.toFixed(2).toString().replace('.', ',')}`
-                            }else{
+                            } else {
                                 document.getElementById('value-label').style.display = 'none'
                             }
-    
+
                             let lista = document.getElementById('image-list')
-    
+
                             //ADIÇÃO DE VÍDEO
                             if (projectInfo.linkVideo) {
                                 lista.innerHTML += `<div class="video-box">
                                                         <img class="play-button" src="/assets/images/play.png" onclick='window.open("${projectInfo.linkVideo}")'
                                                     </div>`
                             }
-    
+
                             //ADIÇÃO DE IMAGENS
                             if (projectInfo.imagens) {
                                 if (projectInfo.imagens[0] && projectInfo.imagens[0].lastIndexOf('deleted') == -1) {
                                     imageID = `imagem_${projectID}_0`
-    
+
                                     lista.innerHTML += `<div class="imagem1">
                                         <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                         <img src="${projectInfo.imagens[0]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[0]}')">
@@ -707,7 +707,7 @@ const project_database = {};
                                 }
                                 if (projectInfo.imagens[1] && projectInfo.imagens[1].lastIndexOf('deleted') == -1) {
                                     imageID = `imagem_${projectID}_1`
-    
+
                                     lista.innerHTML += `<div class="imagem1">
                                         <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                         <img src="${projectInfo.imagens[1]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[1]}')">
@@ -715,7 +715,7 @@ const project_database = {};
                                 }
                                 if (projectInfo.imagens[2] && projectInfo.imagens[2].lastIndexOf('deleted') == -1) {
                                     imageID = `imagem_${projectID}_2`
-    
+
                                     lista.innerHTML += `<div class="imagem1">
                                         <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                         <img src="${projectInfo.imagens[2]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[2]}')">
@@ -723,28 +723,29 @@ const project_database = {};
                                 }
                                 if (projectInfo.imagens[3] && projectInfo.imagens[3].lastIndexOf('deleted') == -1) {
                                     imageID = `imagem_${projectID}_3`
-    
+
                                     lista.innerHTML += `<div class="imagem1">
                                         <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
                                         <img src="${projectInfo.imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[3]}')">
                                     </div>`
                                 }
-    
-                                let comment_executed = false
-    
-                                comments.on('value', (snapshot3) => {
-                                    if(!comment_executed){
-                                        const comments_container = document.getElementById('comentarios-container')
-                                        comments_container.innerHTML = ''
-        
-                                        let commentInfo = snapshot3.val()
-        
-                                        console.log(commentInfo)
-        
-                                        if(commentInfo){
-                                            for(gc in commentInfo){
-                                                if(commentInfo[gc].projetoID == projectID && !commentInfo[gc].respostaDe){
-                                                    comments_container.innerHTML += `<div class="comentarios">
+                            }
+
+                            let comment_executed = false
+
+                            comments.on('value', (snapshot3) => {
+                                if (!comment_executed) {
+                                    const comments_container = document.getElementById('comentarios-container')
+                                    comments_container.innerHTML = ''
+
+                                    let commentInfo = snapshot3.val()
+
+                                    console.log(commentInfo)
+
+                                    if (commentInfo) {
+                                        for (gc in commentInfo) {
+                                            if (commentInfo[gc].projetoID == projectID && !commentInfo[gc].respostaDe) {
+                                                comments_container.innerHTML += `<div class="comentarios">
                                                                                         <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
                                                                                         <div class="cont-comentario-detalhe">
                                                                                             <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
@@ -752,9 +753,9 @@ const project_database = {};
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>`
-            
-                                                    if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
-                                                        comments_container.innerHTML +=`<div class="responder" id="responder_${gc}">
+
+                                                if (projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID) {
+                                                    comments_container.innerHTML += `<div class="responder" id="responder_${gc}">
                                                                                             <div id="no_answer_box_${gc}" class="no_answer_box">
                                                                                                 <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')" style="display: none">▶ Ver respostas</div>
                                                                                                 <div id="resp_${gc}" class="responder-button" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'; document.getElementById('input_resp_${gc}').focus()">Responder</div>
@@ -773,9 +774,9 @@ const project_database = {};
                                                                                             </div>
                                                                                         </div>
                                                                                         `
-                                                    }
-                                                    if(projectInfo.IDdono != userID){
-                                                        comments_container.innerHTML +=`<div class="responder" id="responder_${gc}" style="display: none">
+                                                }
+                                                if (projectInfo.IDdono != userID) {
+                                                    comments_container.innerHTML += `<div class="responder" id="responder_${gc}" style="display: none">
                                                                                             <div id="no_answer_box_${gc}" class="no_answer_box">
                                                                                                 <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')">▶ Ver respostas</div>
                                                                                             </div>
@@ -783,25 +784,25 @@ const project_database = {};
                                                                                             <div id="answers_box_${gc}" class="answers_box"></div>
                                                                                         </div>
                                                                                         `
-                                                    }
-        
-                                                    if( document.getElementById(`answers_box_${gc}`)){
-                                                        document.getElementById(`answers_box_${gc}`).innerHTML = ''
-                                                    }
-        
-                                                }else if(commentInfo[gc].projetoID == projectID && commentInfo[gc].respostaDe){
-                                                    const answers_box = document.getElementById(`answers_box_${commentInfo[gc].respostaDe}`)
-        
-                                                    if(document.getElementById(`responder_${commentInfo[gc].respostaDe}`) && document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`) && document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`)){
-                                                        document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                                        document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
-                                                        document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                                        document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
-                                                        document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                                    }
-        
-                                                    if(answers_box){
-                                                        answers_box.innerHTML += `<div class="comentarios" style="width:100%">
+                                                }
+
+                                                if (document.getElementById(`answers_box_${gc}`)) {
+                                                    document.getElementById(`answers_box_${gc}`).innerHTML = ''
+                                                }
+
+                                            } else if (commentInfo[gc].projetoID == projectID && commentInfo[gc].respostaDe) {
+                                                const answers_box = document.getElementById(`answers_box_${commentInfo[gc].respostaDe}`)
+
+                                                if (document.getElementById(`responder_${commentInfo[gc].respostaDe}`) && document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`) && document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`)) {
+                                                    document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                    document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
+                                                    document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                    document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
+                                                    document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                }
+
+                                                if (answers_box) {
+                                                    answers_box.innerHTML += `<div class="comentarios" style="width:100%">
                                                                                     <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
                                                                                     <div class="cont-comentario-detalhe">
                                                                                         <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
@@ -809,25 +810,24 @@ const project_database = {};
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>`
-                                                    }
-        
                                                 }
-        
-                                                if(document.getElementById(`text-comentario-${gc}`) && commentInfo[gc].usuarioID == userID){
-                                                    document.getElementById(`text-comentario-${gc}`).innerHTML += `<div class="remove-comentario" onclick="removeComment('${gc}')"></div>`
-                                                }
+
+                                            }
+
+                                            if (document.getElementById(`text-comentario-${gc}`) && commentInfo[gc].usuarioID == userID) {
+                                                document.getElementById(`text-comentario-${gc}`).innerHTML += `<div class="remove-comentario" onclick="removeComment('${gc}')"></div>`
                                             }
                                         }
-    
-                                        comment_executed = true
                                     }
-                                })
-                            }
+
+                                    comment_executed = true
+                                }
+                            })
                             user_executed = true
                         }
                     })
                     project_executed = true
-                }else{
+                } else {
                     document.location.replace('/cadastro/Home.html')
                 }
             }

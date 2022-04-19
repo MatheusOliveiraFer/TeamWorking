@@ -171,19 +171,40 @@ const comments_database = {};
                             if (!answer_executed) {
                                 const answerInfo = snapshot2.val()
 
+                                let count = 0 //NÚMERO DE RESPOSTAS SELECIONADAS PARA EXCLUSÃO
+                                let removed = 0 //NUMERO DE REMOVEs EXECUTADOS
+
                                 for (a in answerInfo) {
                                     if (answerInfo[a].respostaDe && answerInfo[a].respostaDe == commentID) {
                                         const answer = firebase.database().ref("Comentarios").child(a)
 
+                                        count++
+
                                         answer.remove().then(function (msg) {
                                             console.log("Resposta excluída", msg)
+
+                                            removed++
                                         }).catch(function (e) {
                                             console.log("Ocorreu um erro ao tentar excluir a resposta:", e)
+
+                                            removed++
                                         })
 
                                         console.log("Excluido resposta:", answerInfo[a].conteudo)
                                     }
                                 }
+
+                                function check(){
+                                    if(count == removed){
+                                        document.location.reload()
+                                    }else{
+                                        setTimeout(function(){
+                                            check()
+                                        },250)
+                                    }
+                                }
+
+                                check()
 
                                 answer_executed = true
                             }

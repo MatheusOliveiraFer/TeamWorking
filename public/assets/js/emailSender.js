@@ -34,11 +34,21 @@ const emailSend = {};
 
         console.log(emailParams)
 
-        emailjs.send('service_ke3c08o','template_r9eieqb',emailParams).then(function(res){
-            console.log(res)
-
-            document.location.reload()
-        })
+        // try{
+            emailjs.send('service_ke3c08o','template_r9eieqb',emailParams).then(function(res){
+                console.log(res)
+    
+                document.location.reload()
+            }).catch(function(){
+                console.log(res)
+    
+                document.location.reload()
+            })
+        // }catch(e){
+        //     console.log(e)
+    
+        //     document.location.reload()
+        // }
     }
 
     emailSend.password = passwordRecover
