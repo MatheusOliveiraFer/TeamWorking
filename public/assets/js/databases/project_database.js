@@ -441,14 +441,60 @@ const project_database = {};
 
         const project = firebase.database().ref("Projetos").child(projectID)
 
+        let project_executed = false
         project.on('value', (snapshot) => {
-            const projectInfo = snapshot.val()
+            if(!project_executed){
+                const projectInfo = snapshot.val()
+    
+                if(projectInfo && userID == projectInfo.IDdono){
+                    project.remove().then(function(){
+                        const comments = firebase.database().ref("Comentarios")
+    
+                        let num = 0 //NÚMERO DE COMENTÁRIOS SELECIONADOS PARA EXCLUSÃO
+                        let count = 0 //NÚMERO DE COMENTÁRIOS EXCLUÍDOS
 
-            if(userID == projectInfo.IDdono){
-                project.remove()
-                document.location.reload()
+                        let comment_executed = false
+    
+                        comments.on('value', (snapshot2) => {
+                            if (!comment_executed) {
+                                const commentInfo = snapshot2.val()
+    
+                                for (c in commentInfo) {
+                                    if (commentInfo[c].projetoID == projectID) {
+                                        const comment = firebase.database().ref("Comentarios").child(c)
+                                        num++
+    
+                                        comment.remove().then(function (msg) {
+                                            console.log("Comentário excluído", msg)
+                                            count++
+                                        }).catch(function (e) {
+                                            console.log("Ocorreu um erro ao tentar excluir a resposta:", e)
+                                            count++
+                                        })
+    
+                                        console.log("Excluido resposta:", commentInfo[c].conteudo)
+                                    }
+                                }
+    
+                                function check(){
+                                    if(num == count){
+                                        document.location.reload()
+                                    }else{
+                                        setTimeout(function(){
+                                            check()
+                                        },500)
+                                    }
+                                }
+    
+                                check()
+    
+                                comment_executed = true
+                            }
+                        })
+                    })
+                }
 
-                // console.log(projectInfo.titulo, 'excluído')
+                project_executed = true
             }
         })
     }
@@ -585,168 +631,178 @@ const project_database = {};
             if (!project_executed) {
                 let projectInfo = snapshot.val()
 
-                const user = firebase.database().ref("Usuarios").child(projectInfo.IDdono)
-                const comments = firebase.database().ref("Comentarios")
-
-                user.on('value', (snapshot2) => {
-                    if (!user_executed) {
-                        ownerData = snapshot2.val()
-
-                        let type = ''
-
-                        switch (projectInfo.tipo) {
-                            case '1': type = 'Compra e venda de empresas e negócios'; break;
-                            case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
-                            case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
-                        }
-
-                        document.getElementById('title').innerText = projectInfo.titulo
-                        document.getElementById('fullDescription').innerText = projectInfo.descricaoCompleta
-                        document.getElementById('type').innerText = type
-                        document.getElementById('ownerName').innerText = ownerData.nome
-                        document.getElementById('ownerAddress').innerText = `${ownerData.cidade} - ${ownerData.uf}`
-
-                        if(projectInfo.valor){
-                            document.getElementById('value').innerText = `R$${projectInfo.valor.toFixed(2).toString().replace('.', ',')}`
-                        }else{
-                            document.getElementById('value-label').style.display = 'none'
-                        }
-
-                        let lista = document.getElementById('image-list')
-
-                        //ADIÇÃO DE VÍDEO
-                        if (projectInfo.linkVideo) {
-                            lista.innerHTML += `<div class="video-box">
-                                                    <img class="play-button" src="/assets/images/play.png" onclick='window.open("${projectInfo.linkVideo}")'
-                                                </div>`
-                        }
-
-                        //ADIÇÃO DE IMAGENS
-                        if (projectInfo.imagens) {
-                            if (projectInfo.imagens[0] && projectInfo.imagens[0].lastIndexOf('deleted') == -1) {
-                                imageID = `imagem_${projectID}_0`
-
-                                lista.innerHTML += `<div class="imagem1">
-                                    <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                    <img src="${projectInfo.imagens[0]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[0]}')">
-                                </div>`
-                            }
-                            if (projectInfo.imagens[1] && projectInfo.imagens[1].lastIndexOf('deleted') == -1) {
-                                imageID = `imagem_${projectID}_1`
-
-                                lista.innerHTML += `<div class="imagem1">
-                                    <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                    <img src="${projectInfo.imagens[1]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[1]}')">
-                                </div>`
-                            }
-                            if (projectInfo.imagens[2] && projectInfo.imagens[2].lastIndexOf('deleted') == -1) {
-                                imageID = `imagem_${projectID}_2`
-
-                                lista.innerHTML += `<div class="imagem1">
-                                    <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                    <img src="${projectInfo.imagens[2]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[2]}')">
-                                </div>`
-                            }
-                            if (projectInfo.imagens[3] && projectInfo.imagens[3].lastIndexOf('deleted') == -1) {
-                                imageID = `imagem_${projectID}_3`
-
-                                lista.innerHTML += `<div class="imagem1">
-                                    <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                    <img src="${projectInfo.imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[3]}')">
-                                </div>`
-                            }
-
-                            comments.on('value', (snapshot3) => {
-                                const comments_container = document.getElementById('comentarios-container')
-                                comments_container.innerHTML = ''
-
-                                let commentInfo = snapshot3.val()
-
-                                console.log(commentInfo)
-
-                                if(commentInfo){
-                                    for(gc in commentInfo){
-                                        if(commentInfo[gc].projetoID == projectID && !commentInfo[gc].respostaDe){
-                                            comments_container.innerHTML += `<div class="comentarios">
-                                                                                <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
-                                                                                <div class="cont-comentario-detalhe">
-                                                                                    <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
-                                                                                        ${commentInfo[gc].conteudo}
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>`
+                if(projectInfo){
+                    const user = firebase.database().ref("Usuarios").child(projectInfo.IDdono)
+                    const comments = firebase.database().ref("Comentarios")
     
-                                            if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
-                                                comments_container.innerHTML +=`<div class="responder" id="responder_${gc}">
-                                                                                    <div id="no_answer_box_${gc}" class="no_answer_box">
-                                                                                        <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')" style="display: none">▶ Ver respostas</div>
-                                                                                        <div id="resp_${gc}" class="responder-button" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'; document.getElementById('input_resp_${gc}').focus()">Responder</div>
-                                                                                    </div>
-
-                                                                                    <div id="answers_box_${gc}" class="answers_box"></div>
-                                                                                    <input id="input_resp_${gc}" type="text" class="text-comentar" style="display: none"/>
-
-                                                                                    <div id="buttons_resp_${gc}" class="resp-buttons-container" style="display: none">
-                                                                                        <div id="button_answer_${gc}" class="enviar-comentario" onclick="send_answer('${gc}')">▶</div>
-                                                                                        <div id="loading-button-${gc}" class="loading-button">
-                                                                                            <img src="../assets/images/Loading.gif" class="loading"/>
-                                                                                        </div>
-
-                                                                                        <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">X</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                `
-                                            }
-                                            if(projectInfo.IDdono != userID){
-                                                comments_container.innerHTML +=`<div class="responder" id="responder_${gc}" style="display: none">
-                                                                                    <div id="no_answer_box_${gc}" class="no_answer_box">
-                                                                                        <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')">▶ Ver respostas</div>
-                                                                                    </div>
-
-                                                                                    <div id="answers_box_${gc}" class="answers_box"></div>
-                                                                                </div>
-                                                                                `
-                                            }
-
-                                            if( document.getElementById(`answers_box_${gc}`)){
-                                                document.getElementById(`answers_box_${gc}`).innerHTML = ''
-                                            }
-
-                                        }else if(commentInfo[gc].projetoID == projectID && commentInfo[gc].respostaDe){
-                                            const answers_box = document.getElementById(`answers_box_${commentInfo[gc].respostaDe}`)
-
-                                            if(document.getElementById(`responder_${commentInfo[gc].respostaDe}`) && document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`) && document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`)){
-                                                document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                                document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
-                                                document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                                document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
-                                                document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
-                                            }
-
-                                            if(answers_box){
-                                                answers_box.innerHTML += `<div class="comentarios" style="width:100%">
-                                                                            <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
-                                                                            <div class="cont-comentario-detalhe">
-                                                                                <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
-                                                                                    ${commentInfo[gc].conteudo}
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>`
-                                            }
-
-                                        }
-
-                                        if(document.getElementById(`text-comentario-${gc}`) && commentInfo[gc].usuarioID == userID){
-                                            document.getElementById(`text-comentario-${gc}`).innerHTML += `<div class="remove-comentario" onclick="removeComment('${gc}')"></div>`
-                                        }
-                                    }
+                    user.on('value', (snapshot2) => {
+                        if (!user_executed) {
+                            ownerData = snapshot2.val()
+    
+                            let type = ''
+    
+                            switch (projectInfo.tipo) {
+                                case '1': type = 'Compra e venda de empresas e negócios'; break;
+                                case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
+                                case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
+                            }
+    
+                            document.getElementById('title').innerText = projectInfo.titulo
+                            document.getElementById('fullDescription').innerText = projectInfo.descricaoCompleta
+                            document.getElementById('type').innerText = type
+                            document.getElementById('ownerName').innerText = ownerData.nome
+                            document.getElementById('ownerAddress').innerText = `${ownerData.cidade} - ${ownerData.uf}`
+    
+                            if(projectInfo.valor){
+                                document.getElementById('value').innerText = `R$${projectInfo.valor.toFixed(2).toString().replace('.', ',')}`
+                            }else{
+                                document.getElementById('value-label').style.display = 'none'
+                            }
+    
+                            let lista = document.getElementById('image-list')
+    
+                            //ADIÇÃO DE VÍDEO
+                            if (projectInfo.linkVideo) {
+                                lista.innerHTML += `<div class="video-box">
+                                                        <img class="play-button" src="/assets/images/play.png" onclick='window.open("${projectInfo.linkVideo}")'
+                                                    </div>`
+                            }
+    
+                            //ADIÇÃO DE IMAGENS
+                            if (projectInfo.imagens) {
+                                if (projectInfo.imagens[0] && projectInfo.imagens[0].lastIndexOf('deleted') == -1) {
+                                    imageID = `imagem_${projectID}_0`
+    
+                                    lista.innerHTML += `<div class="imagem1">
+                                        <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                        <img src="${projectInfo.imagens[0]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[0]}')">
+                                    </div>`
                                 }
-                            })
+                                if (projectInfo.imagens[1] && projectInfo.imagens[1].lastIndexOf('deleted') == -1) {
+                                    imageID = `imagem_${projectID}_1`
+    
+                                    lista.innerHTML += `<div class="imagem1">
+                                        <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                        <img src="${projectInfo.imagens[1]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[1]}')">
+                                    </div>`
+                                }
+                                if (projectInfo.imagens[2] && projectInfo.imagens[2].lastIndexOf('deleted') == -1) {
+                                    imageID = `imagem_${projectID}_2`
+    
+                                    lista.innerHTML += `<div class="imagem1">
+                                        <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                        <img src="${projectInfo.imagens[2]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[2]}')">
+                                    </div>`
+                                }
+                                if (projectInfo.imagens[3] && projectInfo.imagens[3].lastIndexOf('deleted') == -1) {
+                                    imageID = `imagem_${projectID}_3`
+    
+                                    lista.innerHTML += `<div class="imagem1">
+                                        <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                        <img src="${projectInfo.imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${projectInfo.imagens[3]}')">
+                                    </div>`
+                                }
+    
+                                let comment_executed = false
+    
+                                comments.on('value', (snapshot3) => {
+                                    if(!comment_executed){
+                                        const comments_container = document.getElementById('comentarios-container')
+                                        comments_container.innerHTML = ''
+        
+                                        let commentInfo = snapshot3.val()
+        
+                                        console.log(commentInfo)
+        
+                                        if(commentInfo){
+                                            for(gc in commentInfo){
+                                                if(commentInfo[gc].projetoID == projectID && !commentInfo[gc].respostaDe){
+                                                    comments_container.innerHTML += `<div class="comentarios">
+                                                                                        <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
+                                                                                        <div class="cont-comentario-detalhe">
+                                                                                            <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
+                                                                                                ${commentInfo[gc].conteudo}
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>`
+            
+                                                    if(projectInfo.IDdono == userID && userID != commentInfo[gc].usuarioID){
+                                                        comments_container.innerHTML +=`<div class="responder" id="responder_${gc}">
+                                                                                            <div id="no_answer_box_${gc}" class="no_answer_box">
+                                                                                                <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')" style="display: none">▶ Ver respostas</div>
+                                                                                                <div id="resp_${gc}" class="responder-button" onclick="document.getElementById('resp_${gc}').style.display = 'none';document.getElementById('input_resp_${gc}').style.display = 'flex';document.getElementById('buttons_resp_${gc}').style.display = 'flex'; document.getElementById('input_resp_${gc}').focus()">Responder</div>
+                                                                                            </div>
+        
+                                                                                            <div id="answers_box_${gc}" class="answers_box"></div>
+                                                                                            <input id="input_resp_${gc}" type="text" class="text-comentar" style="display: none"/>
+        
+                                                                                            <div id="buttons_resp_${gc}" class="resp-buttons-container" style="display: none">
+                                                                                                <div id="button_answer_${gc}" class="enviar-comentario" onclick="send_answer('${gc}')">▶</div>
+                                                                                                <div id="loading-button-${gc}" class="loading-button">
+                                                                                                    <img src="../assets/images/Loading.gif" class="loading"/>
+                                                                                                </div>
+        
+                                                                                                <div class="enviar-comentario" style="background-color: red" onclick="document.getElementById('resp_${gc}').style.display = 'flex';document.getElementById('input_resp_${gc}').style.display = 'none';document.getElementById('buttons_resp_${gc}').style.display = 'none'">X</div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        `
+                                                    }
+                                                    if(projectInfo.IDdono != userID){
+                                                        comments_container.innerHTML +=`<div class="responder" id="responder_${gc}" style="display: none">
+                                                                                            <div id="no_answer_box_${gc}" class="no_answer_box">
+                                                                                                <div id="see_answers_${gc}" class="see_answers" onclick="see_answers('${gc}')">▶ Ver respostas</div>
+                                                                                            </div>
+        
+                                                                                            <div id="answers_box_${gc}" class="answers_box"></div>
+                                                                                        </div>
+                                                                                        `
+                                                    }
+        
+                                                    if( document.getElementById(`answers_box_${gc}`)){
+                                                        document.getElementById(`answers_box_${gc}`).innerHTML = ''
+                                                    }
+        
+                                                }else if(commentInfo[gc].projetoID == projectID && commentInfo[gc].respostaDe){
+                                                    const answers_box = document.getElementById(`answers_box_${commentInfo[gc].respostaDe}`)
+        
+                                                    if(document.getElementById(`responder_${commentInfo[gc].respostaDe}`) && document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`) && document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`)){
+                                                        document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                        document.getElementById(`responder_${commentInfo[gc].respostaDe}`).style.opacity = '1'
+                                                        document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                        document.getElementById(`no_answer_box_${commentInfo[gc].respostaDe}`).style.justifyContent = 'space-between'
+                                                        document.getElementById(`see_answers_${commentInfo[gc].respostaDe}`).style.display = 'flex'
+                                                    }
+        
+                                                    if(answers_box){
+                                                        answers_box.innerHTML += `<div class="comentarios" style="width:100%">
+                                                                                    <img class="ft-detalhe" src="${commentInfo[gc].usuarioImagem}">
+                                                                                    <div class="cont-comentario-detalhe">
+                                                                                        <div id="text-comentario-${gc}" class="text-comentario" style="display:flex;justify-content:space-between">
+                                                                                            ${commentInfo[gc].conteudo}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>`
+                                                    }
+        
+                                                }
+        
+                                                if(document.getElementById(`text-comentario-${gc}`) && commentInfo[gc].usuarioID == userID){
+                                                    document.getElementById(`text-comentario-${gc}`).innerHTML += `<div class="remove-comentario" onclick="removeComment('${gc}')"></div>`
+                                                }
+                                            }
+                                        }
+    
+                                        comment_executed = true
+                                    }
+                                })
+                            }
+                            user_executed = true
                         }
-                        user_executed = true
-                    }
-                })
-                project_executed = true
+                    })
+                    project_executed = true
+                }else{
+                    document.location.replace('/cadastro/Home.html')
+                }
             }
         })
     }

@@ -11,7 +11,11 @@ const emailSend = {};
         emailjs.send('service_ke3c08o','template_8l3zwgj',emailParams).then(function(res){
             console.log(res)
 
-            window.location.href = `${page}/?email=${email}`
+            if(page.includes('confirmacao')){
+                window.location.href = `${page}/?email=${email}&button=enable`
+            }else{
+                window.location.href = `${page}/?email=${email}`
+            }
         })
     }
     function init(){
@@ -32,6 +36,8 @@ const emailSend = {};
 
         emailjs.send('service_ke3c08o','template_r9eieqb',emailParams).then(function(res){
             console.log(res)
+
+            document.location.reload()
         })
     }
 

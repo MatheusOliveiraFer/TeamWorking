@@ -16,7 +16,7 @@ if(!page_type){
 }
 
 if(page_type.split("@",2)[1]){
-    b.innerText = page_type[0] + '****@' + page_type.split("@",2)[1]
+    b.innerHTML = `<b>${page_type[0] + '****@' + page_type.split("@",2)[1]}</b>`
 }
 
 code.addEventListener('submit', (e) => {

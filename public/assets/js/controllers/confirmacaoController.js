@@ -10,14 +10,23 @@ const loading_reinvite= document.getElementById('loading-button-reinvite')
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const page_type = urlParams.get('email')
+const button_enable = urlParams.get('button')
 var email_end = ''
 
 if(!page_type){
     window.location.replace('/')
 }
 
+if(button_enable && button_enable == 'enable'){
+    document.getElementById('enviar').className = 'botao'
+    document.getElementById('enviar').disabled = false
+}else{
+    document.getElementById('enviar').className = 'botao disable'
+    document.getElementById('enviar').disabled = true
+}
+
 if(page_type.split("@",2)[1]){
-    b.innerText = page_type[0] + '****@' + page_type.split("@",2)[1]
+    b.innerHTML = `<b>${page_type[0] + '****@' + page_type.split("@",2)[1]}</b>`
 }
 
 code.addEventListener('submit', (e) => {
@@ -35,7 +44,7 @@ code.addEventListener('submit', (e) => {
     
             let errors = 0;
     
-            if(codigo.value.length < 6){
+            if(codigo.value.length != 6){
                 errors++
                 codigo.style.border = '2px solid red'
                 errorElement.innerText = "O código enviado possui 6 dígitos!"
@@ -75,7 +84,6 @@ reinvite.addEventListener('click', (e) => {
         setTimeout(function(){
             loading_reinvite.style.display = 'none'
             reinvite.style.display = 'flex'
-            enviar.style.backgroundColor = '#2684DE'
 
             tw.init('open_request',[page_type,'confirmation'])
         },500)
