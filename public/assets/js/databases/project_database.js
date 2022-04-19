@@ -11,7 +11,7 @@ const project_database = {};
         const upload = firebase.storage().ref(`Project images/${storage_id}/`)
 
         let project_data = {
-            titulo: title,
+            titulo: title.replace("'","´"),
             IDdono: ownerID,
             descricaoPequena: smallDescription,
             descricaoCompleta: fullDescription,
@@ -484,7 +484,26 @@ const project_database = {};
     
                                 function check(){
                                     if(num == count){
-                                        document.location.reload()
+                                        const imageStorage = firebase.storage().ref(`Project images/${projectInfo.IDArmazenamento}/`)
+
+                                        let deletes = 0
+                                        
+                                        imageStorage.child(`${projectInfo.IDdono}_0`).delete().then(function(){deletes++}).catch(function(){deletes++})
+                                        imageStorage.child(`${projectInfo.IDdono}_1`).delete().then(function(){deletes++}).catch(function(){deletes++})
+                                        imageStorage.child(`${projectInfo.IDdono}_2`).delete().then(function(){deletes++}).catch(function(){deletes++})
+                                        imageStorage.child(`${projectInfo.IDdono}_3`).delete().then(function(){deletes++}).catch(function(){deletes++})
+
+                                        function deleteCompleted(){
+                                            if(deletes == 4){
+                                                document.location.reload()
+                                            }else{
+                                                setTimeout(function(){
+                                                    deleteCompleted()
+                                                },250)
+                                            }
+                                        }
+
+                                        deleteCompleted()
                                     }else{
                                         setTimeout(function(){
                                             check()
@@ -498,12 +517,8 @@ const project_database = {};
                             }
                         })
 
-                        const imageStorage = firebase.storage().ref(`Project images/${projectInfo.IDArmazenamento}/`)
 
-                        imageStorage.child(`${projectInfo.IDdono}_0`).delete()
-                        imageStorage.child(`${projectInfo.IDdono}_1`).delete()
-                        imageStorage.child(`${projectInfo.IDdono}_2`).delete()
-                        imageStorage.child(`${projectInfo.IDdono}_3`).delete()
+
                     })
                 }
 
@@ -591,7 +606,7 @@ const project_database = {};
                                     console.log("Array final:", projectInfo.imagens)
 
                                     projectInfo.tipo = type
-                                    projectInfo.titulo = title
+                                    projectInfo.titulo = title.replace("'","´")
                                     projectInfo.descricaoPequena = smallDescription
                                     projectInfo.descricaoCompleta = fullDescription
                                     projectInfo.valor = value ? parseFloat(value) : ''

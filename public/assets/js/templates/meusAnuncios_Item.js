@@ -1,4 +1,13 @@
 function meusAnuncios_item(title,smallDescription,type,ownerName,city,uf,value,id){
+  function confirmDelete(title, id){
+    var r = confirm(`Quer mesmo excluir o anúncio ${title}?`);
+
+    if (r == true){
+      tw.init('user_exist',['project_remove',[id]])
+    }
+  }
+
+
     return `<div class="anuncio">
               <div class="txt-inicial-editar">
                 <div class="dropdown-button">
