@@ -383,55 +383,61 @@ const project_database = {};
 
         const project = firebase.database().ref("Projetos").child(projectID)
 
+        let project_executed = false
+
         project.on('value', (snapshot) => {
-            projectInfo = snapshot.val()
-
-            console.log(projectInfo)
-
-            if (projectInfo) {
-                if (projectInfo.IDdono == userID) {
-                    document.getElementById('projectEditor').style.display = 'inline'
-                    document.getElementById('type').value = projectInfo.tipo
-                    document.getElementById('title').value = projectInfo.titulo
-                    document.getElementById('smallDescription').value = projectInfo.descricaoPequena
-                    document.getElementById('fullDescription').value = projectInfo.descricaoCompleta
-                    document.getElementById('value').value = projectInfo.valor
-                    document.getElementById('videoAnuncio').value = projectInfo.linkVideo
-
-                    let index = 0
-
-                    if (projectInfo.imagens) {
-                        projectInfo.imagens.forEach(item => {
-                            var image_path = item.lastIndexOf(userID)
-                            image_path = item.substring(image_path)
-                            image_path = image_path.split('?')
-                            image_path = image_path[0]
-
-                            images_array.push({ fileName: image_path, url: item })
-
-                            let image_slot = document.getElementById(`image_box_${index}`)
-
-                            image_slot.innerHTML = `<div>
-                                                        <img id="image-${index}-trash" class="trash" src="/assets/images/lixeira.png"/>
-                                                        <img id="image-${index}" 
-                                                            alt="SemImagem"
-                                                            class="image_anuncio" 
-                                                            onerror="caseNotImage(${index})"
-                                                            src="${item}" 
-                                                            onclick="removeImage(this.id)" 
-                                                            onload="document.getElementById('image-${index}-loading').style.display = 'none'; document.getElementById('image-${index}').style.display = 'flex';" 
-                                                            onmouseover="document.getElementById('image-${index}-trash').style.display = 'flex';" 
-                                                            onmouseout="document.getElementById('image-${index}-trash').style.display = 'none';"/>
-                                                        
-                                                        <img id="image-${index}-loading" class="image_loading_box"/>
-                                                    </div>`
-
-                            index++
-                        })
+            if(!project_executed){
+                projectInfo = snapshot.val()
+    
+                console.log(projectInfo)
+    
+                if (projectInfo) {
+                    if (projectInfo.IDdono == userID) {
+                        document.getElementById('projectEditor').style.display = 'inline'
+                        document.getElementById('type').value = projectInfo.tipo
+                        document.getElementById('title').value = projectInfo.titulo
+                        document.getElementById('smallDescription').value = projectInfo.descricaoPequena
+                        document.getElementById('fullDescription').value = projectInfo.descricaoCompleta
+                        document.getElementById('value').value = projectInfo.valor
+                        document.getElementById('videoAnuncio').value = projectInfo.linkVideo
+    
+                        let index = 0
+    
+                        if (projectInfo.imagens) {
+                            projectInfo.imagens.forEach(item => {
+                                var image_path = item.lastIndexOf(userID)
+                                image_path = item.substring(image_path)
+                                image_path = image_path.split('?')
+                                image_path = image_path[0]
+    
+                                images_array.push({ fileName: image_path, url: item })
+    
+                                let image_slot = document.getElementById(`image_box_${index}`)
+    
+                                image_slot.innerHTML = `<div>
+                                                            <img id="image-${index}-trash" class="trash" src="/assets/images/lixeira.png"/>
+                                                            <img id="image-${index}" 
+                                                                alt="SemImagem"
+                                                                class="image_anuncio" 
+                                                                onerror="caseNotImage(${index})"
+                                                                src="${item}" 
+                                                                onclick="removeImage(this.id)" 
+                                                                onload="document.getElementById('image-${index}-loading').style.display = 'none'; document.getElementById('image-${index}').style.display = 'flex';" 
+                                                                onmouseover="document.getElementById('image-${index}-trash').style.display = 'flex';" 
+                                                                onmouseout="document.getElementById('image-${index}-trash').style.display = 'none';"/>
+                                                            
+                                                            <img id="image-${index}-loading" class="image_loading_box"/>
+                                                        </div>`
+    
+                                index++
+                            })
+                        }
                     }
+                } else {
+                    document.location.replace('/meusanuncios/index.html')
                 }
-            } else {
-                document.location.replace('/meusanuncios/index.html')
+
+                project_executed = true
             }
         })
     }
@@ -491,6 +497,13 @@ const project_database = {};
                                 comment_executed = true
                             }
                         })
+
+                        const imageStorage = firebase.storage().ref(`Project images/${projectInfo.IDArmazenamento}/`)
+
+                        imageStorage.child(`${projectInfo.IDdono}_0`).delete()
+                        imageStorage.child(`${projectInfo.IDdono}_1`).delete()
+                        imageStorage.child(`${projectInfo.IDdono}_2`).delete()
+                        imageStorage.child(`${projectInfo.IDdono}_3`).delete()
                     })
                 }
 
@@ -529,35 +542,36 @@ const project_database = {};
                             let imgNum = 0
                             projectInfo.imagens = []
 
+                            console.log("Imagens:", imageArray)
+
                             imageArray.forEach(img => {
-                                if (image_executed < 4) {
-                                    if (img.url && img.fileName) {
-                                        projectInfo.imagens.push(img.url)
+                                // if (image_executed < 4) {
+                                if (img.url && img.fileName) {
+                                    projectInfo.imagens.push(img.url)
 
-                                        image_executed++
-                                        imgNum++
-                                    } else {
-                                        upload.child(`${userID}_${imgNum}`).put(img).then(function (a) {
-                                            idURL = a.metadata.contentDisposition.lastIndexOf(userID)
-                                            idURL = a.metadata.contentDisposition.substring(idURL)
-                                            console.log('idURL:', idURL)
+                                    image_executed++
+                                    imgNum++
+                                } else {
+                                    upload.child(`${userID}_${imgNum}`).put(img).then(function (a) {
+                                        idURL = a.metadata.contentDisposition.lastIndexOf(userID)
+                                        idURL = a.metadata.contentDisposition.substring(idURL)
+                                        console.log('idURL:', idURL)
 
-                                            upload.child(idURL).getDownloadURL().then(function (url_imagem) {
-                                                projectInfo.imagens.push(url_imagem)
+                                        upload.child(idURL).getDownloadURL().then(function (url_imagem) {
+                                            projectInfo.imagens.push(url_imagem)
 
-                                                image_executed++
-
-                                            })
-                                        }).catch(function (e) {
-                                            projectInfo.imagens.push('')
                                             image_executed++
-
-                                            console.log('Erro ao tentar upar imagem:',a)
                                         })
-                                        imgNum++
-                                    }
+                                    }).catch(function (e) {
+                                        projectInfo.imagens.push('')
+                                        image_executed++
 
+                                        console.log('Erro ao tentar upar imagem:',a,e)
+                                    })
+                                    imgNum++
                                 }
+
+                                // }
 
                                 console.log("image_executed:", image_executed)
                             })
@@ -585,8 +599,7 @@ const project_database = {};
                                     // projectInfo.imagens = projectInfo.imagens.sort()
 
                                     project.update(projectInfo).then(function () {
-                                        // document.location.replace('/meusanuncios/index.html')
-                                        // document.location.reload()
+                                        document.location.replace('/meusanuncios/index.html')
 
                                         console.log('Projeto atualizado com sucesso!')
 
@@ -597,21 +610,20 @@ const project_database = {};
 
                                         console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
 
-
+                                        project_executed = true
                                     })
 
-                                    project_executed = true
                                 } else {
                                     setTimeout(function () {
-                                        if (!project_executed) {
-                                            finalUpload()
-                                        }
+                                        finalUpload()
                                     }, 250)
                                 }
                             }
 
                             finalUpload()
                         }
+
+                        project_executed = true
                     }
                 })
                 user_executed = true

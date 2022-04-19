@@ -104,6 +104,10 @@
 		padding-left: 10px;
 		padding-right: 10px;
 	} 
+	.txt-inicial-editar a{
+		text-align: center;
+		width: 100%;
+	}
 	.dropdown-balance{
 		display: none;
 	}
