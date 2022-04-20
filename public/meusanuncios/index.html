@@ -30,8 +30,16 @@
 	  document.querySelector(".menuMobile").addEventListener("click", function(){
 		  if(document.querySelector(".menu nav ul").style.display == 'flex') {
 			  document.querySelector(".menu nav ul").style.display = 'none';
+			  
+			  if(document.getElementByClassName('dropdown-button')[0]){
+			  	document.getElementByClassName('dropdown-button')[0].style.display = 'inline-block'
+			  }
 		  } else {
 			  document.querySelector(".menu nav ul").style.display = 'flex';
+			  
+			  if(document.getElementByClassName('dropdown-button')[0]){
+			  	document.getElementByClassName('dropdown-button')[0].style.display = 'none'
+			  }
 		  }
 	  });
     };
