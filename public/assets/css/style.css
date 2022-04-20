@@ -350,7 +350,8 @@ form .form-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 600px;
+    height: 700px;
+    background-color: black;
   }
   .area-login-left {
     display: none;
