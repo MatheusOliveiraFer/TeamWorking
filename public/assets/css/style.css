@@ -350,6 +350,7 @@ form .form-button {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 600px;
   }
   .area-login-left {
     display: none;
