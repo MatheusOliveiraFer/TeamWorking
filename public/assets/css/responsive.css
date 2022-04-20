@@ -327,10 +327,6 @@
 		align-items: center;
 		border-radius: 10px;
 		background: rgba(255,255,255,0.1);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
-		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
 	.avatar-ft{
 		width: 120px;
@@ -377,10 +373,6 @@
 		align-items: center;
 		border-radius: 10px;
 		background: rgba(255,255,255,0.1);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
-		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
 	.avatar-ft{
 		width:90px;
@@ -452,10 +444,6 @@
 		align-items: center;
 		border-radius: 10px;
 		background: rgba(255,255,255,0.1);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
-		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
 	.avatar-ft{
 		width:90px;
@@ -545,10 +533,6 @@
 		align-items: center;
 		border-radius: 10px;
 		background: rgba(255,255,255,0.1);
-		backdrop-filter: blur(20px);
-		-webkit-backdrop-filter: blur(20px);
-		-webkit-box-shadow: 0px 0px 15px 2px #7e7575; 
-		box-shadow: 0px 0px 15px 2px #7e7575;
 	}
 	.avatar-ft{
 		width:90px;
