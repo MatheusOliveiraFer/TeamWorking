@@ -675,6 +675,7 @@ const project_database = {};
                             }
 
                             document.getElementById('title').innerText = projectInfo.titulo
+                            document.getElementById('smallDescription').innerText = projectInfo.descricaoPequena
                             document.getElementById('fullDescription').innerText = projectInfo.descricaoCompleta
                             document.getElementById('type').innerText = type
                             document.getElementById('ownerName').innerText = ownerData.nome

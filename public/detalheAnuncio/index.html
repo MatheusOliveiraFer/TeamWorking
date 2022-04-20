@@ -25,7 +25,9 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
     <script type="text/javascript" defer>
       (function () {
+        try{
           emailjs.init("DQv9YRXGKty4ghBhV");
+        }catch(e){}
       })();
   </script>
 </head>
@@ -64,28 +66,29 @@
                 <div class="txt-inicial-detalhe">
                   <a id="title" href="##" style="color: #000"></a>
                 </div>
-                <div id="fullDescription" class="subtitulo"></div>
+                <div class="info-criador-detalhe">
+                  <div class="info-proposta-detalhe">Tipo:</div>
+                  <div id="type"></div>
+                </div>
+                <div id="smallDescription" class="subtitulo"></div>
                 <div class="lista-imagem-detalhe-box">
                   <div id="image-list" class="lista-imagem-detalhe"></div>
                 </div>
+                <div id="fullDescription" class="subtitulo"></div>
 
                 <div class="dados-publi-detalhe">
-                    <div class="info-criador-detalhe">
-                      <div id="value-label" class="info-valor-detalhe">Valor:</div>
-                      <div id="value" class="valor-detalhe"></div>
-                    </div>
-                    <div class="info-criador-detalhe">
-                      <div class="info-proposta-detalhe">Tipo:</div>
-                      <div id="type"></div>
-                    </div>
-                    <div class="info-criador-detalhe">
-                      <div class="info-proposta-detalhe">Criador da proposta:</div>
-                      <div id="ownerName"></div>
-                    </div>
-                    <div class="info-criador-detalhe">
-                      <div class="info-proposta-detalhe">Cidade de atuação da proposta:</div>
-                      <div id="ownerAddress"></div>
-                    </div>
+                  <div class="info-criador-detalhe">
+                    <div class="info-proposta-detalhe">Cidade de atuação da proposta:</div>
+                    <div id="ownerAddress"></div>
+                  </div>
+                  <div class="info-criador-detalhe">
+                    <div id="value-label" class="info-valor-detalhe">Valor:</div>
+                    <div id="value" class="valor-detalhe"></div>
+                  </div>
+                  <div class="info-criador-detalhe">
+                    <div class="info-proposta-detalhe">Criador da proposta:</div>
+                    <div id="ownerName"></div>
+                  </div>
                 </div>
                 <div class="container-comentario">
                     <div class="text-titulo-comentario">Comentários</div>
