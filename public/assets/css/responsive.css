@@ -2,8 +2,9 @@
 @media (max-width:1000px) {
 	nav ul {
 		flex-direction: column;
-		display:none;
+		display: none;
 		position: absolute;
+		top:80px;
 	    left: 0;
 	    width: 100%;
 	    background-color: #2699d3;
