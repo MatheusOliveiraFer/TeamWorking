@@ -73,7 +73,7 @@ nav a:hover {
 	flex-direction: column;
 }
 #anuncios .container {
-	width: 100vw;
+	width: 100%;
 	height:100%;
     display: flex;
     justify-content: center;
@@ -769,8 +769,8 @@ nav a:hover {
 /* Tela de Meu Perfil */
 
 .container-perfil{
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	height: calc(100vh - 80px);
 }
 .container-perfil .container-box-perfil{
 	width: 100%;
