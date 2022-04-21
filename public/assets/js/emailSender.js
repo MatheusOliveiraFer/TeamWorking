@@ -8,7 +8,7 @@ const emailSend = {};
             message: code
         }
 
-        emailjs.send('service_ke3c08o','template_8l3zwgj',emailParams).then(function(res){
+        emailjs.send('service_r8w9thr','template_r74fyyr',emailParams).then(function(res){
             console.log(res)
 
             if(page.includes('confirmacao')){
@@ -35,7 +35,7 @@ const emailSend = {};
         console.log(emailParams)
 
         // try{
-            emailjs.send('service_ke3c08o','template_r9eieqb',emailParams).then(function(res){
+            emailjs.send('service_r8w9thr','template_dnedfi8',emailParams).then(function(res){
                 console.log(res)
     
                 document.location.reload()
