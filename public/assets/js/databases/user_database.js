@@ -164,22 +164,22 @@ const user_database = {};
 
                                             num++
                                         }
-
-                                        function check(){
-                                            if(count == num){
-                                                save_button.style.display = 'inline'
-                                                loading.style.display = 'none'
-                                                errorElement.innerText = 'Atualização feita com sucesso!'
-                                                errorElement.style.color = 'green'
-                                            }else{
-                                                setTimeout(function(){
-                                                    check()
-                                                },500)
-                                            }
-                                        }
-
-                                        check()
                                     }
+
+                                    function check(){
+                                        if(count == num){
+                                            save_button.style.display = 'inline'
+                                            loading.style.display = 'none'
+                                            errorElement.innerText = 'Atualização feita com sucesso!'
+                                            errorElement.style.color = 'green'
+                                        }else{
+                                            setTimeout(function(){
+                                                check()
+                                            },500)
+                                        }
+                                    }
+
+                                    check()
 
                                     comments_executed = true
                                 }
