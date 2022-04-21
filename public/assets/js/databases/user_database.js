@@ -185,11 +185,11 @@ const user_database = {};
                                 }
                             })
 
+                            errorElement.style.color = 'green'
                             save_button.style.display = 'inline'
                             loading.style.display = 'none'
                             errorElement.innerText = 'Atualização feita com sucesso!'
-                            errorElement.style.color = 'green'
-                            
+
                         }).catch(function(e){
                             save_button.style.display = 'inline'
                             loading.style.display = 'none'
