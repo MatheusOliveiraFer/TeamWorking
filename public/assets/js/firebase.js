@@ -3,25 +3,26 @@ const tw = {};
 (function () {
 
     function init(action, parameters) {
-    //     var firebaseConfig = {
-    //         apiKey: "AIzaSyBDs8Gb8tqCImGGqwaCi8w1tgF2i_MHzww",
-    //         authDomain: "teste2-3a116.firebaseapp.com",
-    //         databaseURL: "https://teste2-3a116-default-rtdb.firebaseio.com",
-    //         projectId: "teste2-3a116",
-    //         storageBucket: "teste2-3a116.appspot.com",
-    //         messagingSenderId: "309085303277",
-    //         appId: "1:309085303277:web:87d36e3b89ccbbb675f7e4"
-    //         };
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyA2f2TRgVCZumOvWRn9xbKaey38pRFZsXw",
+        //     authDomain: "teste-e58af.firebaseapp.com",
+        //     databaseURL: "https://teste-e58af-default-rtdb.firebaseio.com",          
+        //     projectId: "teste-e58af",          
+        //     storageBucket: "teste-e58af.appspot.com",          
+        //     messagingSenderId: "946883589121",          
+        //     appId: "1:946883589121:web:c3b909214a05c6ce7dbc00",          
+        //     measurementId: "G-SL3MKZV8E6"          
+        // };
 
         const firebaseConfig = {
-            apiKey: "AIzaSyA2f2TRgVCZumOvWRn9xbKaey38pRFZsXw",
-            authDomain: "teste-e58af.firebaseapp.com",
-            databaseURL: "https://teste-e58af-default-rtdb.firebaseio.com",          
-            projectId: "teste-e58af",          
-            storageBucket: "teste-e58af.appspot.com",          
-            messagingSenderId: "946883589121",          
-            appId: "1:946883589121:web:c3b909214a05c6ce7dbc00",          
-            measurementId: "G-SL3MKZV8E6"          
+            apiKey: "AIzaSyAhIbe5H2iHquv3_IO87wKtkKE20IvJgx0",
+            authDomain: "queroumsocio-978e2.firebaseapp.com",
+            databaseURL: "https://queroumsocio-978e2-default-rtdb.firebaseio.com",
+            projectId: "queroumsocio-978e2",
+            storageBucket: "queroumsocio-978e2.appspot.com",
+            messagingSenderId: "926845539156",
+            appId: "1:926845539156:web:61e031fa3119702902aec1",
+            measurementId: "G-SP7RYEELMK"
         };
 
         var trys = 0
