@@ -117,12 +117,22 @@ const project_database = {};
         project.on('value', (snapshot) => {
             if (!project_executed) {
 
-                let get_projects = snapshot.val();
+                let firebaseProjects = snapshot.val();
+                let get_projects = []
 
-                // let a = new Map()
-                // a.set("a","b")
+                //*TRANSFORMANDO O OBJETO QUE VEIO DO FIREBASE EM MAPA
+                for(let index in firebaseProjects){
+                    let item = firebaseProjects[index]
+                    item.id = index
 
-                for (let gp in get_projects) {
+                    get_projects.push(item)
+                }
+
+                //* ORDENANDO OS PROJETOS DO MAIS NOVO PRO MAIS ANTIGO
+                get_projects = get_projects.sort((a,b) => (b.dataCriacao > a.dataCriacao))
+
+                for (let index in get_projects) {
+                    let gp = index
 
                     const user = firebase.database().ref("Usuarios").child(get_projects[gp].IDdono)
 
@@ -262,13 +272,26 @@ const project_database = {};
         project.on('value', (snapshot) => {
             if (!project_executed) {
 
-                const get_projects = snapshot.val();
+                let firebaseProjects = snapshot.val();
+                let get_projects = []
+
+                //*TRANSFORMANDO O OBJETO QUE VEIO DO FIREBASE EM MAPA
+                for(let index in firebaseProjects){
+                    let item = firebaseProjects[index]
+                    item.id = index
+
+                    get_projects.push(item)
+                }
+
+                //* ORDENANDO OS PROJETOS DO MAIS NOVO PRO MAIS ANTIGO
+                get_projects = get_projects.sort((a,b) => (b.dataCriacao > a.dataCriacao))
+
 
                 user.on('value', (snapshot) => {
                     ownerData = snapshot.val()
 
-                    for (let gp in get_projects) {
-                        console.log(gp)
+                    for (let index in get_projects) {
+                        let gp = index
 
                         if (get_projects[gp].IDdono == userID && ownerData) {
                             console.log(get_projects[gp]);
@@ -833,6 +856,16 @@ const project_database = {};
                 }
             }
         })
+    }
+    
+    function sortByDate( a, b ) {
+        if ( a.dataCriacao < b.dataCriacao ){
+          return -1;
+        }
+        if ( a.dataCriacao > b.dataCriacao ){
+          return 1;
+        }
+        return 0;
     }
 
     project_database.new = new_project;
