@@ -25,6 +25,7 @@ const user_database = {};
             nome: name,
             email: email,
             senha: CryptoJS.MD5(password).toString(),
+            imagem: '/assets/images/avatar.jpg',
             telefone: phone,
             uf: uf,
             cidade: city,
@@ -83,18 +84,6 @@ const user_database = {};
         check()
     }
 
-    // function remove_user(id) {
-    //     const user = firebase.database().ref("Usuarios").child(id)
-
-    //     user.remove()
-    //         .then(function () {
-    //             console.log("Usuário removido com sucesso!")
-    //         })
-    //         .catch(function (erro) {
-    //             console.log("Um erro ocorreu ao tentar excluir o usuário: ", erro)
-    //         })
-    // }
-
     function update_user(name, phone, uf, city, image, updatedImage){
         var userID = cookieAccess.valor('userID')
 
@@ -118,7 +107,7 @@ const user_database = {};
                     uploadImage = true
                 })
                 .catch(function(e){
-                    save_button.style.display = 'flex'
+                    save_button.style.display = 'inline'
                     loading.style.display = 'none'
                     console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
                     errorElement.innerText = 'Erro interno, por favor tente novamente!'
@@ -127,7 +116,7 @@ const user_database = {};
                 })
             })
             .catch(function(e){
-                save_button.style.display = 'flex'
+                save_button.style.display = 'inline'
                 loading.style.display = 'none'
                 console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
                 errorElement.innerText = 'Erro interno, por favor tente novamente!'
@@ -178,7 +167,7 @@ const user_database = {};
 
                                         function check(){
                                             if(count == num){
-                                                save_button.style.display = 'flex'
+                                                save_button.style.display = 'inline'
                                                 loading.style.display = 'none'
                                                 errorElement.innerText = 'Atualização feita com sucesso!'
                                                 errorElement.style.color = 'green'
@@ -196,7 +185,7 @@ const user_database = {};
                                 }
                             })
                         }).catch(function(e){
-                            save_button.style.display = 'flex'
+                            save_button.style.display = 'inline'
                             loading.style.display = 'none'
                             console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
                             errorElement.innerText = 'Erro interno, por favor tente novamente!'
@@ -227,12 +216,12 @@ const user_database = {};
     
                     user.update(user_info).then(function(){
                         console.log('Usuário atualizado com sucesso!')
-                        save_button.style.display = 'flex'
+                        save_button.style.display = 'inline'
                         loading.style.display = 'none'
                         errorElement.innerText = 'Atualização feita com sucesso!'
                         errorElement.style.color = 'green'
                     }).catch(function(e){
-                        save_button.style.display = 'flex'
+                        save_button.style.display = 'inline'
                         loading.style.display = 'none'
                         console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
                         errorElement.innerText = 'Erro interno, por favor tente novamente!'
@@ -699,7 +688,6 @@ const user_database = {};
 
     user_database.new = new_user;
     user_database.update = update_user;
-    // user_database.remove = remove_user;
     user_database.validate = validate_user;
     user_database.request = open_request;
     user_database.checkCode = checkCode;
