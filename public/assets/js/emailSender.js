@@ -18,9 +18,6 @@ const emailSend = {};
             }
         })
     }
-    function init(){
-        emailjs.init("DQv9YRXGKty4ghBhV");
-    }
 
     function notification(email, senderName, content, projectName){
         console.log("senderName:",senderName)
@@ -52,6 +49,5 @@ const emailSend = {};
     }
 
     emailSend.password = passwordRecover
-    emailSend.init = init
     emailSend.notification = notification
 })()
