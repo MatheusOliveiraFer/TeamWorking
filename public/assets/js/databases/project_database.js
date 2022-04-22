@@ -129,7 +129,9 @@ const project_database = {};
                 }
 
                 //* ORDENANDO OS PROJETOS DO MAIS NOVO PRO MAIS ANTIGO
-                get_projects = get_projects.sort((a,b) => (b.dataCriacao > a.dataCriacao))
+                get_projects = get_projects.sort((a,b) => {return b.dataCriacao > a.dataCriacao ? 1 : -1})
+
+                console.log("Sorted:",get_projects)
 
                 for (let index in get_projects) {
                     let gp = get_projects[index].id
@@ -284,7 +286,7 @@ const project_database = {};
                 }
 
                 //* ORDENANDO OS PROJETOS DO MAIS NOVO PRO MAIS ANTIGO
-                get_projects = get_projects.sort((a,b) => (b.dataCriacao > a.dataCriacao))
+                get_projects = get_projects.sort((a,b) => {return b.dataCriacao > a.dataCriacao ? 1 : -1})
 
 
                 user.on('value', (snapshot) => {
