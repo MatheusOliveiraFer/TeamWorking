@@ -62,14 +62,11 @@ function confirmDelete(title, id){
 
 
 window.addEventListener('click', function(e){
-  console.log(dropdownButton)
 
   if(dropdownButton){
     const dropdown_button = document.getElementById(`dropdown-button-${dropdownButton}`)
   
     if(!dropdown_button.contains(e.target)){
-      console.log("fora do",dropdownButton)
-      console.log(dropdown_button)
   
       document.getElementById(`dropdown-list-${dropdownButton}`).style.display = 'none'
     

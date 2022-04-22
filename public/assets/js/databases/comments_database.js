@@ -36,7 +36,7 @@ const comments_database = {};
                             comment_data.usuarioImagem = '/assets/images/avatar.jpg'
                         }
 
-                        comments.push(comment_data).then(function () {
+                        comments.push(comment_data).then(function() {
                             console.log("Comentário inserido com sucesso!")
 
                             if (projectInfo.IDdono != userID) {
@@ -46,8 +46,6 @@ const comments_database = {};
                                     const ownerInfo = snapshot3.val()
 
                                     const username = userInfo.nome.split(" ", 2)
-
-                                    console.log("Username:", username)
 
                                     emailSend.notification(ownerInfo.email, username[0], content, projectInfo.titulo)
                                 })
@@ -59,8 +57,8 @@ const comments_database = {};
                             document.getElementById('loading-button').style.display = 'none'
                             document.getElementById('text-comentar').value = ''
 
-                        }).catch(function (e) {
-                            console.log("Ocorreu um erro ao tentar criar o comentário:", e)
+                        }).catch(function() {
+                            console.log("Ocorreu um erro ao tentar criar o comentário")
 
                             document.getElementById('enviar-comentario').style.display = 'flex'
                             document.getElementById('loading-button').style.display = 'none'
@@ -118,7 +116,7 @@ const comments_database = {};
                                 const commentInfo = snapshot3.val()
 
                                 if(commentInfo){
-                                    comments.push(comment_data).then(function () {
+                                    comments.push(comment_data).then(function() {
                                         console.log("Resposta inserida com sucesso!")
             
             
@@ -131,8 +129,8 @@ const comments_database = {};
                                         document.getElementById(`loading-button-${commentID}`).style.display = 'none'
                                         document.getElementById(`input_resp_${commentID}`).value = ''
             
-                                    }).catch(function (e) {
-                                        console.log("Ocorreu um erro ao tentar criar a resposta:", e)
+                                    }).catch(function() {
+                                        console.log("Ocorreu um erro ao tentar criar a resposta")
             
                                         document.getElementById(`button_answer_${commentID}`).style.display = 'flex'
                                         document.getElementById(`loading-button-${commentID}`).style.display = 'none'
@@ -180,17 +178,16 @@ const comments_database = {};
 
                                         count++
 
-                                        answer.remove().then(function (msg) {
-                                            console.log("Resposta excluída", msg)
+                                        answer.remove().then(function() {
 
                                             removed++
-                                        }).catch(function (e) {
-                                            console.log("Ocorreu um erro ao tentar excluir a resposta:", e)
+                                        }).catch(function() {
+                                            console.log("Ocorreu um erro ao tentar excluir a resposta")
 
                                             removed++
                                         })
 
-                                        console.log("Excluido resposta:", answerInfo[a].conteudo)
+                                        console.log("Excluido resposta dependente")
                                     }
                                 }
 
@@ -209,11 +206,9 @@ const comments_database = {};
                                 answer_executed = true
                             }
                         })
-                    }).catch(function (e) {
-                        console.log("Ocorreu um erro ao tentar excluir o comentário:", e)
+                    }).catch(function() {
+                        console.log("Ocorreu um erro ao tentar excluir o comentário")
                     })
-
-                    console.log("Excluido comentário:", commentInfo.conteudo)
                 }
 
                 comment_executed = true

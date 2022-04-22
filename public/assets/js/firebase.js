@@ -33,7 +33,7 @@ const tw = {};
 
         function trying(){
             try{
-                console.log('to aqui primeiro')
+                console.log(`Tentativa de acessar o banco N°${trys + 1}`)
 
                 if(action == 'user_create'){
                     user_database.new(parameters[0],parameters[1],parameters[2],parameters[3],parameters[4],parameters[5],parameters[6])
@@ -96,7 +96,7 @@ const tw = {};
                         trying()
                     },500)
                 }else{
-                    console.log(e)
+                    console.log("Não foi possível acessar o banco tente novamente")
 
                     const errorElement = document.getElementById('errorElement')
                     const enviar = document.getElementById('enviar')

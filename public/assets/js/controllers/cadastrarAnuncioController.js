@@ -15,7 +15,6 @@ const save = document.getElementById('save')
 const errorElement = document.getElementById('errorElement')
 const loading = document.getElementById('loading-button')
 var image_array = []
-// var key_array = []
 var active_slot = 0
 
 var userID = cookieAccess.valor('userID')
@@ -61,17 +60,6 @@ function removeImage(id){
     const removableImage_loading = document.getElementById(id + "-loading")
 
     itemId = id.split('-')
-
-    // image_array.splice(itemId[1],1)
-
-    // var num = 0
-    // key_array.forEach(key => {
-    //     if(key == itemId[1]){
-    //         key_array.splice(num,1)
-    //     }
-
-    //     num++
-    // })
 
     delete image_array[itemId[1]]
     removableImage.outerHTML = `<div id="image_front_${itemId[1]}" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=${itemId[1]}">+</div>`

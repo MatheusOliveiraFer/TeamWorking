@@ -8,19 +8,20 @@ const emailSend = {};
             message: code
         }
 
-        emailjs.send('service_r8w9thr','template_r74fyyr',emailParams).then(function(res){
-            console.log(res)
+        emailjs.send('service_r8w9thr','template_r74fyyr',emailParams).then(function(){
+            console.log("Email com código enviado")
 
             if(page.includes('confirmacao')){
                 window.location.href = `${page}/?email=${email}&button=enable`
             }else{
                 window.location.href = `${page}/?email=${email}`
             }
+        }).catch(function(){
+            console.log("Email com código não enviado")
         })
     }
 
     function notification(email, senderName, content, projectName){
-        console.log("senderName:",senderName)
 
         var emailParams = {
             senderName: senderName,
@@ -29,23 +30,16 @@ const emailSend = {};
             projectName: projectName
         }
 
-        console.log(emailParams)
+        emailjs.send('service_r8w9thr','template_dnedfi8',emailParams).then(function(){
+            console.log("Notificação enviada")
 
-        // try{
-            emailjs.send('service_r8w9thr','template_dnedfi8',emailParams).then(function(res){
-                console.log(res)
-    
-                document.location.reload()
-            }).catch(function(){
-                console.log(res)
-    
-                document.location.reload()
-            })
-        // }catch(e){
-        //     console.log(e)
-    
-        //     document.location.reload()
-        // }
+            document.location.reload()
+        }).catch(function(){
+            console.log("Notificação não enviada")
+
+            document.location.reload()
+        })
+
     }
 
     emailSend.password = passwordRecover

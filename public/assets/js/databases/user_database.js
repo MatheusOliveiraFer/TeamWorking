@@ -1,6 +1,6 @@
 const user_database = {};
 
-(function () {
+(function() {
     function new_user(name, email, confirmPassword, password, phone, uf, city) {
         let enviar = document.getElementById('enviar')
         let loading = document.getElementById('loading-button')
@@ -66,8 +66,8 @@ const user_database = {};
                             console.log("Usuário criado com sucesso!")
                             window.location.replace(`/rota_confirmacao/confirmacao/?email=${email}`)
                         })
-                        .catch(function (erro) {
-                            console.log("Um erro ocorreu ao tentar criar o usuário: ", erro)
+                        .catch(function() {
+                            console.log("Um erro ocorreu ao tentar criar o usuário")
                             errorElement.innerHTML = "Erro interno, por favor tente novamente!"
 
                             enviar.style.display = 'inline'
@@ -106,19 +106,19 @@ const user_database = {};
                     URLimagem = url_imagem
                     uploadImage = true
                 })
-                .catch(function(e){
+                .catch(function(){
                     save_button.style.display = 'inline'
                     loading.style.display = 'none'
-                    console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                    console.log('Ocorreu um erro ao tentar atualizar o usuário')
                     errorElement.innerText = 'Erro interno, por favor tente novamente!'
 
                     return
                 })
             })
-            .catch(function(e){
+            .catch(function(){
                 save_button.style.display = 'inline'
                 loading.style.display = 'none'
-                console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                console.log('Ocorreu um erro ao tentar atualizar o usuário')
                 errorElement.innerText = 'Erro interno, por favor tente novamente!'
 
                 return
@@ -147,19 +147,19 @@ const user_database = {};
                             comments.on('value', (snapshot2) => {
                                 if(!comments_executed){
                                     let commentsInfo = snapshot2.val()
-                                    let num = 0 //NUMERO DE ITERAÇÕES DO FOR
-                                    let count = 0 //NÚMERO DE UPDATES REALIZADOS
+                                    let num = 0 //*NUMERO DE ITERAÇÕES DO FOR
+                                    let count = 0 //*NÚMERO DE UPDATES REALIZADOS
     
                                     for(gc in commentsInfo){
                                         if(commentsInfo[gc].usuarioID == userID){
                                             commentsInfo[gc].usuarioNome == user_info.nome
                                             commentsInfo[gc].usuarioImagem == URLimagem
     
-                                            comments.child(gc).update(commentsInfo[gc]).then(function(e){
+                                            comments.child(gc).update(commentsInfo[gc]).then(function(){
                                                 count++
                                             })
-                                            .catch(function(e){
-                                                console.log("Ocorreu um erro ao tentar atualizar as informações do comentário",gc,e)
+                                            .catch(function(){
+                                                console.log("Ocorreu um erro ao tentar atualizar as informações do comentário")
                                             })
 
                                             num++
@@ -190,10 +190,10 @@ const user_database = {};
                             loading.style.display = 'none'
                             errorElement.innerText = 'Atualização feita com sucesso!'
 
-                        }).catch(function(e){
+                        }).catch(function(){
                             save_button.style.display = 'inline'
                             loading.style.display = 'none'
-                            console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                            console.log('Ocorreu um erro ao tentar atualizar o usuário')
                             errorElement.innerText = 'Erro interno, por favor tente novamente!'
                         })
                     }
@@ -207,7 +207,7 @@ const user_database = {};
             }
         }
 
-        //CASO A IMAGEM TIVER SIDO ATUALIZADA É EXECUTADA A FUNÇÃO ACIMA PARA ATUALIZAR OS REGISTROS SÓ DEPOIS QUE A IMAGEM FOR UPADA, CASO CONTRÁRIO É FEITO A ATUALIZAÇÃO DOS REGISTROS IMEDIATAMENTE
+        //*CASO A IMAGEM TIVER SIDO ATUALIZADA É EXECUTADA A FUNÇÃO ACIMA PARA ATUALIZAR OS REGISTROS SÓ DEPOIS QUE A IMAGEM FOR UPADA, CASO CONTRÁRIO É FEITO A ATUALIZAÇÃO DOS REGISTROS IMEDIATAMENTE
         if(updatedImage){
             check()
         }else{
@@ -226,10 +226,10 @@ const user_database = {};
                         loading.style.display = 'none'
                         errorElement.innerText = 'Atualização feita com sucesso!'
                         errorElement.style.color = 'green'
-                    }).catch(function(e){
+                    }).catch(function(){
                         save_button.style.display = 'inline'
                         loading.style.display = 'none'
-                        console.log('Ocorreu um erro ao tentar atualizar o usuário:',e)
+                        console.log('Ocorreu um erro ao tentar atualizar o usuário')
                         errorElement.innerText = 'Erro interno, por favor tente novamente!'
                     })
                 }
@@ -256,7 +256,6 @@ const user_database = {};
         let confirmation = false
 
         user.on('value', (snapshot) => {
-            console.log('to aqui')
 
             if (!user_executed) {
                 const get_users = snapshot.val();
@@ -280,8 +279,6 @@ const user_database = {};
                     password_div.style.border = '2px solid red'
                 } else {
                     if (confirmation) {
-                        console.log(`O nome do usuário é ${username} e seu ID é ${userID}`)
-
                         var cookieData = new Date(5100,0,01);
                         cookieData = cookieData.toUTCString()
                         document.cookie = `userID=${userID};expires=${cookieData}; path=/;`
@@ -299,8 +296,6 @@ const user_database = {};
                 }
 
                 user_executed = true;
-
-                // return userID
             }
         });
     }
@@ -310,8 +305,6 @@ const user_database = {};
         const enviar = document.getElementById('enviar')
         const loading = document.getElementById('loading-button')
         let input_div = document.getElementById('campo')
-
-        console.log('Email recebido',email)
 
         const user = firebase.database().ref("Usuarios")
         const request = firebase.database().ref("Requisicoes")
@@ -326,13 +319,12 @@ const user_database = {};
 
         const request_data = {
             email: email,
-            validade: Date.now() + 1800 * 1000, //MEIA HORA
+            validade: Date.now() + 1800 * 1000, //?MEIA HORA
             codigo: code
         }
 
         //* VERIFICA SE O EMAIL INFORMADO PERTENCE A ALGUM USUÁRIO
         user.on('value', (snapshot) => {
-            console.log('estou aqui')
 
             if (!user_executed) {
                 const get_users = snapshot.val();
@@ -351,7 +343,6 @@ const user_database = {};
 
         //* VERIFICA SE JÁ EXISTE ALGUMA REQUISIÇÃO NO NOME DAQUELE USUÁRIO
         request.on('value', (snapshot) => {
-            console.log('estou aqui')
 
             if (!request_executed) {
                 const get_requests = snapshot.val();
@@ -373,11 +364,11 @@ const user_database = {};
 
                     if (last_request != '') {
                         request.child(last_request).remove()
-                            .then(function () {
+                            .then(function() {
                                 console.log("Remoção da requisição repetida executada")
                             })
-                            .catch(function (e) {
-                                console.log("Ocorreu um erro ao tentar remover a requisição!", e)
+                            .catch(function() {
+                                console.log("Ocorreu um erro ao tentar remover a requisição")
                                 
                                 duplicate_remove_fail = true
                             })
@@ -387,12 +378,12 @@ const user_database = {};
                         if(situation == 'confirmation' && confirmed == false){
                             request.push(request_data)
                             .then(function () {
-                                console.log("Requisição inserida com sucesso!")
+                                console.log("Requisição inserida com sucesso")
 
                                 emailSend.password(email, code, username[0], '/rota_confirmacao/confirmacao')
                             })
-                            .catch(function (e) {
-                                console.log("Ocorreu um erro ao tentar criar a requisição!", e)
+                            .catch(function() {
+                                console.log("Ocorreu um erro ao tentar criar a requisição")
                                 errorElement.innerText = "Erro interno, por favor tente novamente!"
 
                                 enviar.style.display = 'inline'
@@ -419,13 +410,13 @@ const user_database = {};
                         }
                         if(situation == 'recovering' && confirmed == true){
                                 request.push(request_data)
-                            .then(function () {
+                            .then(function() {
                                 console.log("Requisição inserida com sucesso!")
 
                                 emailSend.password(email, code, username[0], '/rota_recuperacao/codigo')
                             })
-                            .catch(function (e) {
-                                console.log("Ocorreu um erro ao tentar criar a requisição!", e)
+                            .catch(function() {
+                                console.log("Ocorreu um erro ao tentar fazer a requisição")
                                 errorElement.innerText = "Erro interno, por favor tente novamente!"
 
                                 enviar.style.display = 'inline'
@@ -433,7 +424,7 @@ const user_database = {};
                             })
                         }
                     }else{
-                        console.log("Ocorreu um erro ao tentar criar a requisição!")
+                        console.log("Ocorreu um erro ao tentar fazer a requisição!")
                         errorElement.innerText = "Erro interno, por favor tente novamente!"
 
                         enviar.style.display = 'inline'
@@ -469,11 +460,7 @@ const user_database = {};
         let user_executed = false
         var code_exist = false
 
-        console.log(code)
-
         request.on('value', (snapshot) => {
-            console.log('estou aqui')
-
             if (!request_executed) {
                 const get_requests = snapshot.val();
 
@@ -559,12 +546,6 @@ const user_database = {};
                 email = get_requests.email
 
                 request.remove()
-                    .then(function () {
-                        console.log("Requisição consumida!")
-                    })
-                    .catch(function (erro) {
-                        console.log("Um erro ocorreu ao tentar excluir a requisição: ", erro)
-                    })
 
                 request_executed = true;
             }
@@ -591,8 +572,8 @@ const user_database = {};
 
                                         window.location.replace('/rota_recuperacao/concluido')
                                     })
-                                    .catch(function(e){
-                                        console.log("Um erro ocorreu ao tentar atualizar o usuário: ", erro)
+                                    .catch(function(){
+                                        console.log("Um erro ocorreu ao tentar atualizar o usuário")
                                         errorElement.innerHTML = "Erro interno, por favor tente novamente!"
 
                                         enviar.style.display = 'inline'
@@ -631,9 +612,6 @@ const user_database = {};
                 document.getElementById('city_input').value = get_user.cidade
 
                 document.getElementById('avatar-image').style.backgroundImage = `url('${get_user.imagem}')`
-                
-            
-                console.log(get_user.imagem)
             }
             
             user_executed = true
@@ -643,14 +621,9 @@ const user_database = {};
 
     function userExist(action, parameters){
         var userID = cookieAccess.valor('userID')
-        console.log('aqui',userID)
 
         if((!userID || userID == '') && action != 'login'){
             document.location.replace('/login/index.html')
-            console.log('Login de cima')
-        }
-        else if((!userID || userID == '') && action == 'login'){
-            console.log('Mantenha aqui')
         }
 
         let path = `Usuarios/${userID}`
@@ -661,8 +634,6 @@ const user_database = {};
             user.on('value', (snapshot) => {
                 const userInfo = snapshot.val()
     
-                console.log(userInfo)
-    
                 if(!userInfo){
                     var cookieData = new Date(5100,0,01);
                     cookieData = cookieData.toUTCString()
@@ -670,16 +641,12 @@ const user_database = {};
     
                     if(action != 'login'){
                         document.location.replace('/login/index.html')
-                        console.log('Login de baixo')
                     }
                 }else{
-                    console.log(userInfo.nome)
 
                     if(action == 'login'){
                         document.location.replace('/cadastro/Home.html')
-                        console.log('Home')
                     }else{
-                        console.log("tw.init")
     
                         if(action && parameters){
                             tw.init(action, parameters)

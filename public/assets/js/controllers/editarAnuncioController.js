@@ -37,8 +37,6 @@ image.addEventListener('change', (e) => {
         let url = URL.createObjectURL(images_array[slot])
         let activeButton = document.getElementById(`image_box_${slot}`)
 
-        console.log('Imagem recebida:',slot)
-
         activeButton.innerHTML = `<div>
                                 <img id="image-${slot}-trash" class="trash" src="/assets/images/lixeira.png"/>
                                 <img id="image-${slot}" 
@@ -51,20 +49,16 @@ image.addEventListener('change', (e) => {
                                 <img id="image-${slot}-loading" class="image_loading_box"/>
                             </div>`
 
-
-        console.log(`Deleted antes da adição do ${slot}: ${deleted_indexes}`)
         deleted_indexes = deleted_indexes.sort()
         for(var i=0; i <= deleted_indexes.length + 1; i++){
             if(deleted_indexes[i] == slot){
                 deleted_indexes.splice(i,1)
             }
         }
-        console.log(`Deleted depois da adição do ${slot}: ${deleted_indexes}`)
 
         image.type = 'text'
         image.type = 'file'
     } else {
-        console.log('Formato inválido')
         image.type = 'text'
         image.type = 'file'
     }
@@ -77,8 +71,6 @@ function removeImage(id){
     deleted_indexes = deleted_indexes.sort()
 
     const removableImage = document.getElementById(`image_box_${itemId[1]}`)
-
-    console.log('Imagem excluída:',itemId[1])
 
     removableImage.innerHTML = `<div id="image_front_${itemId[1]}" class="image_button_cadastro_anuncio" onclick="document.getElementById('image').click(); active_slot=${itemId[1]}">+</div>`
 }

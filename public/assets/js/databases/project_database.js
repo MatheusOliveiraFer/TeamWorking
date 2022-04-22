@@ -23,11 +23,11 @@ const project_database = {};
             dataCriacao: Date.now()
         }
 
-        let num = 0 //NÚMERO DE ITENS DO keyArray PERCORRIDOS
-        let count = 0 //NÚMERO DE IMAGENS UPADAS COM SUCESSO
-        let error = 0 //CONTADOR DE ERROS, NO FINAL EXISTE UMA VERIFICAÇÃO PARA REMOVER TODAS AS IMAGENS ENVIADOS CASO HOUVER ALGUM ERRO
-        let arrayLinks = [] //ARRAY QUE GUARDA OS LINKS GERADOS PELO PRÓPRIO FIREBASE PARA CADA IMAGEM PARA PODER ENVIAR JUNTO NO JSON
-        let arrayImageNames = [] //ARRAY QUE GUARDA O imagemName DAS IMAGENS PARA PODER DELETAR TODAS AS ENVIADOS CASO DER ERRO EM ALGUMA
+        let num = 0 //*NÚMERO DE ITENS DO keyArray PERCORRIDOS
+        let count = 0 //*NÚMERO DE IMAGENS UPADAS COM SUCESSO
+        let error = 0 //*CONTADOR DE ERROS, NO FINAL EXISTE UMA VERIFICAÇÃO PARA REMOVER TODAS AS IMAGENS ENVIADOS CASO HOUVER ALGUM ERRO
+        let arrayLinks = [] //*ARRAY QUE GUARDA OS LINKS GERADOS PELO PRÓPRIO FIREBASE PARA CADA IMAGEM PARA PODER ENVIAR JUNTO NO JSON
+        let arrayImageNames = [] //*ARRAY QUE GUARDA O imagemName DAS IMAGENS PARA PODER DELETAR TODAS AS ENVIADOS CASO DER ERRO EM ALGUMA
         imageArray.forEach(item => {
             let imageName = `${ownerID}_${num}`
             arrayImageNames.push(imageName)
@@ -37,23 +37,21 @@ const project_database = {};
             upload.child(imageName).put(imageFile).then(function (a) {
                 idURL = a.metadata.contentDisposition.lastIndexOf(userID)
                 idURL = a.metadata.contentDisposition.substring(idURL)
-                console.log('idURL:', idURL)
 
                 upload.child(idURL).getDownloadURL().then(function (url_imagem) {
-                    console.log(url_imagem)
                     arrayLinks.push(url_imagem)
 
                     count++
                 })
-                    .catch(function (e) {
-                        error++
-                        console.log('Erro:', e)
-                    })
-            })
-                .catch(function (e) {
+                .catch(function() {
                     error++
-                    console.log('Erro:', e)
+                    console.log('Erro ao tentar gerar link de imagem')
                 })
+            })
+            .catch(function() {
+                error++
+                console.log('Erro ao tentar upar imagem')
+            })
 
             num++
         })
@@ -64,12 +62,12 @@ const project_database = {};
                     project_data.imagens = arrayLinks
 
                     project.push(project_data)
-                        .then(function () {
+                        .then(function() {
                             console.log("Projeto criado com sucesso!")
                             document.location.replace('/meusanuncios/index.html')
                         })
-                        .catch(function (erro) {
-                            console.log("Um erro ocorreu ao tentar criar o projeto: ", erro)
+                        .catch(function() {
+                            console.log("Um erro ocorreu ao tentar criar o projeto")
 
                             loading.style.display = 'none'
                             saveButton.style.display = 'inline'
@@ -79,7 +77,7 @@ const project_database = {};
                             check()
                         })
                 } else {
-                    setTimeout(function () {
+                    setTimeout(function() {
                         check();
                     }, 1000);
                 }
@@ -102,17 +100,11 @@ const project_database = {};
     function get_all_projects() {
         const project = firebase.database().ref("Projetos")
 
-        console.log('aqui 2')
-
-        const userID = cookieAccess.valor('userID')
-
         const anuncioContainer = document.getElementById('anuncioContainer')
         const anuncioLoading = document.getElementById('anuncioLoading')
 
         let project_executed = false
         let has = false
-
-        // anuncioContainer.innerHTML = ""
 
         project.on('value', (snapshot) => {
             if (!project_executed) {
@@ -131,8 +123,6 @@ const project_database = {};
                 //* ORDENANDO OS PROJETOS DO MAIS NOVO PRO MAIS ANTIGO
                 get_projects = get_projects.sort((a,b) => {return b.dataCriacao > a.dataCriacao ? 1 : -1})
 
-                console.log("Sorted:",get_projects)
-
                 for (let index in get_projects) {
                     let gp = get_projects[index].id
 
@@ -148,8 +138,6 @@ const project_database = {};
                             if (document.getElementById('text_sem_anuncio')) {
                                 document.getElementById('text_sem_anuncio').remove()
                             }
-
-                            console.log(get_projects[index]);
 
                             var type = ''
 
@@ -174,17 +162,16 @@ const project_database = {};
                                 lista.style.width = '50%'
                             }
 
-                            //ADIÇÃO DE VÍDEO
+                            //*ADIÇÃO DE VÍDEO
                             if (get_projects[index].linkVideo) {
                                 lista.innerHTML += `<div class="video-box">
                                                             <img class="play-button" src="/assets/images/play.png" onclick='window.open("${get_projects[index].linkVideo}")'
                                                         </div>`
                             }
 
-                            //ADIÇÃO DE IMAGENS
+                            //*ADIÇÃO DE IMAGENS
 
                             if (get_projects[index].imagens) {
-                                console.log(get_projects[index].imagens)
 
                                 var photosNum = 0
 
@@ -247,7 +234,7 @@ const project_database = {};
 
                     anuncioLoading.remove()
 
-                    console.log("Ainda não existe nenhum anúncio que tal ser o primeiro?")
+                    console.log("Ainda não existe nenhum anúncio, que tal criar o primeiro?")
                 }
 
                 project_executed = true
@@ -258,8 +245,6 @@ const project_database = {};
     function get_all_project_user() {
         const userID = cookieAccess.valor('userID')
 
-        console.log(userID)
-
         const project = firebase.database().ref("Projetos")
         const user = firebase.database().ref("Usuarios").child(userID)
 
@@ -268,8 +253,6 @@ const project_database = {};
 
         let project_executed = false
         let has = false;
-
-        // anuncioContainer.innerHTML = ""
 
         project.on('value', (snapshot) => {
             if (!project_executed) {
@@ -296,7 +279,6 @@ const project_database = {};
                         let gp = get_projects[index].id
 
                         if (get_projects[index].IDdono == userID && ownerData) {
-                            console.log(get_projects[index]);
 
                             var type = ''
 
@@ -322,16 +304,15 @@ const project_database = {};
                                 lista.style.width = '50%'
                             }
 
-                            //ADIÇÃO DE VÍDEO
+                            //*ADIÇÃO DE VÍDEO
                             if (get_projects[index].linkVideo) {
                                 lista.innerHTML += `<div class="video-box">
                                                         <img class="play-button" src="/assets/images/play.png" onclick='window.open("${get_projects[index].linkVideo}")'
                                                     </div>`
                             }
 
-                            //ADIÇÃO DE IMAGENS
+                            //*ADIÇÃO DE IMAGENS
                             if (get_projects[index].imagens) {
-                                console.log(get_projects[index].imagens)
 
                                 var photosNum = 0
 
@@ -414,8 +395,6 @@ const project_database = {};
             if (!project_executed) {
                 projectInfo = snapshot.val()
 
-                console.log(projectInfo)
-
                 if (projectInfo) {
                     if (projectInfo.IDdono == userID) {
                         document.getElementById('projectEditor').style.display = 'inline'
@@ -453,7 +432,6 @@ const project_database = {};
                                                             
                                                             <img id="image-${index}-loading" class="image_loading_box"/>
                                                         </div>`
-
                                 index++
                             })
                         }
@@ -481,8 +459,8 @@ const project_database = {};
                     project.remove().then(function () {
                         const comments = firebase.database().ref("Comentarios")
 
-                        let num = 0 //NÚMERO DE COMENTÁRIOS SELECIONADOS PARA EXCLUSÃO
-                        let count = 0 //NÚMERO DE COMENTÁRIOS EXCLUÍDOS
+                        let num = 0 //*NÚMERO DE COMENTÁRIOS SELECIONADOS PARA EXCLUSÃO
+                        let count = 0 //*NÚMERO DE COMENTÁRIOS EXCLUÍDOS
 
                         let comment_executed = false
 
@@ -495,15 +473,13 @@ const project_database = {};
                                         const comment = firebase.database().ref("Comentarios").child(c)
                                         num++
 
-                                        comment.remove().then(function (msg) {
-                                            console.log("Comentário excluído", msg)
+                                        comment.remove().then(function() {
+                                            console.log("Comentário excluído")
                                             count++
-                                        }).catch(function (e) {
-                                            console.log("Ocorreu um erro ao tentar excluir a resposta:", e)
+                                        }).catch(function() {
+                                            console.log("Ocorreu um erro ao tentar excluir a resposta")
                                             count++
                                         })
-
-                                        console.log("Excluido resposta:", commentInfo[c].conteudo)
                                     }
                                 }
 
@@ -541,9 +517,6 @@ const project_database = {};
                                 comment_executed = true
                             }
                         })
-
-
-
                     })
                 }
 
@@ -560,7 +533,6 @@ const project_database = {};
         const errorElement = document.getElementById('errorElement')
         var user_executed = false
         var project_executed = false
-        console.log("Deleted array recebido:", deletedIndexes)
 
         user.on('value', (snapshot) => {
             if (!user_executed) {
@@ -569,11 +541,6 @@ const project_database = {};
                 project.on('value', (snapshot2) => {
                     if (!project_executed) {
                         var projectInfo = snapshot2.val()
-                        // var deletes = 0
-
-                        // console.log('ProjectInfo:', projectInfo)
-                        // console.log('UserInfo:', userInfo)
-                        // console.log('userID:', userID)
 
                         if (projectInfo && userInfo && projectInfo.IDdono == userID) {
                             const upload = firebase.storage().ref(`Project images/${projectInfo.IDArmazenamento}/`)
@@ -582,10 +549,7 @@ const project_database = {};
                             let imgNum = 0
                             projectInfo.imagens = []
 
-                            console.log("Imagens:", imageArray)
-
                             imageArray.forEach(img => {
-                                // if (image_executed < 4) {
                                 if (img.url && img.fileName) {
                                     projectInfo.imagens.push(img.url)
 
@@ -595,40 +559,31 @@ const project_database = {};
                                     upload.child(`${userID}_${imgNum}`).put(img).then(function (a) {
                                         idURL = a.metadata.contentDisposition.lastIndexOf(userID)
                                         idURL = a.metadata.contentDisposition.substring(idURL)
-                                        console.log('idURL:', idURL)
 
                                         upload.child(idURL).getDownloadURL().then(function (url_imagem) {
                                             projectInfo.imagens.push(url_imagem)
 
                                             image_executed++
                                         })
-                                    }).catch(function (e) {
+                                    }).catch(function() {
                                         projectInfo.imagens.push('')
                                         image_executed++
 
-                                        console.log('Erro ao tentar upar imagem:', a, e)
+                                        console.log('Erro ao tentar upar imagem')
                                     })
                                     imgNum++
                                 }
-
-                                // }
-
-                                console.log("image_executed:", image_executed)
                             })
 
 
                             function finalUpload() {
-                                console.log("image_executed:", image_executed, "UpdatedSize:", imageArray.length)
 
                                 if (image_executed == imageArray.length) {
                                     projectInfo.imagens = projectInfo.imagens.sort()
 
-                                    console.log("Deleted array:", deletedIndexes)
                                     deletedIndexes.forEach(i => {
                                         projectInfo.imagens[i] = `${projectInfo.imagens[i].split('?')[0]}_deleted`
                                     })
-
-                                    console.log("Array final:", projectInfo.imagens)
 
                                     projectInfo.tipo = type
                                     projectInfo.titulo = title.replace("'", "´").replace('"', "´"),
@@ -636,19 +591,18 @@ const project_database = {};
                                     projectInfo.descricaoCompleta = fullDescription
                                     projectInfo.valor = value ? parseFloat(value) : ''
                                     projectInfo.linkVideo = video
-                                    // projectInfo.imagens = projectInfo.imagens.sort()
 
-                                    project.update(projectInfo).then(function () {
+                                    project.update(projectInfo).then(function() {
                                         document.location.replace('/meusanuncios/index.html')
 
                                         console.log('Projeto atualizado com sucesso!')
 
                                         project_executed = true
                                     })
-                                        .catch(function (e) {
+                                        .catch(function() {
                                             errorElement.innerText('Erro interno, por favor tente novamente!')
 
-                                            console.log('Ocorreu um erro ao tentar atualizar o anuncio:', e)
+                                            console.log('Ocorreu um erro ao tentar atualizar o anuncio')
 
                                             project_executed = true
                                         })
@@ -714,14 +668,14 @@ const project_database = {};
 
                             let lista = document.getElementById('image-list')
 
-                            //ADIÇÃO DE VÍDEO
+                            //*ADIÇÃO DE VÍDEO
                             if (projectInfo.linkVideo) {
                                 lista.innerHTML += `<div class="video-box">
                                                         <img class="play-button" src="/assets/images/play.png" onclick='window.open("${projectInfo.linkVideo}")'
                                                     </div>`
                             }
 
-                            //ADIÇÃO DE IMAGENS
+                            //*ADIÇÃO DE IMAGENS
                             if (projectInfo.imagens) {
                                 if (projectInfo.imagens[0] && projectInfo.imagens[0].lastIndexOf('deleted') == -1) {
                                     imageID = `imagem_${projectID}_0`
@@ -772,8 +726,6 @@ const project_database = {};
                                     comments_container.innerHTML = ''
 
                                     let commentInfo = snapshot3.val()
-
-                                    console.log(commentInfo)
 
                                     if (commentInfo) {
                                         for (gc in commentInfo) {
