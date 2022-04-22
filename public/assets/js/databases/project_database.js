@@ -757,6 +757,13 @@ const project_database = {};
                                 }
                             }
 
+                            if(lista.innerHTML == ''){
+                                lista.innerHTML = `<div class="imagem1">
+                                            <img src="/assets/images/Loading.gif" id="image_${projectID}_loading" class="image_of_loading"/>
+                                            <img src="/assets/images/semImagem.png" id="image_${projectID}" class="image_of_project" onload="document.getElementById('image_${projectID}_loading').style.display = 'none'; document.getElementById('image_${projectID}').style.display = 'flex';">
+                                        </div>`
+                            }
+
                             let comment_executed = false
 
                             comments.on('value', (snapshot3) => {
@@ -858,16 +865,6 @@ const project_database = {};
                 }
             }
         })
-    }
-    
-    function sortByDate( a, b ) {
-        if ( a.dataCriacao < b.dataCriacao ){
-          return -1;
-        }
-        if ( a.dataCriacao > b.dataCriacao ){
-          return 1;
-        }
-        return 0;
     }
 
     project_database.new = new_project;
