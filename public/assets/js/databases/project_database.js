@@ -124,107 +124,112 @@ const project_database = {};
                 get_projects = get_projects.sort((a,b) => {return b.dataCriacao > a.dataCriacao ? 1 : -1})
 
                 for (let index in get_projects) {
+
                     let gp = get_projects[index].id
 
                     const user = firebase.database().ref("Usuarios").child(get_projects[index].IDdono)
 
+                    let user_executed = false
                     user.on('value', (snapshot) => {
-                        ownerData = snapshot.val()
-
-                        if (get_projects[index] && ownerData) {
-                            has = true
-                            anuncioContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.76)'
-
-                            if (document.getElementById('text_sem_anuncio')) {
-                                document.getElementById('text_sem_anuncio').remove()
-                            }
-
-                            var type = ''
-
-                            switch (get_projects[index].tipo) {
-                                case '1': type = 'Compra e venda de empresas e negócios'; break;
-                                case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
-                                case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
-                            }
-
-                            let descricaoPequenaResumida = get_projects[index].descricaoPequena
-
-                            if (get_projects[index].descricaoPequena.length > 140) {
-                                descricaoPequenaResumida = `${get_projects[index].descricaoPequena.substring(0, 140)}...`
-                            }
-                            anuncioContainer.innerHTML += anuncios_item(get_projects[index].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[index].valor, gp)
-
-                            const lista = document.getElementById(`lista-imagem_${gp}`)
-
-                            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                                lista.style.width = '100%'
-                            } else {
-                                lista.style.width = '50%'
-                            }
-
-                            //*ADIÇÃO DE VÍDEO
-                            if (get_projects[index].linkVideo) {
-                                lista.innerHTML += `<div class="video-box">
-                                                            <img class="play-button" src="/assets/images/play.png" onclick='window.open("${get_projects[index].linkVideo}")'
-                                                        </div>`
-                            }
-
-                            //*ADIÇÃO DE IMAGENS
-
-                            if (get_projects[index].imagens) {
-
-                                var photosNum = 0
-
-                                if (get_projects[index].imagens[0] && get_projects[index].imagens[0].lastIndexOf('deleted') == -1) {
-                                    imageID = `imagem_${gp}_0`
-
-                                    lista.innerHTML += `<div class="imagem1">
-                                            <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                            <img src="${get_projects[index].imagens[0]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[0]}')">
-                                        </div>`
-
-                                    photosNum++
+                        if(!user_executed){
+                            let ownerData = snapshot.val()
+    
+                            if (get_projects[index] && ownerData) {
+                                has = true
+                                anuncioContainer.style.backgroundColor = 'rgba(0, 0, 0, 0.76)'
+    
+                                if (document.getElementById('text_sem_anuncio')) {
+                                    document.getElementById('text_sem_anuncio').remove()
                                 }
-                                if (get_projects[index].imagens[1] && get_projects[index].imagens[1].lastIndexOf('deleted') == -1) {
-                                    imageID = `image_${gp}_1`
-
-                                    lista.innerHTML += `<div class="imagem1">
-                                            <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                            <img src="${get_projects[index].imagens[1]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[1]}')">
-                                        </div>`
-
-                                    photosNum++
+    
+                                var type = ''
+    
+                                switch (get_projects[index].tipo) {
+                                    case '1': type = 'Compra e venda de empresas e negócios'; break;
+                                    case '2': type = 'Formação de Startups, projetos e vagas de emprego'; break;
+                                    case '3': type = 'Oportunidade de investimento, sociedade e parceria'; break;
                                 }
-                                if (get_projects[index].imagens[2] && get_projects[index].imagens[2].lastIndexOf('deleted') == -1 && photosNum < 2) {
-                                    imageID = `image_${gp}_2`
-
-                                    lista.innerHTML += `<div class="imagem1">
-                                            <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                            <img src="${get_projects[index].imagens[2]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[2]}')">
-                                        </div>`
-
-                                    photosNum++
+    
+                                let descricaoPequenaResumida = get_projects[index].descricaoPequena
+    
+                                if (get_projects[index].descricaoPequena.length > 140) {
+                                    descricaoPequenaResumida = `${get_projects[index].descricaoPequena.substring(0, 140)}...`
                                 }
-                                if (get_projects[index].imagens[3] && get_projects[index].imagens[3].lastIndexOf('deleted') == -1 && photosNum < 2) {
-                                    imageID = `image_${gp}_3`
-
-                                    lista.innerHTML += `<div class="imagem1">
-                                            <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
-                                            <img src="${get_projects[index].imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[3]}')">
-                                        </div>`
-
-                                    photosNum++
+                                anuncioContainer.innerHTML += anuncios_item(get_projects[index].titulo, descricaoPequenaResumida, type, ownerData.nome, ownerData.cidade, ownerData.uf, get_projects[index].valor, gp)
+    
+                                const lista = document.getElementById(`lista-imagem_${gp}`)
+    
+                                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                                    lista.style.width = '100%'
+                                } else {
+                                    lista.style.width = '50%'
                                 }
-                            } else {
-                                lista.innerHTML += `<div class="imagem1">
-                                            <img src="/assets/images/Loading.gif" id="image_${gp}_loading" class="image_of_loading"/>
-                                            <img src="/assets/images/semImagem.png" id="image_${gp}" class="image_of_project" onload="document.getElementById('image_${gp}_loading').style.display = 'none'; document.getElementById('image_${gp}').style.display = 'flex';">
-                                        </div>`
+    
+                                //*ADIÇÃO DE VÍDEO
+                                if (get_projects[index].linkVideo) {
+                                    lista.innerHTML += `<div class="video-box">
+                                                                <img class="play-button" src="/assets/images/play.png" onclick='window.open("${get_projects[index].linkVideo}")'
+                                                            </div>`
+                                }
+    
+                                //*ADIÇÃO DE IMAGENS
+    
+                                if (get_projects[index].imagens) {
+    
+                                    var photosNum = 0
+    
+                                    if (get_projects[index].imagens[0] && get_projects[index].imagens[0].lastIndexOf('deleted') == -1) {
+                                        imageID = `imagem_${gp}_0`
+    
+                                        lista.innerHTML += `<div class="imagem1">
+                                                <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                                <img src="${get_projects[index].imagens[0]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[0]}')">
+                                            </div>`
+    
+                                        photosNum++
+                                    }
+                                    if (get_projects[index].imagens[1] && get_projects[index].imagens[1].lastIndexOf('deleted') == -1) {
+                                        imageID = `image_${gp}_1`
+    
+                                        lista.innerHTML += `<div class="imagem1">
+                                                <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                                <img src="${get_projects[index].imagens[1]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[1]}')">
+                                            </div>`
+    
+                                        photosNum++
+                                    }
+                                    if (get_projects[index].imagens[2] && get_projects[index].imagens[2].lastIndexOf('deleted') == -1 && photosNum < 2) {
+                                        imageID = `image_${gp}_2`
+    
+                                        lista.innerHTML += `<div class="imagem1">
+                                                <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                                <img src="${get_projects[index].imagens[2]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[2]}')">
+                                            </div>`
+    
+                                        photosNum++
+                                    }
+                                    if (get_projects[index].imagens[3] && get_projects[index].imagens[3].lastIndexOf('deleted') == -1 && photosNum < 2) {
+                                        imageID = `image_${gp}_3`
+    
+                                        lista.innerHTML += `<div class="imagem1">
+                                                <img src="/assets/images/Loading.gif" id="${imageID}_loading" class="image_of_loading"/>
+                                                <img src="${get_projects[index].imagens[3]}" id="${imageID}" class="image_of_project" onload="document.getElementById('${imageID}_loading').style.display = 'none'; document.getElementById('${imageID}').style.display = 'flex';" onclick="open_modal('${get_projects[index].imagens[3]}')">
+                                            </div>`
+    
+                                        photosNum++
+                                    }
+                                } else {
+                                    lista.innerHTML += `<div class="imagem1">
+                                                <img src="/assets/images/Loading.gif" id="image_${gp}_loading" class="image_of_loading"/>
+                                                <img src="/assets/images/semImagem.png" id="image_${gp}" class="image_of_project" onload="document.getElementById('image_${gp}_loading').style.display = 'none'; document.getElementById('image_${gp}').style.display = 'flex';">
+                                            </div>`
+                                }
                             }
+    
+                            anuncioLoading.remove()
+
+                            user_executed = true
                         }
-
-                        anuncioLoading.remove()
-
                     })
                 }
 
