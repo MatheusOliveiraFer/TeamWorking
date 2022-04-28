@@ -3,7 +3,7 @@ const background_modal = document.getElementById('background-of-modal')
 
 anuncioContainer.style.padding = '0px'
 
-tw.init('user_exist',['get_all_projects'])
+tw.init('get_all_projects')
 
 function open_modal(url){
     background_modal.innerHTML = `<div class="modal-image-container">
